@@ -5,7 +5,7 @@ import CustomFooter from '../Pages/Shared/Footer/CustomFooter';
 
 const MainLayout = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
+        <div>
             <CustomNavbar />
             <div className="min-h-[calc(100vh-350px)]">
                 <Outlet />

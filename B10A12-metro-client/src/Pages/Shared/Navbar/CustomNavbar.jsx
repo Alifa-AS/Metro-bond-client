@@ -5,7 +5,7 @@ import logo from '../../../assets/logo.png'
 const CustomNavbar = () => {
   return (
     <div>
-      <FlowbiteNavbar fluid rounded>
+      <FlowbiteNavbar fluid rounded className="fixed z-10 bg-opacity-30 max-w-screen-xl mx-auto w-full bg-black text-yellow-200">
         <FlowbiteNavbar.Brand>
           <img
             src={logo}
@@ -43,13 +43,12 @@ const CustomNavbar = () => {
           <FlowbiteNavbar.Toggle />
         </div>
         <FlowbiteNavbar.Collapse>
-          <FlowbiteNavbar.Link href="#" active>
+          <FlowbiteNavbar.Link href="#" active className="text-white">
             Home
           </FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#">About</FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#">Services</FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#">Pricing</FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#">Contact</FlowbiteNavbar.Link>
+          <FlowbiteNavbar.Link href="#" className="text-white">Bio-data</FlowbiteNavbar.Link>
+          <FlowbiteNavbar.Link href="#" className="text-white">About Us</FlowbiteNavbar.Link>
+          <FlowbiteNavbar.Link href="#" className="text-white">Contact Us</FlowbiteNavbar.Link>
         </FlowbiteNavbar.Collapse>
       </FlowbiteNavbar>
     </div>
