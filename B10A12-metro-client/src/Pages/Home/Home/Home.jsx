@@ -1,18 +1,24 @@
-import React from 'react';
-import Banner from '../Banner/Banner';
-import Category from '../Category/Category';
-import PremiumMember from '../PremiumMember/PremiumMember';
-import HowItWorks from '../HowItWorks/HowItWorks';
+import React from "react";
+import Banner from "../Banner/Banner";
+import Category from "../Category/Category";
+import PremiumMember from "../PremiumMember/PremiumMember";
+import HowItWorks from "../HowItWorks/HowItWorks";
+import SuccessStory from "../SuccessStory/SuccessStory";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
-    return (
-        <div>
-            <Banner />
-            <PremiumMember />
-            <HowItWorks />
-            <Category />
-        </div>
-    );
+  return (
+    <div>
+      <Helmet>
+        <title>Metro || Home</title>
+      </Helmet>
+      <Banner />
+      <PremiumMember />
+      <HowItWorks />
+      <SuccessStory />
+      <Category />
+    </div>
+  );
 };
 
 export default Home;

@@ -8,6 +8,9 @@ const PremiumMember = () => {
             heading="Our Premium Member"
             subHeading="Be Premium Member to Part Of Our Story">
             </SectionTitle>
+            <div>
+                <h3>premium</h3>
+            </div>
         </section>
     );
 };

@@ -1,17 +1,18 @@
 import React from "react";
 import { Avatar, Dropdown, Navbar as FlowbiteNavbar } from "flowbite-react";
-import logo from '../../../assets/logo.png'
+import logo from "../../../assets/logo.png";
+import { NavLink } from "react-router-dom";
 
 const CustomNavbar = () => {
   return (
     <div>
-      <FlowbiteNavbar fluid rounded className="fixed z-10 bg-opacity-30 max-w-screen-xl mx-auto w-full bg-black text-yellow-200">
+      <FlowbiteNavbar
+        fluid
+        rounded
+        className="fixed z-10 bg-opacity-30 max-w-screen-xl mx-auto w-full bg-black text-yellow-200"
+      >
         <FlowbiteNavbar.Brand>
-          <img
-            src={logo}
-            className="mr-3 sm:h-9 h-9"
-            alt="Logo"
-          />
+          <img src={logo} className="mr-3 sm:h-9 h-9" alt="Logo" />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             M<span className="text-pink-500">etr</span>O
           </span>
@@ -43,12 +44,38 @@ const CustomNavbar = () => {
           <FlowbiteNavbar.Toggle />
         </div>
         <FlowbiteNavbar.Collapse>
-          <FlowbiteNavbar.Link href="#" active className="text-white">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "text-pink-500 font-bold" : "text-white"
+            }
+          >
             Home
-          </FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#" className="text-white">Bio-data</FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#" className="text-white">About Us</FlowbiteNavbar.Link>
-          <FlowbiteNavbar.Link href="#" className="text-white">Contact Us</FlowbiteNavbar.Link>
+          </NavLink>
+
+          <NavLink
+            to="/bioData"
+            className={({ isActive }) =>
+              isActive ? "text-pink-500 font-bold" : "text-white"
+            }>
+            Bio-Data
+          </NavLink>
+
+          <NavLink
+            to="/aboutUs"
+            className={({ isActive }) =>
+              isActive ? "text-pink-500 font-bold" : "text-white"
+            }>
+            About Us
+          </NavLink>
+
+          <NavLink
+            to="/contactUs"
+            className={({ isActive }) =>
+              isActive ? "text-pink-500 font-bold" : "text-white"
+            }>
+            Contact Us
+          </NavLink>
         </FlowbiteNavbar.Collapse>
       </FlowbiteNavbar>
     </div>
