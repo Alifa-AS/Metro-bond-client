@@ -13,7 +13,7 @@ const ContactUs = () => {
       
        {/* Contact Section */}
        <div className="container mx-auto py-16 px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Contact Us</h2>
+        <h2 className="text-3xl font-bold text-center mb-10 underline text-yellow-400">Contact Us</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <p><strong>Address:</strong> Dhaka 1205, Bangladesh</p>
@@ -40,7 +40,7 @@ const ContactUs = () => {
               placeholder="Your Message"
               className="w-full p-3 border rounded-lg h-32"
             ></textarea>
-            <button className="bg-purple-600 text-white px-6 py-3 rounded-lg w-full">
+            <button className="bg-pink-400 text-white px-6 py-3 rounded-lg w-full">
               Send Message
             </button>
           </form>
