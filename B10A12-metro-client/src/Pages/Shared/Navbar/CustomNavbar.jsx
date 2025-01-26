@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Dropdown, Navbar as FlowbiteNavbar } from "flowbite-react";
 import logo from "../../../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const CustomNavbar = () => {
   return (
@@ -36,10 +36,10 @@ const CustomNavbar = () => {
               </span>
             </Dropdown.Header>
             <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item>
+              <Link to='/login'>Login</Link>
+            </Dropdown.Item>
           </Dropdown>
           <FlowbiteNavbar.Toggle />
         </div>

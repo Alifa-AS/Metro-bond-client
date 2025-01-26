@@ -5,6 +5,7 @@ import PremiumMember from "../PremiumMember/PremiumMember";
 import HowItWorks from "../HowItWorks/HowItWorks";
 import SuccessStory from "../SuccessStory/SuccessStory";
 import { Helmet } from "react-helmet-async";
+import SuccessCounter from "../SuccessCounter/SuccessCounter";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <Banner />
       <PremiumMember />
       <HowItWorks />
+      <SuccessCounter />
       <SuccessStory />
       <Category />
     </div>

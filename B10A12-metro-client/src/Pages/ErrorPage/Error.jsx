@@ -27,7 +27,7 @@ const Error = () => {
         <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0">
           <img
             className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover "
-            src="https://img.freepik.com/free-vector/404-error-abstract-concept-illustration_335657-2243.jpg?t=st=1736335269~exp=1736338869~hmac=4d7577d095433ed4c6c1f009c3c95c3552ce817d458e4d10d0be0490299019ec&w=826"
+            src="https://img.freepik.com/free-vector/tiny-programmers-working-with-system-error-computer-monitor-internet-flat-vector-illustration-programming-it-digital-technology_74855-8632.jpg?t=st=1737857338~exp=1737860938~hmac=127e7e9e10185252969aa9bf231193657f4bb18ccf6a2b4eac57589c12d3edf4&w=1060"
             alt=""
           />
         </div>

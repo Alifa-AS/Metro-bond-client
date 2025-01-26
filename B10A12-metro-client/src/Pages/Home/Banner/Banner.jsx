@@ -11,7 +11,14 @@ import img6 from '../../../assets/Home-img/Home6.png'
 
 const Banner = () => {
     return (
-        <Carousel>
+        <Carousel  
+        autoPlay           
+        infiniteLoop       
+        interval={4000}    
+        showThumbs={false} 
+        showStatus={false} 
+        stopOnHover={false}
+        >
                 <div>
                     <img src={img} />
                     

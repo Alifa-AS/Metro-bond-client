@@ -1,0 +1,63 @@
+import { useState, useEffect } from "react";
+import { FaFemale, FaMale, FaHeart } from "react-icons/fa";
+import SectionTitle from "../../../Components/SectionTitle";
+
+const SuccessCounter = () => {
+  const [stats, setStats] = useState({
+    girls: 0,
+    boys: 0,
+    marriages: 0,
+  });
+
+  // Simulating fetching data from an API or JSON
+  useEffect(() => {
+    setTimeout(() => {
+      setStats({
+        girls: 800,
+        boys: 1100,
+        marriages: 350,
+      });
+    }, 1000);
+  }, []);
+
+  return (
+    <section className="my-20 text-center shadow-md rounded-xl p-6 bg-pink-50">
+      <div className="max-w-4xl mx-auto">
+        <SectionTitle
+          heading="Success Counter"
+          subHeading="Our Success Counter"
+        ></SectionTitle>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Girls Count */}
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+            <FaFemale className="text-pink-500 text-5xl mx-auto" />
+            <h3 className="text-3xl font-bold text-gray-700 mt-4">
+              {stats.girls}
+            </h3>
+            <p className="text-gray-500 text-lg">Girls' Biodata</p>
+          </div>
+
+          {/* Boys Count */}
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+            <FaMale className="text-blue-500 text-5xl mx-auto" />
+            <h3 className="text-3xl font-bold text-gray-700 mt-4">
+              {stats.boys}
+            </h3>
+            <p className="text-gray-500 text-lg">Boys' Biodata</p>
+          </div>
+
+          {/* Marriages Count */}
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+            <FaHeart className="text-red-500 text-5xl mx-auto" />
+            <h3 className="text-3xl font-bold text-gray-700 mt-4">
+              {stats.marriages}
+            </h3>
+            <p className="text-gray-500 text-lg">Marriages Completed</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SuccessCounter;

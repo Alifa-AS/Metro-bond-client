@@ -3,8 +3,19 @@ import Cover from "../Shared/Cover/Cover";
 import coverImg from "../../assets/Cover/cover1.jpg";
 import { Sidebar } from "flowbite-react";
 import BioDataCard from "./BioDataCard";
+import { useEffect, useState } from "react";
 
 const BioData = () => {
+
+      const [bioData, setBioData] = useState([]);
+
+      useEffect(() =>{
+        fetch('http://localhost:5000/bioData')
+        .then(res => res.json())
+        .then(data => {
+          setBioData(data)
+        });
+      },[])
   return (
     <div>
       <Helmet>
@@ -12,11 +23,11 @@ const BioData = () => {
       </Helmet>
       <Cover img={coverImg} title="Your Bio-Data, Your Identity" />
 
-      <div className="flex min-h-screen my-10">
-        {/* Sidebar */}
+      <div className="flex flex-col lg:flex-row min-h-screen my-10">
+        {/* Sidebar */} 
         <Sidebar
           aria-label="Bio Data Sidebar"
-          className="w-96 h-screen bg-pink-100 p-4"
+          className="w-96 h-screen bg-pink-100 p-4 mx-auto"
         >
           <h2 className="text-xl font-semibold mb-4">Filters</h2>
           <form className="space-y-4">
@@ -78,29 +89,11 @@ const BioData = () => {
         <div className="flex-1 p-6 bg-gray-100">
           <h1 className="text-3xl font-semibold mb-4">All Bio Datas</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {Array.from({ length: 20 }, (_, i) => (
-              <BioDataCard
-                key={i}
-                id={i + 1}
-                type={i % 2 === 0 ? "Male" : "Female"}
-                image={`https://randomuser.me/api/portraits/${
-                  i % 2 === 0 ? "men" : "women"
-                }/${i}.jpg`}
-                division={
-                  [
-                    "Dhaka",
-                    "Chattagra",
-                    "Rangpur",
-                    "Barisal",
-                    "Khulna",
-                    "Mymensingh",
-                    "Sylhet",
-                  ][i % 7]
-                }
-                age={20 + (i % 10)}
-                occupation="Software Engineer"
-              />
-            ))}
+            {
+              bioData.slice(0,20).map((data) => (
+                <BioDataCard key={data._id} data={data}></BioDataCard>
+              ))
+            }
           </div>
         </div>
       </div>
