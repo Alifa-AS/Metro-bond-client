@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import errorLottie from "../../assets/lottie/error.json";
 
 const Error = () => {
   return (
@@ -25,11 +27,15 @@ const Error = () => {
         </div>
 
         <div className="relative w-full mt-8 lg:w-1/2 lg:mt-0">
-          <img
+          {/* <img
             className=" w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover "
             src="https://img.freepik.com/free-vector/tiny-programmers-working-with-system-error-computer-monitor-internet-flat-vector-illustration-programming-it-digital-technology_74855-8632.jpg?t=st=1737857338~exp=1737860938~hmac=127e7e9e10185252969aa9bf231193657f4bb18ccf6a2b4eac57589c12d3edf4&w=1060"
             alt=""
-          />
+          /> */}
+          {/* Lottie Animation */}
+          <div className="text-center lg:text-left">
+            <Lottie animationData={errorLottie} />
+          </div>
         </div>
       </div>
     </section>

@@ -21,11 +21,9 @@ const CustomFooter = () => {
               <div>
                 <FlowbiteFooter.Title title="about" />
                 <FlowbiteFooter.LinkGroup col>
-                  <FlowbiteFooter.Link href="#">Flowbite</FlowbiteFooter.Link>
-                  <FlowbiteFooter.Link href="#">Flowbite</FlowbiteFooter.Link>
-                  <FlowbiteFooter.Link href="#">
-                    Tailwind CSS
-                  </FlowbiteFooter.Link>
+                  <FlowbiteFooter.Link href="/bioData">BioData</FlowbiteFooter.Link>
+                  <FlowbiteFooter.Link href="/aboutUs">About Us</FlowbiteFooter.Link>
+                  <FlowbiteFooter.Link href="/contactUs">Contact Us</FlowbiteFooter.Link>
                 </FlowbiteFooter.LinkGroup>
               </div>
               <div>
@@ -33,7 +31,7 @@ const CustomFooter = () => {
                 <FlowbiteFooter.LinkGroup col>
                   <FlowbiteFooter.Link href="#">Github</FlowbiteFooter.Link>
                   <FlowbiteFooter.Link href="#">Discord</FlowbiteFooter.Link>
-                  <FlowbiteFooter.Link href="#">Discord</FlowbiteFooter.Link>
+                  <FlowbiteFooter.Link href="#">Youtube</FlowbiteFooter.Link>
                 </FlowbiteFooter.LinkGroup>
               </div>
               <div>

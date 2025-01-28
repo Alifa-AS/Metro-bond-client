@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Dropdown, Navbar as FlowbiteNavbar } from "flowbite-react";
 import logo from "../../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 const CustomNavbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "LogOut Successful",
+          showClass: {
+            popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `
+          },
+          hideClass: {
+            popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `
+          }
+        });
+        
+      })
+      .catch((error) => {
+        toast.error(error.message, error);
+      });
+  };
+
   return (
     <div>
       <FlowbiteNavbar
@@ -37,9 +69,19 @@ const CustomNavbar = () => {
             </Dropdown.Header>
             <Dropdown.Item>Dashboard</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>
-              <Link to='/login'>Login</Link>
-            </Dropdown.Item>
+            {user ? (
+              <>
+                <Dropdown.Item onClick={handleLogOut} className="">
+                  Log Out
+                </Dropdown.Item>
+              </>
+            ) : (
+              <>
+                <Dropdown.Item>
+                  <Link to="/login">Login</Link>
+                </Dropdown.Item>
+              </>
+            )}
           </Dropdown>
           <FlowbiteNavbar.Toggle />
         </div>
@@ -57,7 +99,8 @@ const CustomNavbar = () => {
             to="/bioData"
             className={({ isActive }) =>
               isActive ? "text-pink-500 font-bold" : "text-white"
-            }>
+            }
+          >
             Bio-Data
           </NavLink>
 
@@ -65,7 +108,8 @@ const CustomNavbar = () => {
             to="/aboutUs"
             className={({ isActive }) =>
               isActive ? "text-pink-500 font-bold" : "text-white"
-            }>
+            }
+          >
             About Us
           </NavLink>
 
@@ -73,7 +117,8 @@ const CustomNavbar = () => {
             to="/contactUs"
             className={({ isActive }) =>
               isActive ? "text-pink-500 font-bold" : "text-white"
-            }>
+            }
+          >
             Contact Us
           </NavLink>
         </FlowbiteNavbar.Collapse>
