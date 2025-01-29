@@ -62,12 +62,11 @@ const CustomNavbar = () => {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">{user?.displayName}</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                abc@flowbite.com
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
             <Dropdown.Divider />
             {user ? (
               <>
@@ -121,6 +120,15 @@ const CustomNavbar = () => {
           >
             Contact Us
           </NavLink>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? "text-pink-500 font-bold" : "text-white"
+            }
+          >
+            Dashboard
+          </NavLink>
+
         </FlowbiteNavbar.Collapse>
       </FlowbiteNavbar>
     </div>

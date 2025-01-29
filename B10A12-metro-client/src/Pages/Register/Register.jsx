@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { TextInput, Card } from "flowbite-react";
 import { useForm } from "react-hook-form";
@@ -7,21 +7,40 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
+import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 const Register = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email,data.password)
     .then(result => {
       const loggedUser = result.user;
-      console.log(loggedUser)
+      console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+      .then(()=>{
+        console.log('user profile info updated')
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "user crested successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/');
+      })
+      .catch(error => {
+        console.log(error)
+      })
     })
   };
-  // console.log(watch("example"))
+ 
 
   return (
     <>
@@ -32,10 +51,10 @@ const Register = () => {
         <ToastContainer />
         <div className="bg-gray-100 min-h-screen flex items-center justify-center">
           <div className="flex flex-col lg:flex-row items-center gap-10 p-5">
-            <div className="text-center lg:text-left w-1/2">
+            <div className="text-center lg:text-left w-3/4">
               <Lottie animationData={registerLottie} />
             </div>
-            <Card className="w-full max-w-sm shadow-lg">
+            <Card className="w-full max-w-md shadow-lg">
               <h1 className="text-4xl font-bold text-center mb-5">
                 Register now!
               </h1>
@@ -130,7 +149,7 @@ const Register = () => {
                   Now!
                 </p>
               </div>
-              <div className="mt-4">{/* <SocialLogin /> */}</div>
+              <div className="mt-4"><SocialLogin /></div>
             </Card>
           </div>
         </div>

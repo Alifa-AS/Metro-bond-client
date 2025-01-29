@@ -5,18 +5,22 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { Card, Label, TextInput, Button } from "flowbite-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lottie/login.json";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
 
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const form = location.state?.form?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -42,7 +46,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
         });
-        navigate('/');
+        navigate(form, { replace: true });
 
       })
       .catch((error) => {
@@ -82,7 +86,7 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <Card className="w-full max-w-sm shadow-2xl">
+          <Card className="w-full max-w-md shadow-2xl">
             <h1 className="text-4xl font-bold text-center mt-4 text-gray-800">
               Login now!
             </h1>
@@ -160,7 +164,7 @@ const Login = () => {
                 </p>
               </div>
             </form>
-            <div className="my-4 mx-6">{/* <SocialLogin /> */}</div>
+            <div className="my-2 mx-6"><SocialLogin /></div>
           </Card>
         </div>
       </div>
