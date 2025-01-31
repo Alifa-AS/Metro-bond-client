@@ -10,9 +10,9 @@ import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import Secrets from '../Pages/Shared/Secrets/Secrets';
 import PrivateRoute from './PrivateRoute';
-import DashBoard from '../Layout/DashBoard';
-import EditBio from '../Pages/DashBoard/EditBio';
 import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
+import EditBio from '../Pages/DashBoard/EditBio/EditBio';
+import DashBoardLayout from '../Layout/DashBoardLayout';
 
 
 
@@ -60,12 +60,12 @@ import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
         },
         {
             path: 'dashboard',
-            element: <PrivateRoute><DashBoard /></PrivateRoute>,
+            element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
             children: [
                {
                 path: 'editBio',
-                element: <EditBio />,
-               },
+                element: <EditBio />, 
+               }
 
             ]
         },

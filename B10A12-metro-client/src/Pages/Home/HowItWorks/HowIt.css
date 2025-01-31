@@ -1,3 +1,6 @@
 .howIt-item{
     background-image: url('../../../assets/Home-img/wedding.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }

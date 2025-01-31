@@ -5,11 +5,12 @@ const BioDataCard = ({ data }) => {
   const {
     _id,
     biodataId,
+    name,
     biodataType,
     profileImage,
     permanentDivision,
     age,
-    occupation,
+    occupation
   } = data;
   return (
     <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200">
@@ -24,6 +25,9 @@ const BioDataCard = ({ data }) => {
         <div className="text-center md:text-left md:ml-6">
           <p className="text-lg font-bold text-gray-900">
             BioData ID: {biodataId}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">Name: </span> {name}
           </p>
           <p className="text-gray-700">
             <span className="font-semibold">Gender: </span> {biodataType}
@@ -41,7 +45,7 @@ const BioDataCard = ({ data }) => {
           </p>
 
           <Link to={`/bioData/${_id}`}>
-            <button className="mt-4 bg-pink-400 text-white py-2 px-4 rounded-lg hover:bg-pink-600">
+            <button className="mt-4 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600">
               View Details
             </button>
           </Link>

@@ -27,7 +27,7 @@ const AboutUs = () => {
               className="absolute w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
-          <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg lg:absolute lg:left-1/3 lg:bottom-1/4 w-full max-w-2xl">
+          <div className="bg-pink-50 p-6 md:p-8 rounded-lg shadow-lg lg:absolute lg:left-1/3 lg:bottom-1/4 w-full max-w-2xl">
             <h6 className="text-pink-500 uppercase tracking-widest text-sm md:text-base">
               About Us
             </h6>

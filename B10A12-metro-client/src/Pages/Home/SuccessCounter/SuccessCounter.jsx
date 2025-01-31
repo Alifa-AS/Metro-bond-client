@@ -27,9 +27,9 @@ const SuccessCounter = () => {
           heading="Success Counter"
           subHeading="Our Success Counter"
         ></SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-5">
           {/* Girls Count */}
-          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center transform hover:scale-105 transition-all duration-500 cursor-pointer">
             <FaFemale className="text-pink-500 text-5xl mx-auto" />
             <h3 className="text-3xl font-bold text-gray-700 mt-4">
               {stats.girls}
@@ -38,7 +38,7 @@ const SuccessCounter = () => {
           </div>
 
           {/* Boys Count */}
-          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center transform hover:scale-105 transition-all duration-500 cursor-pointer">
             <FaMale className="text-blue-500 text-5xl mx-auto" />
             <h3 className="text-3xl font-bold text-gray-700 mt-4">
               {stats.boys}
@@ -47,7 +47,7 @@ const SuccessCounter = () => {
           </div>
 
           {/* Marriages Count */}
-          <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
+          <div className="bg-white shadow-lg rounded-2xl p-8 text-center transform hover:scale-105 transition-all duration-500 cursor-pointer">
             <FaHeart className="text-red-500 text-5xl mx-auto" />
             <h3 className="text-3xl font-bold text-gray-700 mt-4">
               {stats.marriages}

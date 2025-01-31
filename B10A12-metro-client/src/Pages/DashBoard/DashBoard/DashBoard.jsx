@@ -12,7 +12,8 @@ import {
   HiPencil,
   HiSearch,
   HiUsers,
-  HiViewBoards,
+  HiViewBoards
+
 } from "react-icons/hi";
 
 const DashBoard = () => {
