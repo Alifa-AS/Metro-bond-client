@@ -83,7 +83,7 @@ const DashBoard = () => {
                   
                   <Sidebar.Item
                     as={NavLink}
-                    to="/dashboard/view-biodata"
+                    to="/dashboard/viewBio"
                     icon={HiUsers}
                     className={({ isActive }) =>
                       isActive
@@ -95,7 +95,7 @@ const DashBoard = () => {
                   </Sidebar.Item>
                   <Sidebar.Item
                     as={NavLink}
-                    to="/dashboard/contact-requests"
+                    to="/dashboard/contact-request"
                     icon={HiChartPie}
                     className={({ isActive }) =>
                       isActive
@@ -107,7 +107,7 @@ const DashBoard = () => {
                   </Sidebar.Item>
                   <Sidebar.Item
                     as={NavLink}
-                    to="/dashboard/favorites"
+                    to="/dashboard/favoriteBio"
                     icon={HiHeart}
                     className={({ isActive }) =>
                       isActive
@@ -119,7 +119,7 @@ const DashBoard = () => {
                   </Sidebar.Item>
                   <Sidebar.Item
                     as={NavLink}
-                    to="/dashboard/success-stories"
+                    to="/dashboard/createStory"
                     icon={HiClipboardList}
                     className={({ isActive }) =>
                       isActive

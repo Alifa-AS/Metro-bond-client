@@ -12,21 +12,45 @@ import { Link } from "react-router-dom";
 
 const SuccessStory = () => {
   const [reviews, setReviews] = useState([]);
+  const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
     fetch("http://localhost:5000/successReview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
+
+  // Sorting function based on selected order
+  const sortedReviews = [...reviews].sort((a, b) => {
+    return sortOrder === "ascending"
+      ? new Date(a.marriageDate) - new Date(b.marriageDate)
+      : new Date(b.marriageDate) - new Date(a.marriageDate);
+  });
+
   return (
-    <section className="my-20 text-center shadow-xl rounded-2xl p-10 bg-gradient-to-r from-purple-50 to-pink-50">
+    <section className="my-20 text-center shadow-xl rounded-2xl p-10">
       <SectionTitle
         heading="Success Story"
         subHeading="Want to Become a part of Success Story"
       />
-      <div>
+      {/* Sorting dropdown */}
+      <div className="flex justify-between items-center mb-4">
+        <label className="font-semibold">
+          Sort by: <span className="text-pink-600">"Marriage Date"</span>
+        </label>
+        <select
+          className="border border-gray-300 rounded-md px-3 py-1 text-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="ascending">Ascending</option>
+          <option value="descending">Descending</option>
+        </select>
+      </div>
+
+      <div className="py-10 bg-gradient-to-r from-purple-50 to-pink-50">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {reviews.map((review) => (
+          {sortedReviews.map((review) => (
             <SwiperSlide key={review._id}>
               <div className="flex flex-col items-center justify-center space-y-4">
                 <img

@@ -14,6 +14,10 @@ import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
 import EditBio from '../Pages/DashBoard/EditBio/EditBio';
 import DashBoardLayout from '../Layout/DashBoardLayout';
 import SuccessStoryDetails from '../Pages/Home/SuccessStory/SuccessStoryDetails';
+import ViewBio from '../Pages/DashBoard/ViewBio/ViewBio';
+import ContactRequest from '../Pages/DashBoard/ContactRequest/ContactRequest';
+import FavoriteBio from '../Pages/DashBoard/FavoriteBio/FavoriteBio';
+import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
 
 
 
@@ -71,8 +75,23 @@ import SuccessStoryDetails from '../Pages/Home/SuccessStory/SuccessStoryDetails'
                {
                 path: 'editBio',
                 element: <EditBio />, 
+               },
+               {
+                path: 'viewBio',
+                element: <ViewBio />, 
+               },
+               {
+                path: 'contact-request',
+                element: <ContactRequest />, 
+               },
+               {
+                path: 'favoriteBio',
+                element: <FavoriteBio />, 
+               },
+               {
+                path: 'createStory',
+                element: <CreateStory />, 
                }
-
             ]
         },
       ]);
