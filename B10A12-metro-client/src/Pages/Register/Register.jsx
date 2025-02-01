@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { TextInput, Card } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
@@ -10,37 +10,47 @@ import registerLottie from "../../assets/lottie/register.json";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
-
 const Register = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email,data.password)
-    .then(result => {
+
+    // Check for at least one special character in the password
+    if (!/[!#$%&?@]/.test(data.password)) {
+      toast.error("Password must include at least one special character");
+      return;
+    }
+
+    createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+
       updateUserProfile(data.name, data.photoURL)
-      .then(()=>{
-        console.log('user profile info updated')
-        reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "user crested successfully",
-          showConfirmButton: false,
-          timer: 1500
+        .then(() => {
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "user crested successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        })
+        .catch((error) => {
+          toast.error(error.message, error);
         });
-        navigate('/');
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    })
+    });
   };
- 
 
   return (
     <>
@@ -101,8 +111,7 @@ const Register = () => {
                       required: true,
                       minLength: 6,
                       maxLength: 20,
-                      pattern:
-                        /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%&?@])(?=.*[a-z])/,
+                      pattern: /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/,
                     })}
                     type="password"
                     placeholder="Password"
@@ -124,8 +133,8 @@ const Register = () => {
                   )}
                   {errors.password?.type === "pattern" && (
                     <p className="text-red-600">
-                      Password must have one, uppercase, one lowercase, one
-                      number and one special characters!
+                      Password must have one, uppercase, one lowercase and one
+                      number!
                     </p>
                   )}
                 </div>
@@ -149,7 +158,9 @@ const Register = () => {
                   Now!
                 </p>
               </div>
-              <div className="mt-4"><SocialLogin /></div>
+              <div className="mt-4">
+                <SocialLogin />
+              </div>
             </Card>
           </div>
         </div>

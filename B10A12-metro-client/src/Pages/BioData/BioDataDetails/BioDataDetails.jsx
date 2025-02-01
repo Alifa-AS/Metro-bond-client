@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
+import { FaHeart, FaPhoneAlt } from "react-icons/fa";
 
 const BioDataDetails = () => {
   const {
@@ -143,20 +144,22 @@ const BioDataDetails = () => {
             Contact Information
           </h3>
           <p className="text-gray-700">
-            <strong className="text-pink-600">Email:</strong> "Request Contact Information"
+            <strong className="text-pink-600">Email:</strong> "Request Contact
+            Information"
           </p>
           <p className="text-gray-700">
-            <strong className="text-pink-600">Mobile:</strong> "Request Contact Information"
+            <strong className="text-pink-600">Mobile:</strong> "Request Contact
+            Information"
           </p>
         </div>
 
         {/* Action Buttons */}
         <div className="mt-6 flex justify-between">
-          <Button className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300">
-            Add Favorite
+          <Button className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
+            <FaHeart className="text-lg" /> Add Favorite
           </Button>
-          <Button className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300">
-          Request Contact Information
+          <Button className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
+            <FaPhoneAlt className="text-lg" /> Request Contact Information
           </Button>
         </div>
       </Card>

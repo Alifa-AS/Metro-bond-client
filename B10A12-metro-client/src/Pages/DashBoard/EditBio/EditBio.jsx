@@ -1,11 +1,11 @@
 import React from 'react';
 
 const EditBio = () => {
-    return (
-        <div>
-            edit bio
-        </div>
-    );
+  return (
+    <div>
+      bio
+    </div>
+  );
 };
 
 export default EditBio;

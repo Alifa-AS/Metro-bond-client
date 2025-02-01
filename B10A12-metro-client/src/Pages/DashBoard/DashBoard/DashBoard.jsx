@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   HiChartPie,
-  HiClipboard,
+  HiClipboardList,
   HiCollection,
   HiHeart,
   HiHome,
   HiInformationCircle,
-  HiLogin,
+  HiLogout,
+  HiMenu,
   HiPencil,
   HiSearch,
   HiUsers,
-  HiViewBoards
-
 } from "react-icons/hi";
 
 const DashBoard = () => {
@@ -23,70 +23,159 @@ const DashBoard = () => {
 
   return (
     <>
-      <div className="flex min-h-[50vh] items-start justify-start">
-        <Button onClick={() => setIsOpen(true)}>
-            =
+      <div className="flex items-center p-4 bg-pink-50 text-white shadow-md">
+        <Button
+          onClick={() => setIsOpen(true)}
+          className="text-xl bg-pink-400 hover:bg-pink-800"
+        >
+          <HiMenu className="w-6 h-6" />
         </Button>
+        <h1 className="ml-4 text-xl font-semibold text-pink-500">Dashboard</h1>
       </div>
-      <Drawer open={isOpen} onClose={handleClose}>
-        <Drawer.Header title="MENU" titleIcon={() => <></>} />
+
+      <Drawer
+        open={isOpen}
+        onClose={handleClose}
+        className="bg-white shadow-2xl transition-all duration-300 ease-in-out"
+      >
+        <Drawer.Header title="DASHBOARD" className="text-pink-800 font-bold" />
         <Drawer.Items>
           <Sidebar
-            aria-label="Sidebar with multi-level dropdown example"
-            className="[&>div]:bg-transparent [&>div]:p-0"
+            aria-label="Sidebar"
+            className="bg-pink-50 rounded-lg shadow-md"
           >
-            <div className="flex h-full flex-col justify-between py-2">
-              <div>
-                <form className="pb-3 md:hidden">
-                  <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
-                </form>
-                <Sidebar.Items>
-                  <Sidebar.ItemGroup>
-                    <Sidebar.Item href="/" icon={HiHome}>
-                      Home
-                    </Sidebar.Item>
-                    <Sidebar.Item href="editBio" icon={HiPencil}>
-                      Edit Bio_data
-                    </Sidebar.Item>
-                    <Sidebar.Item href="/e-commerce/products" icon={HiChartPie}>
-                      My Contact Request
-                    </Sidebar.Item>
-                    <Sidebar.Item href="/users/list" icon={HiClipboard}>
-                      View Bio data
-                    </Sidebar.Item>
-                    <Sidebar.Item href="/users/list" icon={HiHeart}>
-                      Favorites Biodata
-                    </Sidebar.Item>
-                    <Sidebar.Item href="/users/list" icon={HiUsers}>
-                      Create Success Story
-                    </Sidebar.Item>
-                    </Sidebar.ItemGroup>
-                  <Sidebar.ItemGroup>
-                    <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                     LogOut
-                    </Sidebar.Item>
-                    <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
-                      Register
-                    </Sidebar.Item>
+            <div className="p-4">
+              <form className="pb-3">
+                <TextInput
+                  icon={HiSearch}
+                  type="search"
+                  placeholder="Search"
+                  required
+                  className="w-full p-2 border rounded-lg focus:ring focus:ring-pink-300"
+                />
+              </form>
+              <Sidebar.Items>
+                <Sidebar.ItemGroup>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/"
+                    icon={HiHome}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    Home
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/dashboard/editBio"
+                    icon={HiPencil}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    Edit BioData
+                  </Sidebar.Item>
                   
-                    <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" >
-                      Docs
-                    </Sidebar.Item>
-                    <Sidebar.Item href="https://flowbite-react.com/" icon={HiCollection}>
-                      Components
-                    </Sidebar.Item>
-                    <Sidebar.Item href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
-                      Help
-                    </Sidebar.Item>
-                  </Sidebar.ItemGroup>
-                </Sidebar.Items>
-              </div>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/dashboard/view-biodata"
+                    icon={HiUsers}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    View Bio data
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/dashboard/contact-requests"
+                    icon={HiChartPie}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    My Contact Request
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/dashboard/favorites"
+                    icon={HiHeart}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    Favorites BioData
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/dashboard/success-stories"
+                    icon={HiClipboardList}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-pink-100 text-pink-600"
+                        : "hover:bg-pink-100"
+                    }
+                  >
+                    Create Success Story
+                  </Sidebar.Item>
+                </Sidebar.ItemGroup>
+                <Sidebar.ItemGroup>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="/logout"
+                    icon={HiLogout}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-red-100 text-red-700"
+                        : "hover:bg-red-100 text-red-600"
+                    }
+                  >
+                    LogOut
+                  </Sidebar.Item>
+                  
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="https://flowbite-react.com/"
+                    icon={HiCollection}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-gray-100 text-gray-600"
+                        : "hover:bg-gray-100"
+                    }
+                  >
+                    Components
+                  </Sidebar.Item>
+                  <Sidebar.Item
+                    as={NavLink}
+                    to="https://github.com/flowbite-react/issues"
+                    icon={HiInformationCircle}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "hover:bg-gray-100 text-gray-600"
+                        : "hover:bg-gray-100"
+                    }
+                  >
+                    Help
+                  </Sidebar.Item>
+                </Sidebar.ItemGroup>
+              </Sidebar.Items>
             </div>
           </Sidebar>
         </Drawer.Items>
       </Drawer>
     </>
   );
-}
+};
 
 export default DashBoard;

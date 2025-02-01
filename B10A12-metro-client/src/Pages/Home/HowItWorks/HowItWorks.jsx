@@ -1,6 +1,6 @@
 import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle';
-import image from '../../../assets/Home-img/Home4.jpg'
+import image from '../../../assets/Home-img/pixels.jpg'
 import './HowIt.css'
 import { Button } from "flowbite-react";
 import { FaArrowRight } from "react-icons/fa"; 

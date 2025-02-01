@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoute';
 import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
 import EditBio from '../Pages/DashBoard/EditBio/EditBio';
 import DashBoardLayout from '../Layout/DashBoardLayout';
+import SuccessStoryDetails from '../Pages/Home/SuccessStory/SuccessStoryDetails';
 
 
 
@@ -25,6 +26,11 @@ import DashBoardLayout from '../Layout/DashBoardLayout';
             {
                 path: '/',
                 element: <Home />,
+            },
+            {
+                path: '/successReview/:id',
+                element: <SuccessStoryDetails />,
+                loader: ({ params }) => fetch(`http://localhost:5000/successReview/${params.id}`)
             },
             {
                 path: 'bioData',
