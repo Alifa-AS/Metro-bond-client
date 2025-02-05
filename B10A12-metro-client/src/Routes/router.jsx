@@ -11,13 +11,17 @@ import Register from '../Pages/Register/Register';
 import Secrets from '../Pages/Shared/Secrets/Secrets';
 import PrivateRoute from './PrivateRoute';
 import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
-import EditBio from '../Pages/DashBoard/EditBio/EditBio';
+import EditBioData from '../Pages/DashBoard/EditBioData/EditBioData';
 import DashBoardLayout from '../Layout/DashBoardLayout';
+import DashBoardHome from '../Pages/DashBoard/DashBoardHome/DashBoardHome';
 import SuccessStoryDetails from '../Pages/Home/SuccessStory/SuccessStoryDetails';
 import ViewBio from '../Pages/DashBoard/ViewBio/ViewBio';
 import ContactRequest from '../Pages/DashBoard/ContactRequest/ContactRequest';
 import FavoriteBio from '../Pages/DashBoard/FavoriteBio/FavoriteBio';
 import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
+
+
+
 
 
 
@@ -42,7 +46,7 @@ import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
             },
             {
                 path: 'bioData/:id',
-                element: <BioDataDetails />,
+                element: <PrivateRoute> <BioDataDetails /> </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bioData/${params.id}`)
 
             },
@@ -72,9 +76,10 @@ import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
             path: 'dashboard',
             element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
             children: [
+               { index: true, element: <DashBoardHome /> },
                {
                 path: 'editBio',
-                element: <EditBio />, 
+                element: <EditBioData />, 
                },
                {
                 path: 'viewBio',
