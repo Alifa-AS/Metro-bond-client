@@ -28,10 +28,10 @@ const AboutUs = () => {
             />
           </div>
           <div className="bg-pink-50 p-6 md:p-8 rounded-lg shadow-lg lg:absolute lg:left-1/3 lg:bottom-1/4 w-full max-w-2xl">
-            <h6 className="text-pink-500 uppercase tracking-widest text-sm md:text-base">
+            <h6 className="text-pink-500 uppercase tracking-widest text-sm md:text-base pb-2">
               About Us
             </h6>
-            <h1 className="text-2xl md:text-3xl font-bold mb-4">
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 text-pink-900">
               We Provide the Best Matchmaking Options Tailored for You
             </h1>
             <p className="text-gray-700 mb-6 text-sm md:text-base">

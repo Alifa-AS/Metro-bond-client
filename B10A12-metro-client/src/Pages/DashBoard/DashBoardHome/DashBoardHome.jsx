@@ -11,7 +11,7 @@ import {
   Tooltip as LineTooltip,
   ResponsiveContainer,
 } from "recharts";
-import DashImg from "../../../assets/Cover/dashBoard2.jpg";
+import DashImg from "../../../assets/Cover/dash.jpg";
 
 const data = [
   { name: "Jan", value: 400 },
@@ -36,16 +36,16 @@ const DashBoardHome = () => {
       <div className="relative">
         <img src={DashImg} alt="Dashboard" 
         className="w-full h-80 object-cover rounded-lg shadow-lg" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-pink-600">
           <h2 className="text-5xl font-bold">Welcome to Your Dashboard</h2>
-          <p className="text-lg mt-4">Manage your profile, preferences, and more!</p>
+          <p className="text-lg mt-4 text-pink-500">Manage your profile, preferences, and more!</p>
         </div>
       </div>
 
       {/* Main Dashboard Content */}
       <div className="space-y-12 mt-12">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold text-gray-800">
+          <h2 className="text-3xl font-semibold text-pink-600">
             Track Your Activity & Engagement
           </h2>
           <p className="text-gray-600 mt-2">Insights into your matches, messages, and more.</p>
@@ -61,7 +61,7 @@ const DashBoardHome = () => {
             <h3 className="text-2xl font-bold">245 Matches</h3>
             <p className="text-gray-200 mt-2">Recent Matches</p>
           </Card>
-          <Card className="shadow-2xl bg-gradient-to-r from-yellow-200 via-red-400 to-orange-400 p-6 text-white transition-transform hover:scale-105 transform">
+          <Card className="shadow-2xl bg-gradient-to-r from-[#D3A6A1] via-[#fad29e] to-[#F9C8D7] p-6 text-white transition-transform hover:scale-105 transform">
             <h3 className="text-2xl font-bold">53 New Messages</h3>
             <p className="text-gray-200 mt-2">Message Center</p>
             <button className="mt-4 px-6 py-2 bg-gradient-to-r from-purple-400 to-pink-500 text-white rounded-lg hover:bg-gradient-to-l">

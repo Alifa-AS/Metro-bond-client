@@ -36,7 +36,7 @@ const HowItWorks = () => {
                    {/* Text Content */}
                    <div className="w-full md:w-1/2 text-left text-gray-200">
                        <h3 className="font-bold text-lg md:text-xl py-3 text-pink-400">Finding your perfect match on METRO is simple and hassle-free.</h3>
-                       <ul className="space-y-2 text-base leading-6">
+                       <ul className="space-y-2 text-base leading-6 bg-opacity-30 bg-black">
                            <li><strong className="text-pink-300">1. Create Your Profile:</strong> Sign up and create a profile with your preferences, interests, and lifestyle.</li>
                            <li><strong className="text-pink-300">2. Browse Verified Profiles:</strong> Explore thousands of verified profiles that match your preferences.</li>
                            <li><strong className="text-pink-300">3. Express Interest:</strong> Express your interest with a simple click and start a meaningful conversation.</li>

@@ -87,7 +87,7 @@ const BioData = () => {
 
     {/* Main Content */}
     <div className="flex-1 p-8 bg-gray-50 rounded-lg shadow-lg">
-      <h1 className="text-4xl font-semibold mb-8 text-gray-800">All Bio Datas</h1>
+      <h1 className="text-4xl font-semibold mb-8 text-pink-600">All Bio Datas</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {
           bioData.slice(0, 20).map((data) => (
