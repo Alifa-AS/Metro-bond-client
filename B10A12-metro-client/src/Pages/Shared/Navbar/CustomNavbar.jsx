@@ -4,7 +4,7 @@ import logo from "../../../assets/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-toastify";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const CustomNavbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,23 +13,10 @@ const CustomNavbar = () => {
     logOut()
       .then(() => {
         Swal.fire({
-          title: "LogOut Successful",
-          showClass: {
-            popup: `
-              animate__animated
-              animate__fadeInUp
-              animate__faster
-            `
-          },
-          hideClass: {
-            popup: `
-              animate__animated
-              animate__fadeOutDown
-              animate__faster
-            `
-          }
+          title: "Successfully LogOut!",
+          icon: "success",
+          draggable: true,
         });
-        
       })
       .catch((error) => {
         toast.error(error.message, error);
@@ -50,13 +37,14 @@ const CustomNavbar = () => {
           </span>
         </FlowbiteNavbar.Brand>
         <div className="flex md:order-2">
+        {user && (
           <Dropdown
             arrowIcon={false}
             inline
             label={
               <Avatar
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                img = {user?.photoURL || "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
                 rounded
               />
             }
@@ -64,7 +52,7 @@ const CustomNavbar = () => {
             <Dropdown.Header>
               <span className="block text-sm">{user?.displayName}</span>
               <span className="block truncate text-sm font-medium">
-                abc@flowbite.com
+                {user?.email}
               </span>
             </Dropdown.Header>
             <Dropdown.Divider />
@@ -82,6 +70,7 @@ const CustomNavbar = () => {
               </>
             )}
           </Dropdown>
+          )}
           <FlowbiteNavbar.Toggle />
         </div>
         <FlowbiteNavbar.Collapse>
@@ -120,15 +109,16 @@ const CustomNavbar = () => {
           >
             Contact Us
           </NavLink>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              isActive ? "text-pink-500 font-bold" : "text-white"
-            }
-          >
-            Dashboard
-          </NavLink>
-
+          {user && (
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive ? "text-pink-500 font-bold" : "text-white"
+              }
+            >
+              Dashboard
+            </NavLink>
+          )}
         </FlowbiteNavbar.Collapse>
       </FlowbiteNavbar>
     </div>

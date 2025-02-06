@@ -15,6 +15,7 @@ import {
   HiSearch,
   HiUsers,
 } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -23,6 +24,10 @@ const DashBoard = () => {
 
   return (
     <>
+          <Helmet>
+            <title>Metro || DashBoard </title>
+          </Helmet>
+
       <div className="flex items-center p-4 bg-pink-50 text-white shadow-md">
         <Button
           onClick={() => setIsOpen(true)}
