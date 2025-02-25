@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { Avatar, Dropdown, Navbar as FlowbiteNavbar } from "flowbite-react";
 import logo from "../../../assets/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import userIcon from "../../../assets/user.png"
+import DataTheme from "./DataTheme";
+
 
 const CustomNavbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -36,41 +39,41 @@ const CustomNavbar = () => {
             M<span className="text-pink-500">etr</span>O
           </span>
         </FlowbiteNavbar.Brand>
-        <div className="flex md:order-2">
-        {user && (
+        <div className="flex md:order-2 gap-4">
+          <DataTheme />
           <Dropdown
             arrowIcon={false}
             inline
             label={
               <Avatar
                 alt="User settings"
-                img = {user?.photoURL || "https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                img={ user?.photoURL || userIcon}
                 rounded
               />
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">{user?.displayName}</span>
-              <span className="block truncate text-sm font-medium">
-                {user?.email}
-              </span>
+              {user ? (
+                <>
+                  <span className="block text-sm">{user?.displayName}</span>
+                  <span className="block truncate text-sm font-medium">
+                    {user?.email}
+                  </span>
+                </>
+              ) : (
+                <span className="block text-sm text-gray-500">Guest</span>
+              )}
             </Dropdown.Header>
             <Dropdown.Divider />
             {user ? (
-              <>
-                <Dropdown.Item onClick={handleLogOut} className="">
-                  Log Out
-                </Dropdown.Item>
-              </>
+              <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
             ) : (
-              <>
-                <Dropdown.Item>
-                  <Link to="/login">Login</Link>
-                </Dropdown.Item>
-              </>
+              <Dropdown.Item as={NavLink} to="/login">
+                Login
+              </Dropdown.Item>
             )}
           </Dropdown>
-          )}
+
           <FlowbiteNavbar.Toggle />
         </div>
         <FlowbiteNavbar.Collapse>
@@ -109,6 +112,7 @@ const CustomNavbar = () => {
           >
             Contact Us
           </NavLink>
+
           {user && (
             <NavLink
               to="/dashboard"

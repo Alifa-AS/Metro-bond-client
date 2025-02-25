@@ -17,6 +17,7 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
 
   const { signIn } = useContext(AuthContext);
+  const captchaRef = useRef(null); 
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,17 +38,16 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log("Log in",user);
+        console.log("Log in", user);
 
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Login successful",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
         navigate(form, { replace: true });
-
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +69,10 @@ const Login = () => {
     } else {
       setDisabled(true);
       alert("Captcha did not match! Please try again.");
-      captchaRef.current.value = "";
+      // captchaRef.current.value = "";
+      if (captchaRef.current) {
+        captchaRef.current.value = "";
+      }
     }
   };
 
@@ -124,17 +127,14 @@ const Login = () => {
                 <Label htmlFor="captcha" />
                 <LoadCanvasTemplate />
                 <TextInput
+                  ref={captchaRef}
                   onBlur={handleValidateCaptcha}
                   type="text"
                   placeholder="type the captcha above"
                   name="captcha"
                   required
                 />
-                <Button
-                  size="xs"
-                  color="pink"
-                  className="my-2 w-full"
-                >
+                <Button size="xs" color="pink" className="my-2 w-full">
                   Validate
                 </Button>
               </div>
@@ -164,7 +164,9 @@ const Login = () => {
                 </p>
               </div>
             </form>
-            <div className="my-2 mx-6"><SocialLogin /></div>
+            <div className="my-2 mx-6">
+              <SocialLogin />
+            </div>
           </Card>
         </div>
       </div>

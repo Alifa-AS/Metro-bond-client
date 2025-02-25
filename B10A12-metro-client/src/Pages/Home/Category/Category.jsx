@@ -15,7 +15,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 
 const Category = () => {
   return (
-    <section>
+    <section data-aos="fade-up" data-aos-duration="2000">
       <SectionTitle
         heading={"Perfect Match"}
         subHeading={"Search Perfect Match For You!"}>

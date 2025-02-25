@@ -23,7 +23,7 @@ const BioData = () => {
       </Helmet>
       <Cover img={coverImg} title="Your Bio-Data, Your Identity" />
 
-      <div className="flex flex-col lg:flex-row min-h-screen my-10 gap-10">
+    <div className="flex flex-col lg:flex-row min-h-screen my-10 gap-10" data-aos="fade-up" data-aos-duration="2000">
     {/* Sidebar */}
     <Sidebar
       aria-label="Bio Data Sidebar"

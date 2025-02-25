@@ -29,7 +29,7 @@ const SuccessStory = () => {
   });
 
   return (
-      <section className="my-20 text-center shadow-xl rounded-2xl p-10">
+      <section className="my-20 text-center shadow-xl rounded-2xl p-10" data-aos="fade-up" data-aos-duration="2000">
         <SectionTitle
           heading="Success Story"
           subHeading="Want to Become a part of Success Story"
@@ -69,7 +69,7 @@ const SuccessStory = () => {
                 </div>
 
                 <div className="text-center space-y-3">
-                  <p className="text-xl font-bold text-gray-800 pb-3">
+                  <p className="text-xl font-bold text-pink-500 pb-3">
                     Marriage Date: {review.marriageDate}
                   </p>
                   <span className="text-sm text-gray-600 italic">

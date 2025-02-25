@@ -4,7 +4,7 @@ import { Card } from "flowbite-react";
 
 const PremiumMember = () => {
   return (
-    <section className="my-20">
+    <section className="my-20" data-aos="fade-up" data-aos-duration="2000">
       <SectionTitle
         heading="Our Premium Member"
         subHeading="Be Premium Member to Part Of Our Story"

@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const {
@@ -18,6 +19,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
@@ -29,27 +31,45 @@ const Register = () => {
       return;
     }
 
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photoURL)
-        .then(() => {
-          console.log("user profile info updated");
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "user crested successfully",
-            showConfirmButton: false,
-            timer: 1500,
+        updateUserProfile(data.name, data.photo)
+          .then(() => {
+            console.log("user profile info updated");
+
+            const userInfo = {
+              email: loggedUser?.email,
+              name: loggedUser?.displayName || data.name,
+              photo: loggedUser?.photoURL || data.photo,
+            };
+
+            axiosPublic.post("/users", userInfo)
+              .then((res) => {
+                console.log(res.data);
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              })
+              .catch((error) => {
+                console.error("Error saving user:", error);
+              });
+          })
+          .catch((error) => {
+            toast.error(error.message);
           });
-          navigate("/");
-        })
-        .catch((error) => {
-          toast.error(error.message, error);
-        });
-    });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -98,6 +118,7 @@ const Register = () => {
                 <div>
                   <label className="block mb-1 text-gray-700">Photo URL</label>
                   <TextInput
+                   {...register("photo", { required: true })}
                     type="url"
                     placeholder="Photo URL"
                     name="photo"

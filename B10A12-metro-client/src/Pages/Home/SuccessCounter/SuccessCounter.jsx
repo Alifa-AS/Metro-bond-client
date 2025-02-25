@@ -21,13 +21,13 @@ const SuccessCounter = () => {
   }, []);
 
   return (
-    <section className="my-20 text-center shadow-md rounded-xl p-6 bg-pink-50">
+    <section className="my-20 text-center shadow-md rounded-xl p-6 bg-pink-50" data-aos="fade-up" data-aos-duration="2000">
       <div className="max-w-4xl mx-auto">
         <SectionTitle
           heading="Success Counter"
           subHeading="Our Success Counter"
         ></SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-5" data-aos="fade-up" data-aos-duration="2000">
           {/* Girls Count */}
           <div className="bg-white shadow-lg rounded-2xl p-8 text-center transform hover:scale-105 transition-all duration-500 cursor-pointer">
             <FaFemale className="text-pink-500 text-5xl mx-auto" />

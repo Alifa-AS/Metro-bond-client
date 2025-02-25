@@ -19,8 +19,10 @@ import ViewBio from '../Pages/DashBoard/ViewBio/ViewBio';
 import ContactRequest from '../Pages/DashBoard/ContactRequest/ContactRequest';
 import FavoriteBio from '../Pages/DashBoard/FavoriteBio/FavoriteBio';
 import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
-
-
+import ManageUsers from '../Pages/DashBoard/Admin Dashboard/ManageUsers/ManageUsers';
+import ApprovePremium from '../Pages/DashBoard/Admin Dashboard/ApprovePremium/ApprovePremium';
+import ApproveContact from '../Pages/DashBoard/Admin Dashboard/ApproveContact/ApproveContact';
+import AdminDashboard from '../Pages/DashBoard/Admin Dashboard/AdminDashboard/AdminDashboard';
 
 
 
@@ -76,27 +78,45 @@ import CreateStory from '../Pages/DashBoard/CreateStory/CreateStory';
             path: 'dashboard',
             element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
             children: [
-               { index: true, element: <DashBoardHome /> },
+               { index: true, element: <PrivateRoute><DashBoardHome /></PrivateRoute> },
                {
                 path: 'editBio',
-                element: <EditBioData />, 
+                element: <PrivateRoute><EditBioData /></PrivateRoute>, 
                },
                {
                 path: 'viewBio',
-                element: <ViewBio />, 
+                element: <PrivateRoute><ViewBio /></PrivateRoute>, 
                },
                {
                 path: 'contact-request',
-                element: <ContactRequest />, 
+                element: <PrivateRoute><ContactRequest /></PrivateRoute>, 
                },
                {
                 path: 'favoriteBio',
-                element: <FavoriteBio />, 
+                element: <PrivateRoute><FavoriteBio /></PrivateRoute>, 
                },
                {
                 path: 'createStory',
-                element: <CreateStory />, 
-               }
+                element: <PrivateRoute><CreateStory /></PrivateRoute>, 
+               },
+
+               //admin routes
+               {
+                path: 'adminDashboard',
+                element: <PrivateRoute><AdminDashboard /></PrivateRoute>,
+               },
+               {
+                path: 'users',
+                element: <PrivateRoute><ManageUsers /></PrivateRoute>,
+               },
+               {
+                path: 'approvePremium',
+                element: <PrivateRoute><ApprovePremium /></PrivateRoute>,
+               },
+               {
+                path: 'approvedContact',
+                element: <PrivateRoute><ApproveContact /></PrivateRoute>,
+               },
             ]
         },
       ]);
