@@ -8,13 +8,15 @@ const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
+    if(user){
+        return children;
+    }
+    
     if(loading){
         return <Loading />
     }
 
-    if(user){
-        return children;
-    }
+    
     return <Navigate to='/login' state={{form: location}} replace />
 };
 
