@@ -23,6 +23,8 @@ import ManageUsers from '../Pages/DashBoard/Admin Dashboard/ManageUsers/ManageUs
 import ApprovePremium from '../Pages/DashBoard/Admin Dashboard/ApprovePremium/ApprovePremium';
 import ApproveContact from '../Pages/DashBoard/Admin Dashboard/ApproveContact/ApproveContact';
 import AdminDashboard from '../Pages/DashBoard/Admin Dashboard/AdminDashboard/AdminDashboard';
+import AdminRoutes from './AdminRoutes';
+import Payment from '../Pages/BioData/Payment/Payment';
 
 
 
@@ -51,6 +53,10 @@ import AdminDashboard from '../Pages/DashBoard/Admin Dashboard/AdminDashboard/Ad
                 element: <PrivateRoute> <BioDataDetails /> </PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/bioData/${params.id}`)
 
+            },
+            {
+                path: 'payment',
+                element: <PrivateRoute><Payment /></PrivateRoute>
             },
             {
                 path: 'aboutUs',
@@ -103,19 +109,19 @@ import AdminDashboard from '../Pages/DashBoard/Admin Dashboard/AdminDashboard/Ad
                //admin routes
                {
                 path: 'adminDashboard',
-                element: <PrivateRoute><AdminDashboard /></PrivateRoute>,
+                element: <AdminRoutes><AdminDashboard /></AdminRoutes>,
                },
                {
                 path: 'users',
-                element: <PrivateRoute><ManageUsers /></PrivateRoute>,
+                element: <AdminRoutes><ManageUsers /></AdminRoutes>,
                },
                {
                 path: 'approvePremium',
-                element: <PrivateRoute><ApprovePremium /></PrivateRoute>,
+                element: <AdminRoutes><ApprovePremium /></AdminRoutes>,
                },
                {
                 path: 'approvedContact',
-                element: <PrivateRoute><ApproveContact /></PrivateRoute>,
+                element: <AdminRoutes><ApproveContact /></AdminRoutes>,
                },
             ]
         },

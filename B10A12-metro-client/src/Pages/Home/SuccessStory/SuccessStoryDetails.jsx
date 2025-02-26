@@ -6,7 +6,9 @@ import { Helmet } from "react-helmet-async";
 
 const SuccessStoryDetails = () => {
   const {
-    coupleImage,
+    selfBiodataId,
+    partnerBiodataId,
+    image,
     reviewStar,
     marriageDate,
     successStory,
@@ -20,7 +22,11 @@ const SuccessStoryDetails = () => {
       <Helmet>
         <title>Metro || SuccessStory </title>
       </Helmet>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-100 to-purple-100 p-10" data-aos="fade-up" data-aos-duration="2000">
+      <div
+        className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-100 to-purple-100 p-10"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
         <div className="bg-white shadow-2xl rounded-3xl p-10 max-w-2xl text-center backdrop-blur-lg bg-opacity-90 border border-pink-300 relative overflow-hidden">
           {/* Glowing effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-purple-400 opacity-10 blur-2xl animate-glow"></div>
@@ -33,7 +39,7 @@ const SuccessStoryDetails = () => {
           {/* Couple Image */}
           <div className="relative z-10">
             <img
-              src={coupleImage}
+              src={image}
               alt="Success Couple"
               className="w-56 h-52 rounded-xl mx-auto border-4 border-pink-600 shadow-xl transform hover:scale-105 transition-all duration-300 hover:shadow-2xl"
             />
@@ -42,6 +48,11 @@ const SuccessStoryDetails = () => {
           {/* Couple Names */}
           <h2 className="text-2xl font-semibold text-gray-800 mt-4">
             {brideName} & {groomName}
+          </h2>
+
+          {/* Couple Names */}
+          <h2 className="text-md text-gray-800 mt-4">
+             {partnerBiodataId} & {selfBiodataId}
           </h2>
 
           {/* Marriage Date */}

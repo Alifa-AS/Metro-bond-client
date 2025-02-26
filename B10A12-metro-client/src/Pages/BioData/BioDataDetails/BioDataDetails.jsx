@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
 import { FaHeart, FaPhoneAlt } from "react-icons/fa";
 
@@ -158,9 +158,11 @@ const BioDataDetails = () => {
           <Button className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
             <FaHeart className="text-lg" /> Add Favorite
           </Button>
-          <Button className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
-            <FaPhoneAlt className="text-lg" /> Request Contact Information
-          </Button>
+          <Link to="/payment">
+            <Button className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
+              <FaPhoneAlt className="text-lg" /> Request Contact Information
+            </Button>
+          </Link>
         </div>
       </Card>
     </div>

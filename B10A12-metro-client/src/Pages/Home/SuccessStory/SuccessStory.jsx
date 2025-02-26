@@ -55,7 +55,7 @@ const SuccessStory = () => {
               <SwiperSlide key={review._id}>
                 <div className="flex flex-col items-center justify-center space-y-4">
                   <img
-                    src={review.coupleImage}
+                    src={review.image}
                     alt="img"
                     className="w-40 h-40 rounded-full border-4 border-purple-400 shadow-xl"
                   />
