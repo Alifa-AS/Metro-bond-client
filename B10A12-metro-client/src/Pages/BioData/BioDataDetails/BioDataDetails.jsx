@@ -2,9 +2,19 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
 import { FaHeart, FaPhoneAlt } from "react-icons/fa";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/UseAxiosSecure";
+import Swal from 'sweetalert2'
+import useInfo from "../../../hooks/useInfo";
+
 
 const BioDataDetails = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const [, refetch] = useInfo();
+
   const {
+    _id,
     biodataId,
     biodataType,
     name,
@@ -25,6 +35,44 @@ const BioDataDetails = () => {
     contactEmail,
     mobileNumber,
   } = useLoaderData();
+
+  const handleAddFavorite = () => {
+    const favoriteData = {
+      person: _id,
+      email: user.email,
+      name,
+      biodataId,
+      permanentDivision,
+      occupation,
+    };
+    console.log(favoriteData, user.email);
+
+    axiosSecure.post("/favorite", favoriteData).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${name} has been add to favorite`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        //refetch
+        refetch();
+      }
+    });
+  };
+
+  const handleReqContact = () => {
+    const contactData = {
+      name,
+      biodataId,
+      contactEmail,
+      mobileNumber,
+    };
+    console.log(contactData);
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-orange-50 to-pink-100 p-6">
@@ -155,11 +203,17 @@ const BioDataDetails = () => {
 
         {/* Action Buttons */}
         <div className="mt-6 flex justify-between">
-          <Button className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
+          <Button
+            onClick={handleAddFavorite}
+            className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2"
+          >
             <FaHeart className="text-lg" /> Add Favorite
           </Button>
           <Link to="/payment">
-            <Button className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2">
+            <Button
+              onClick={handleReqContact}
+              className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2"
+            >
               <FaPhoneAlt className="text-lg" /> Request Contact Information
             </Button>
           </Link>

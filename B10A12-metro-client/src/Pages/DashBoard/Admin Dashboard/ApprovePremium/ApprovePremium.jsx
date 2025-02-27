@@ -18,7 +18,7 @@ const ApprovePremium = () => {
 
     useEffect(() => {
         // Fetch users from backend
-        axios.get('http://localhost:5000/users')
+        axios.get('https://b10-a12-metro-server.vercel.app/users')
             .then(response => {
                 setUsers(response.data); // Data set in state
             })

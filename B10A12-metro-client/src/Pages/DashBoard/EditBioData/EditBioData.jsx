@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { TextInput, Label, Button, Select } from "flowbite-react";
 import useAxiosBio from "../../../hooks/useAxiosBio";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth";
 
 const EditBioData = ({ biodataId }) => {
+  const {user} = useAuth();
   const { getBiodata, createBiodata, updateBiodata, loading, error } =
     useAxiosBio();
   const [biodata, setBiodata] = useState({
@@ -65,8 +67,8 @@ const EditBioData = ({ biodataId }) => {
         <title>Metro || Edit BioData </title>
       </Helmet>
       <div className="container mx-auto mt-10 p-5 shadow-lg rounded-lg">
-        <h2 className="text-3xl font-semibold text-center mb-6 text-pink-600">
-          Edit Biodata
+        <h2 className="text-3xl font-bold text-center mb-6 text-pink-600">
+          Build Your Matrimonial Profile
         </h2>
         <form
           onSubmit={handleSubmit}
@@ -360,7 +362,7 @@ const EditBioData = ({ biodataId }) => {
             <TextInput
               id="email"
               name="email"
-              value={biodata.email}
+              value={user.email}
               onChange={handleChange}
               required
               type="email"

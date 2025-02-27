@@ -1,29 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import useInfo from "../../../hooks/useInfo";
+import useAxiosSecure from "../../../hooks/UseAxiosSecure";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 const FavoriteBio = () => {
+  const [, refetch] = useInfo();
+  const axiosSecure = useAxiosSecure();
   const [favoriteBio, setFavoriteBio] = useState([]);
 
   //  Backend data fetch
-  //   useEffect(() => {
-  //     fetch("https://your-backend-api.com/favorites") 
-  //       .then((res) => res.json())
-  //       .then((data) => setFavoriteBio(data))
-  //       .catch((error) => console.error("Error fetching data:", error));
-  //   }, []);
+  useEffect(() => {
+    axiosSecure
+      .get("/favorite")
+      .then((res) => setFavoriteBio(res.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, [axiosSecure]);
 
-  // Backend + UI delete  function
-  //   const removeFromFavorites = (id) => {
-  //     fetch(`https://your-backend-api.com/favorites/${id}`, {
-  //       method: "DELETE",
-  //     })
-  //       .then((res) => {
-  //         if (res.ok) {
-  //           setFavoriteBio(favoriteBio.filter((bio) => bio.biodataId !== id));
-  //         }
-  //       })
-  //       .catch((error) => console.error("Error deleting data:", error));
-  //   };
+  // delete  function
+  const removeFromFavorites = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/favorite/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+           refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <>
@@ -48,6 +67,7 @@ const FavoriteBio = () => {
                 <th className="border border-pink-300 px-4 py-2">Actions</th>
               </tr>
             </thead>
+            <tbody></tbody>
             <tbody>
               {favoriteBio.length > 0 ? (
                 favoriteBio.map((bio) => (
@@ -69,10 +89,10 @@ const FavoriteBio = () => {
                     </td>
                     <td className="border border-pink-300 px-4 py-2 text-center">
                       <button
-                        className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700"
-                        onClick={() => removeFromFavorites(bio.biodataId)}
+                        className="text-red-700 px-3 py-1 rounded-md hover:bg-pink-300"
+                        onClick={() => removeFromFavorites(bio._id)}
                       >
-                        Delete
+                        <RiDeleteBin5Line />
                       </button>
                     </td>
                   </tr>
