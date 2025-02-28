@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import useInfo from "../../../hooks/useInfo";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
 const FavoriteBio = () => {
-  const [ , refetch] = useInfo();
   const axiosSecure = useAxiosSecure();
   const [favoriteBio, setFavoriteBio] = useState([]);
 
@@ -33,16 +31,20 @@ const FavoriteBio = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+
         axiosSecure.delete(`/favorite/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
-          //  refetch();
+            // filter out the deleted item
+            setFavoriteBio((prevState) =>
+              prevState.filter((bio) => bio._id !== id)
+            );
+  
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
           }
-          refetch();
         });
       }
     });
