@@ -7,7 +7,6 @@ import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import useInfo from "../../../hooks/useInfo";
 
-
 const BioDataDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -90,7 +89,6 @@ const BioDataDetails = () => {
     axiosSecure.post("/favorite", favoriteData).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
-        
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -243,17 +241,17 @@ const BioDataDetails = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 flex justify-between">
+        <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
           <Button
             onClick={handleAddFavorite}
-            className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2"
+            className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             <FaHeart className="text-lg" /> Add Favorite
           </Button>
           <Link to="/payment">
             <Button
               onClick={handleReqContact}
-              className="px-6 py-2 font-semibold shadow-md bg-pink-500 hover:bg-pink-700 text-white transition-all duration-300 flex items-center justify-center gap-2"
+              className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <FaPhoneAlt className="text-lg" /> Request Contact Information
             </Button>
@@ -286,7 +284,6 @@ const BioDataDetails = () => {
           ))}
         </div>
       </div>
-
     </div>
   );
 };

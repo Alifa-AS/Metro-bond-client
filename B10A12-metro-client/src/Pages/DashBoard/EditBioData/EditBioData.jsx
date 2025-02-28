@@ -3,11 +3,13 @@ import { TextInput, Label, Button, Select } from "flowbite-react";
 import useAxiosBio from "../../../hooks/useAxiosBio";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditBioData = ({ biodataId }) => {
-  const {user} = useAuth();
-  const { getBiodata, createBiodata, updateBiodata, loading, error } =
-    useAxiosBio();
+  const { user } = useAuth();
+  const { getBiodata } = useAxiosBio();
+  const navigate = useNavigate();
   const [biodata, setBiodata] = useState({
     biodataId: "",
     gender: "",
@@ -38,8 +40,6 @@ const EditBioData = ({ biodataId }) => {
     }
   }, [biodataId, getBiodata]);
 
-  console.log("Biodata ID:", biodataId);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBiodata({
@@ -52,32 +52,53 @@ const EditBioData = ({ biodataId }) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    console.log(formData.entries());
+    // console.log(...formData.entries());
 
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData)
+    console.log(initialData);
 
-    const height = parseInt(initialData.height) || 0;
     const weight = parseInt(initialData.weight) || 0;
     const age = parseInt(initialData.age) || 0;
     const expectedPartnerAge = parseInt(initialData.expectedPartnerAge) || 0;
+    const expectedPartnerWeight =
+      parseInt(initialData.expectedPartnerWeight) || 0;
 
-    const {height:_ , weight:__ , age:___, expectedPartnerAge:____, ...biodata} = initialData;
-     console.log(biodata);
+    const updatedBiodata = {
+      ...initialData,
+      biodataId,
+      weight,
+      age,
+      expectedPartnerAge,
+      expectedPartnerWeight,
+    };
 
-    
-    
-     fetch('http://localhost:5000/bioData', {
-      method: 'POST',
+    fetch("http://localhost:5000/bioData", {
+      method: "POST",
       headers: {
-        'content-type' : 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(biodata)
-     })
-     .then(res => res.json())
-     .then(data => {
-      console.log(data);
-     })
+
+      body: JSON.stringify(updatedBiodata),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Server Response:", data);
+
+        if (
+          data.insertedId ||
+          data.message === "Biodata created successfully" ||
+          data.message === "Biodata updated successfully"
+        ) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your BioData has been saved successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard/viewBio");
+        }
+      });
   };
 
   return (
