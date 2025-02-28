@@ -67,7 +67,7 @@ const EditBioData = ({ biodataId }) => {
 
     
     
-     fetch('https://b10-a12-metro-server.vercel.app/bioData', {
+     fetch('http://localhost:5000/bioData', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'

@@ -6,7 +6,7 @@
 ## 🚀 Live Site  
 🔗 [Matrimony Platform Live Site](#) 
 client side firebase - https://b10a12-metro.web.app/
-server side vercel - https://b10-a12-metro-server.vercel.app/
+server side vercel - http://localhost:5000/
 
 ## 🔑 Admin Credentials  
 📧 **Email:** info@gmail.com 

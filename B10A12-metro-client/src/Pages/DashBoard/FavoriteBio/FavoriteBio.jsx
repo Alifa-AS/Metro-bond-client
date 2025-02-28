@@ -6,15 +6,18 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 
 const FavoriteBio = () => {
-  const [, refetch] = useInfo();
+  const [ , refetch] = useInfo();
   const axiosSecure = useAxiosSecure();
   const [favoriteBio, setFavoriteBio] = useState([]);
 
   //  Backend data fetch
   useEffect(() => {
     axiosSecure
-      .get("/favorite")
-      .then((res) => setFavoriteBio(res.data))
+      .get("/favorite?email=elon.usa@gmail.com")
+      .then((res) => {
+        setFavoriteBio(res.data)
+        console.log("Fetched Favorite Bio:", res.data)
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, [axiosSecure]);
 
@@ -32,13 +35,14 @@ const FavoriteBio = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/favorite/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
-           refetch();
+          //  refetch();
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
           }
+          refetch();
         });
       }
     });
@@ -67,7 +71,6 @@ const FavoriteBio = () => {
                 <th className="border border-pink-300 px-4 py-2">Actions</th>
               </tr>
             </thead>
-            <tbody></tbody>
             <tbody>
               {favoriteBio.length > 0 ? (
                 favoriteBio.map((bio) => (

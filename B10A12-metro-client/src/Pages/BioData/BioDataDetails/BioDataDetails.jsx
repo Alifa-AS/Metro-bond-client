@@ -90,6 +90,7 @@ const BioDataDetails = () => {
     axiosSecure.post("/favorite", favoriteData).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
+        
         Swal.fire({
           position: "top-end",
           icon: "success",

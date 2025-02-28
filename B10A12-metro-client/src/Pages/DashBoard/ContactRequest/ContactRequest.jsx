@@ -54,8 +54,8 @@ const ContactRequest = () => {
               </tr>
             </thead>
             <tbody>
-              {bioData.length > 0 ? (
-                bioData.map((bio) => {
+              {payments.length > 0 ? (
+                payments.map((bio) => {
                   const payment = payments.find(
                     (p) => p.biodataId === bio.biodataId
                   );

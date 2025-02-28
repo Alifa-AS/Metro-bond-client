@@ -42,7 +42,7 @@ import Payment from '../Pages/BioData/Payment/Payment';
             {
                 path: '/successReview/:id',
                 element: <SuccessStoryDetails />,
-                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/successReview/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/successReview/${params.id}`)
             },
             {
                 path: 'bioData',
@@ -51,7 +51,7 @@ import Payment from '../Pages/BioData/Payment/Payment';
             {
                 path: 'bioData/:id',
                 element: <PrivateRoute> <BioDataDetails /> </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/bioData/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/bioData/${params.id}`)
 
             },
             {
