@@ -9,6 +9,7 @@ const EditBioData = ({ biodataId }) => {
   const { getBiodata, createBiodata, updateBiodata, loading, error } =
     useAxiosBio();
   const [biodata, setBiodata] = useState({
+    biodataId: "",
     gender: "",
     name: "",
     profileImage: "",
@@ -37,6 +38,8 @@ const EditBioData = ({ biodataId }) => {
     }
   }, [biodataId, getBiodata]);
 
+  console.log("Biodata ID:", biodataId);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBiodata({
@@ -48,17 +51,33 @@ const EditBioData = ({ biodataId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const request = biodataId
-      ? updateBiodata(biodataId, biodata)
-      : createBiodata(biodata);
+    const formData = new FormData(e.target);
+    console.log(formData.entries());
 
-    request
-      .then((response) => {
-        alert("Biodata saved successfully!");
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    const initialData = Object.fromEntries(formData.entries());
+    console.log(initialData)
+
+    const height = parseInt(initialData.height) || 0;
+    const weight = parseInt(initialData.weight) || 0;
+    const age = parseInt(initialData.age) || 0;
+    const expectedPartnerAge = parseInt(initialData.expectedPartnerAge) || 0;
+
+    const {height:_ , weight:__ , age:___, expectedPartnerAge:____, ...biodata} = initialData;
+     console.log(biodata);
+
+    
+    
+     fetch('https://b10-a12-metro-server.vercel.app/bioData', {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(biodata)
+     })
+     .then(res => res.json())
+     .then(data => {
+      console.log(data);
+     })
   };
 
   return (
@@ -237,7 +256,7 @@ const EditBioData = ({ biodataId }) => {
             >
               <option value="">Select Division</option>
               <option value="Dhaka">Dhaka</option>
-              <option value="Chattagra">Chattagra</option>
+              <option value="Chattagra">Chattagram</option>
               <option value="Rangpur">Rangpur</option>
               <option value="Barisal">Barisal</option>
               <option value="Khulna">Khulna</option>

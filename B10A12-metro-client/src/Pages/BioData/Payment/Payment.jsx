@@ -5,13 +5,13 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckOutForm from './CheckOutForm';
 
 
-//TODO: Add publishable key
+// Add publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        // Fetch data from your API (e.g., bioData)
+        // Fetch data from your API 
         const fetchData = async () => {
             try {
                 const response = await fetch('https://b10-a12-metro-server.vercel.app/bioData');
@@ -26,7 +26,7 @@ const Payment = () => {
     }, []);
 
     return (
-        <div>
+        <div className='py-16'>
              <SectionTitle heading="Payment" subHeading="pay for Premium member"></SectionTitle>
             <div>
                 <Elements stripe={stripePromise}>

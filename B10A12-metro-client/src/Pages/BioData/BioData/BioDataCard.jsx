@@ -12,6 +12,7 @@ const BioDataCard = ({ data }) => {
     age,
     occupation
   } = data;
+  
   return (
     <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200">
       <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">

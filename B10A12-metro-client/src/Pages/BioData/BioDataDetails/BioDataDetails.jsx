@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
 import { FaHeart, FaPhoneAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import useInfo from "../../../hooks/useInfo";
 
 
@@ -35,6 +35,46 @@ const BioDataDetails = () => {
     contactEmail,
     mobileNumber,
   } = useLoaderData();
+
+  const [similarBiodata, setSimilarBiodata] = useState([]);
+
+  // Fetch similar biodata based on biodataType
+  useEffect(() => {
+    const fetchSimilarBiodata = async () => {
+      try {
+        const response = await axiosSecure.get(
+          `/biodata?biodataType=${biodataType}`
+        );
+        // console.log("Fetched biodata:", response.data);
+        const filteredBiodata = response.data.filter(
+          (b) => b.biodataId !== biodataId && b.biodataType === biodataType
+        );
+        // console.log("Filtered biodata:", filteredBiodata);
+
+        const maleBiodata = filteredBiodata
+          .filter((b) => b.biodataType.toLowerCase() === "male")
+          .slice(0, 3);
+        const femaleBiodata = filteredBiodata
+          .filter((b) => b.biodataType.toLowerCase() === "female")
+          .slice(0, 3);
+
+        // console.log("Male biodata:", maleBiodata);
+        // console.log("Female biodata:", femaleBiodata);
+
+        if (maleBiodata.length > 0) {
+          setSimilarBiodata(maleBiodata);
+        } else if (femaleBiodata.length > 0) {
+          setSimilarBiodata(femaleBiodata);
+        } else {
+          setSimilarBiodata([]);
+        }
+      } catch (error) {
+        console.error("Error fetching similar biodata:", error);
+      }
+    };
+
+    fetchSimilarBiodata();
+  }, [biodataType, biodataId, axiosSecure]);
 
   const handleAddFavorite = () => {
     const favoriteData = {
@@ -75,7 +115,7 @@ const BioDataDetails = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-orange-50 to-pink-100 p-6">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-orange-50 to-pink-100 p-6">
       <Card className="w-full max-w-3xl p-8 shadow-2xl rounded-2xl bg-white border border-pink-400">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           {/* Profile Section */}
@@ -219,6 +259,33 @@ const BioDataDetails = () => {
           </Link>
         </div>
       </Card>
+      {/* Similar Biodata Section */}
+      <div className="mt-8 w-full max-w-3xl">
+        <h3 className="text-2xl font-semibold text-yellow-400 mb-4">
+          Similar Biodata
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {similarBiodata.map((biodata) => (
+            <Card key={biodata._id} className="shadow-md">
+              <img
+                src={biodata.profileImage}
+                alt="Profile"
+                className="h-32 w-full object-cover rounded-t-lg"
+              />
+              <div className="p-4">
+                <h4 className="text-lg font-semibold">{biodata.name}</h4>
+                <p className="text-gray-600">Age: {biodata.age}</p>
+                <Link to={`/bioData`}>
+                  <button className="mt-4 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600">
+                    View All
+                  </button>
+                </Link>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };

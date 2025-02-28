@@ -99,7 +99,7 @@ const CheckoutForm = ({ data }) => {
           email: user?.email,
           transitionId: paymentIntent.id,
           amount: totalPrice,
-          date: new Date(), 
+          date: new Date(),
           bioDataId: data._id,
           status: "pending",
         };
@@ -124,10 +124,28 @@ const CheckoutForm = ({ data }) => {
       >
         <div className="form-control my-5">
           <div>
-            <h1 className="text-gray-500">Pay $5 for premium</h1>
+            <h1 className="text-gray-500 text-center">Pay $5 for premium</h1>
           </div>
         </div>
+        <div className="form-control my-5">
+          <label className="text-gray-500">Biodata ID</label>
+          <input
+            type="text"
+            // value={data._id}
+            readOnly
+            className="w-full p-2 border rounded"
+          />
+        </div>
 
+        <div className="form-control my-5">
+          <label className="text-gray-500">Your Email</label>
+          <input
+            type="email"
+            value={user?.email}
+            readOnly
+            className="w-full p-2 border rounded"
+          />
+        </div>
         <CardElement
           className="p-3 my-5 border rounded-lg shadow-sm bg-gray-50"
           options={{
@@ -149,14 +167,14 @@ const CheckoutForm = ({ data }) => {
         <button
           className="w-full bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-700 transition disabled:bg-gray-400"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || loading}
         >
-          {loading ? "Processing..." : "Pay"}
+          {loading ? <span className="loader"></span> : "Pay"}
         </button>
-
-        {error && <p className="text bg-red-600">{error}</p>}
       </form>
-      {transitionId && <p>Your transaction id: {transitionId}</p>}
+      {transitionId && (
+        <p className="text-green-500">Transaction Id: {transitionId}</p>
+      )}
     </div>
   );
 };
