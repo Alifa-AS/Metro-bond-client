@@ -1,112 +1,83 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/UseAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../../hooks/UseAxiosSecure';
+import useAuth from '../../../hooks/useAuth';
 
-const ContactRequest = () => {
-  const { user } = useAuth();
+const MyContactRequest = () => {
+  const [contactRequests, setContactRequests] = useState([]);
+  const { user, token } = useAuth(); // Assuming token is part of the user context
   const axiosSecure = useAxiosSecure();
+  
+  useEffect(() => {
+    // Fetch the data from the backend
+    const fetchContactRequests = async () => {
+      try {
+        // Use axiosSecure for the GET request
+        const response = await axiosSecure.get(`/dashboard/contact-request/${user?.email}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setContactRequests(response.data); // Assuming response.data contains the contact requests
+      } catch (error) {
+        console.error('Error fetching contact requests:', error);
+      }
+    };
 
-  const { data: payments = [] } = useQuery({
-    queryKey: ["payments", user.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/payments/${user.email}`);
-      return res.data;
-    },
-  });
+    // Only fetch data if user and token are available
+    if (user && token) {
+      fetchContactRequests();
+    }
+  }, [user, token]); // Added dependencies for user and token
 
+  const handleDelete = async (biodataId) => {
+    try {
+      // Use axiosSecure for the DELETE request
+      const response = await axiosSecure.delete(`/delete-contact/${biodataId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-  // BioData fetch
-  const { data: bioData = [] } = useQuery({
-    queryKey: ["bioData"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/bioData");
-      return res.data;
-    },
-  });
-
-  //filter
-  const paidBioData = bioData.filter((bio) =>
-    payments.some((p) => p.biodataId === bio.biodataId)
-  );
+      if (response.status === 200) {
+        // After deletion, remove the item from the state
+        setContactRequests(contactRequests.filter(request => request.biodataId !== biodataId));
+      } else {
+        console.error('Error deleting contact request');
+      }
+    } catch (error) {
+      console.error('Error deleting contact:', error);
+    }
+  };
 
   return (
-    <>
-      <Helmet>
-        <title>Metro || My Contact Request</title>
-      </Helmet>
-      <div className="container mx-auto p-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4 text-center">
-          My Contact Request
-        </h2>
-
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-pink-300 shadow-lg">
-            <thead className="bg-pink-200 text-pink-900">
-              <tr>
-                <th className="border border-pink-300 px-4 py-2">Name</th>
-                <th className="border border-pink-300 px-4 py-2">Biodata ID</th>
-                <th className="border border-pink-300 px-4 py-2">Status</th>
-                <th className="border border-pink-300 px-4 py-2">Mobile</th>
-                <th className="border border-pink-300 px-4 py-2">Email</th>
-                <th className="border border-pink-300 px-4 py-2">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {payments.length > 0 ? (
-                payments.map((bio) => {
-                  const payment = payments.find(
-                    (p) => p.biodataId === bio.biodataId
-                  );
-                  return (
-                    <tr
-                      key={bio.biodataId }
-                      className="bg-pink-50 hover:bg-pink-100"
-                    >
-                      <td className="border border-pink-300 px-4 py-2">
-                        {bio.name || "N/A"}
-                      </td>
-                      <td className="border border-pink-300 px-4 py-2">
-                        {bio.biodataId || "N/A"}
-                      </td>
-                      <td className="border border-pink-300 px-4 py-2">
-                        {payment ? payment.status : "Pending"}
-                      </td>
-                      <td className="border border-pink-300 px-4 py-2">
-                        {payment && payment.status === "Approved"
-                          ? bio.contactNumber || "N/A"
-                          : "N/A"}
-                      </td>
-                      <td className="border border-pink-300 px-4 py-2">
-                        {payment && payment.status === "Approved"
-                          ? bio.email || "N/A"
-                          : "N/A"}
-                      </td>
-                      <td className="border border-pink-300 px-4 py-2 text-center">
-                        <button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700">
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })
-              ) : (
-                <tr>
-                  <td
-                    colSpan="6"
-                    className="border border-pink-300 px-4 py-4 text-center text-gray-500"
-                  >
-                    No Contact request yet!
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </>
+    <div className="container">
+      <h1>My Contact Requests</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Biodata Id</th>
+            <th>Status</th>
+            <th>Mobile No</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contactRequests.map((request) => (
+            <tr key={request.biodataId}>
+              <td>{request.name}</td>
+              <td>{request.biodataId}</td>
+              <td>{request.status}</td>
+              <td>{request.mobileNo}</td>
+              <td>{request.email}</td>
+              <td>
+                <button onClick={() => handleDelete(request.biodataId)} className="btn btn-danger">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
-export default ContactRequest;
+export default MyContactRequest;

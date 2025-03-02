@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Card, Button } from "flowbite-react";
 import { FaHeart, FaPhoneAlt } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
@@ -7,10 +7,12 @@ import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import useInfo from "../../../hooks/useInfo";
 
+
 const BioDataDetails = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [, refetch] = useInfo();
+  const navigate = useNavigate();
 
   const {
     _id,
@@ -97,8 +99,8 @@ const BioDataDetails = () => {
           timer: 1500,
         });
 
-        //refetch
         refetch();
+        navigate('/dashboard/favoriteBio');
       }
     });
   };
@@ -111,6 +113,9 @@ const BioDataDetails = () => {
       mobileNumber,
     };
     console.log(contactData);
+    navigate('/dashboard/contact-request', {
+      state: contactData,
+    });
   };
 
   return (

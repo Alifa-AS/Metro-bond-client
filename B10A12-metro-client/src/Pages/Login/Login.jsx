@@ -47,7 +47,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(form, { replace: true });
+        navigate('/', { replace: true });
       })
       .catch((error) => {
         console.log(error);

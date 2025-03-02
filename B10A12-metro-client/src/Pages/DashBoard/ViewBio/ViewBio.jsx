@@ -1,386 +1,208 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
-import { Button, TextInput, Label, Card } from "flowbite-react";
+import { Button, Card, Modal } from "flowbite-react";
 
-const ViewBio = () => {
-  const [biodata, setBiodata] = useState([]);
+const ViewBio = ({ biodata: initialBiodata }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPremium, setIsPremium] = useState(
+    initialBiodata?.isPremium || false
+  );
+  const [biodata, setBiodata] = useState(initialBiodata || null);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const [formData, setFormData] = useState({
-    biodataId: "",
-    gender: "",
-    name: "",
-    profileImage: "",
-    dob: "",
-    height: "",
-    weight: "",
-    age: "",
-    occupation: "",
-    race: "",
-    fatherName: "",
-    motherName: "",
-    permanentDivision: "",
-    presentDivision: "",
-    expectedPartnerAge: "",
-    expectedPartnerHeight: "",
-    expectedPartnerWeight: "",
-    email: "",
-    mobile: "",
-  });
 
-  // Fetch biodata on component mount
   useEffect(() => {
     const fetchBiodata = async () => {
       try {
         const response = await axiosSecure.get(`/bioData?email=${user.email}`);
-
         if (response.data.length > 0) {
-          setBiodata(response.data[0]); // Assuming user has one biodata
-          setFormData(response.data[0]); // Pre-fill form if biodata exists
+          setBiodata(response.data[0]);
         }
       } catch (error) {
         console.error("Error fetching biodata:", error);
       }
     };
 
-    if (user.email) {
+    if (user.email && !initialBiodata) {
       fetchBiodata();
     }
-  }, [user.email, axiosSecure]);
+  }, [user.email, axiosSecure, initialBiodata]);
 
-  // Handle form input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submission (Save and Publish Now)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Request to make biodata premium
+  const handlePremiumRequest = async () => {
     try {
-      const response = await axios.post("/bioData", formData); // Call the API to save or update biodata
-      alert(response.data.message); // Show success message
+      // Send request to admin for approval
+      const response = await axiosSecure.post("/premiumRequest", {
+        userId: biodata?.userId,
+        email: user.email,
+      });
+      if (response.status === 200) {
+        setIsModalOpen(false); // Close modal after request is sent
+        alert("Request sent for admin approval!");
+      }
     } catch (error) {
-      console.error("Error saving biodata:", error);
-      alert("There was an error saving the biodata.");
+      console.error("Error sending premium request:", error);
+      alert("There was an error processing your request. Please try again.");
     }
   };
 
   return (
     <div className="container mx-auto mt-10">
-      <Card className="bg-pink-50 shadow-lg p-6">
-        <h1 className="text-2xl font-semibold text-center text-pink-600 mb-4">View and Edit Your Biodata</h1>
+      <Card className="p-8 rounded-xl border-b-4 border-pink-600 shadow-2xl bg-white">
+        <h1 className="text-3xl font-semibold text-center text-pink-700 rounded-lg py-2">
+          Your Premium Biodata
+        </h1>
+
+        <div className="flex justify-center mb-3">
+          <img
+            src={biodata?.profileImage || "/default-profile.png"} // Default image if profileImage is unavailable
+            alt="Profile"
+            className="w-36 h-36 rounded-full object-cover border-4 border-white shadow-lg"
+          />
+        </div>
         {biodata ? (
-          <div className="text-center mb-6">
-            <h2 className="text-lg font-medium text-pink-600">Your Existing Biodata</h2>
-            <p>Name: <span className="font-semibold">{biodata.name}</span></p>
-            <p>Age: <span className="font-semibold">{biodata.age}</span></p>
-            <p>Biodata Type: <span className="font-semibold">{biodata.biodataType}</span></p>
-            <p>Permanent Division: <span className="font-semibold">{biodata.permanentDivision}</span></p>
+          <div className="text-center mb-6 bg-pink-200 rounded-lg py-5">
+            <h2 className="text-xl font-medium text-gray-600">
+              Your Existing Biodata
+            </h2>
+            <p className="font-semibold text-pink-800">{biodata?.name}</p>
           </div>
         ) : (
           <div className="bg-pink-100 border-l-4 border-pink-600 text-pink-600 p-4 mb-4">
             <strong>No Biodata Found</strong>
           </div>
         )}
-
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            {/* Biodata ID */}
-            <div>
-              <Label htmlFor="biodataId" className="block mb-2">Biodata ID</Label>
-              <TextInput
-                id="biodataId"
-                type="text"
-                name="biodataId"
-                value={formData.biodataId}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+        {/* Main Content Divided into Two Parts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="border-r-4 border-pink-500 pr-6">
+            {/* Left Section with More Information */}
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Name</h4>
+              <p className="text-gray-700">{biodata?.name}</p>
             </div>
 
-            {/* Gender */}
-            <div>
-              <Label htmlFor="gender" className="block mb-2">Gender</Label>
-              <TextInput
-                id="gender"
-                type="text"
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Gender</h4>
+              <p className="text-gray-700">{biodata?.gender}</p>
             </div>
 
-            {/* Name */}
-            <div>
-              <Label htmlFor="name" className="block mb-2">Name</Label>
-              <TextInput
-                id="name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Date of Birth</h4>
+              <p className="text-gray-700">{biodata?.dob}</p>
             </div>
 
-            {/* Profile Image */}
-            <div>
-              <Label htmlFor="profileImage" className="block mb-2">Profile Image URL</Label>
-              <TextInput
-                id="profileImage"
-                type="text"
-                name="profileImage"
-                value={formData.profileImage}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Height</h4>
+              <p className="text-gray-700">{biodata?.height}</p>
             </div>
 
-            {/* Date of Birth */}
-            <div>
-              <Label htmlFor="dob" className="block mb-2">Date of Birth</Label>
-              <TextInput
-                id="dob"
-                type="date"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Weight</h4>
+              <p className="text-gray-700">{biodata?.weight}</p>
             </div>
 
-            {/* Height */}
-            <div>
-              <Label htmlFor="height" className="block mb-2">Height</Label>
-              <TextInput
-                id="height"
-                type="text"
-                name="height"
-                value={formData.height}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Age</h4>
+              <p className="text-gray-700">{biodata?.age}</p>
             </div>
 
-            {/* Weight */}
-            <div>
-              <Label htmlFor="weight" className="block mb-2">Weight</Label>
-              <TextInput
-                id="weight"
-                type="text"
-                name="weight"
-                value={formData.weight}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Age */}
-            <div>
-              <Label htmlFor="age" className="block mb-2">Age</Label>
-              <TextInput
-                id="age"
-                type="number"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Occupation */}
-            <div>
-              <Label htmlFor="occupation" className="block mb-2">Occupation</Label>
-              <TextInput
-                id="occupation"
-                type="text"
-                name="occupation"
-                value={formData.occupation}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Race */}
-            <div>
-              <Label htmlFor="race" className="block mb-2">Race</Label>
-              <TextInput
-                id="race"
-                type="text"
-                name="race"
-                value={formData.race}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Father's Name */}
-            <div>
-              <Label htmlFor="fatherName" className="block mb-2">Father's Name</Label>
-              <TextInput
-                id="fatherName"
-                type="text"
-                name="fatherName"
-                value={formData.fatherName}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Mother's Name */}
-            <div>
-              <Label htmlFor="motherName" className="block mb-2">Mother's Name</Label>
-              <TextInput
-                id="motherName"
-                type="text"
-                name="motherName"
-                value={formData.motherName}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Permanent Division */}
-            <div>
-              <Label htmlFor="permanentDivision" className="block mb-2">Permanent Division</Label>
-              <TextInput
-                id="permanentDivision"
-                type="text"
-                name="permanentDivision"
-                value={formData.permanentDivision}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Present Division */}
-            <div>
-              <Label htmlFor="presentDivision" className="block mb-2">Present Division</Label>
-              <TextInput
-                id="presentDivision"
-                type="text"
-                name="presentDivision"
-                value={formData.presentDivision}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Expected Partner Age */}
-            <div>
-              <Label htmlFor="expectedPartnerAge" className="block mb-2">Expected Partner Age</Label>
-              <TextInput
-                id="expectedPartnerAge"
-                type="text"
-                name="expectedPartnerAge"
-                value={formData.expectedPartnerAge}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Expected Partner Height */}
-            <div>
-              <Label htmlFor="expectedPartnerHeight" className="block mb-2">Expected Partner Height</Label>
-              <TextInput
-                id="expectedPartnerHeight"
-                type="text"
-                name="expectedPartnerHeight"
-                value={formData.expectedPartnerHeight}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Expected Partner Weight */}
-            <div>
-              <Label htmlFor="expectedPartnerWeight" className="block mb-2">Expected Partner Weight</Label>
-              <TextInput
-                id="expectedPartnerWeight"
-                type="text"
-                name="expectedPartnerWeight"
-                value={formData.expectedPartnerWeight}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <Label htmlFor="email" className="block mb-2">Email</Label>
-              <TextInput
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
-            </div>
-
-            {/* Mobile */}
-            <div>
-              <Label htmlFor="mobile" className="block mb-2">Mobile</Label>
-              <TextInput
-                id="mobile"
-                type="tel"
-                name="mobile"
-                value={formData.mobile}
-                onChange={handleChange}
-                required
-                color="pink"
-                className="w-full"
-              />
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Occupation</h4>
+              <p className="text-gray-700">{biodata?.occupation}</p>
             </div>
           </div>
 
-          <div className="mt-4 flex justify-center">
-            <Button type="submit" color="pink">Save & Publish Now</Button>
+          <div>
+            {/* Right Section with Remaining Information */}
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Race</h4>
+              <p className="text-gray-700">{biodata?.race}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Father's Name</h4>
+              <p className="text-gray-700">{biodata?.fatherName}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Mother's Name</h4>
+              <p className="text-gray-700">{biodata?.motherName}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">
+                Permanent Division
+              </h4>
+              <p className="text-gray-700">{biodata?.permanentDivision}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Present Division</h4>
+              <p className="text-gray-700">{biodata?.presentDivision}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">
+                Expected Partner's Age
+              </h4>
+              <p className="text-gray-700">{biodata?.expectedPartnerAge}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">
+                Expected Partner's Height
+              </h4>
+              <p className="text-gray-700">{biodata?.expectedPartnerHeight}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">
+                Expected Partner's Weight
+              </h4>
+              <p className="text-gray-700">{biodata?.expectedPartnerWeight}</p>
+            </div>
+
+            <div className="border-b border-gray-300 pb-4 mb-4">
+              <h4 className="font-semibold text-pink-500">Email</h4>
+              <p className="text-gray-700">{biodata?.email}</p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-pink-500">Mobile</h4>
+              <p className="text-gray-700">{biodata?.mobile}</p>
+            </div>
           </div>
-        </form>
+        </div>
+
+        {/* Premium Button */}
+        {isPremium ? (
+          <span className="text-green-500 font-semibold">Premium Member</span>
+        ) : (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="mt-3 px-4 py-2 bg-pink-500 text-white rounded-lg"
+          >
+            Make Biodata Premium
+          </button>
+        )}
+
+        {/* Modal Component */}
+        <Modal show={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <Modal.Body>
+            <p className="text-lg font-semibold text-gray-700">
+              Are you sure you want to send a request for premium approval?
+            </p>
+            <div className="flex justify-end gap-4 mt-4">
+              <Button color="gray" onClick={() => setIsModalOpen(false)}>
+                Cancel
+              </Button>
+              <Button color="pink" onClick={handlePremiumRequest}>
+                Yes, Send Request
+              </Button>
+            </div>
+          </Modal.Body>
+        </Modal>
       </Card>
     </div>
   );

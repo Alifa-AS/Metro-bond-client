@@ -14,7 +14,7 @@ const Payment = () => {
         // Fetch data from your API 
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/bioData');
+                const response = await fetch('https://b10-a12-metro-server.vercel.app/bioData');
                 const result = await response.json();
                 setData(result); 
             } catch (error) {

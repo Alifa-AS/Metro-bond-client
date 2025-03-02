@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Cover = ({img, title}) => {
   return (
@@ -13,9 +14,11 @@ const Cover = ({img, title}) => {
         Present yourself with confidence and authenticity. Let your bio-data reflect your true personality, 
         values, and aspirations.
       </p>
+      <Link to="/">
       <button color="pink" className="bg-[#fabb55] hover:bg-pink-300 text-white font-bold py-3 px-6 rounded">
         Get Started
       </button>
+      </Link>
     </div>
   </div>
   );

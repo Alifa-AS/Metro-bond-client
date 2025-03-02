@@ -3,15 +3,17 @@ import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const FavoriteBio = () => {
   const axiosSecure = useAxiosSecure();
   const [favoriteBio, setFavoriteBio] = useState([]);
+  const {user} = useAuth();
 
   //  Backend data fetch
   useEffect(() => {
     axiosSecure
-      .get("/favorite?email=elon.usa@gmail.com")
+      .get(`/favorite?email=${user.email}`)
       .then((res) => {
         setFavoriteBio(res.data)
         console.log("Fetched Favorite Bio:", res.data)
@@ -38,7 +40,12 @@ const FavoriteBio = () => {
             setFavoriteBio((prevState) =>
               prevState.filter((bio) => bio._id !== id)
             );
-  
+            axiosSecure
+            .get(`/favorite?email=${user.email}`, { headers: { "Cache-Control": "no-cache" } })
+            .then((res) => {
+              setFavoriteBio(res.data);
+            });
+
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",

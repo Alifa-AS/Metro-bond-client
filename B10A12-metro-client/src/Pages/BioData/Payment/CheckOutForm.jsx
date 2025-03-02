@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
+import useBio from "../../../hooks/useBio";
+import useInfo from "../../../hooks/useInfo";
 
 const CheckoutForm = ({ data }) => {
   const [error, setError] = useState("");
@@ -12,9 +14,12 @@ const CheckoutForm = ({ data }) => {
   const [clientSecret, setClientSecret] = useState("");
   const { user } = useAuth();
   const [transitionId, setTransitionId] = useState("");
+  const axiosSecure = useAxiosSecure();
+  const[info] = useInfo();
+console.log(info);
 
   const totalPrice = 500; // Amount in cents ($5.00)
-  const axiosSecure = useAxiosSecure();
+  
 
   useEffect(() => {
     if (!totalPrice || isNaN(totalPrice) || totalPrice < 500) {
@@ -26,7 +31,7 @@ const CheckoutForm = ({ data }) => {
     // Use axiosSecure to fetch client secret
     if (totalPrice) {
       axiosSecure
-        .post("/create-payment-intent", { amount: totalPrice }) // Use 'amount' here
+        .post("/create-payment-intent", { amount: totalPrice })
         .then((res) => {
           if (res.data.clientSecret) {
             console.log("Client Secret:", res.data.clientSecret);
@@ -100,7 +105,7 @@ const CheckoutForm = ({ data }) => {
           transitionId: paymentIntent.id,
           amount: totalPrice,
           date: new Date(),
-          bioDataId: data._id,
+          bioDataId: info?.bioDataId,
           status: "pending",
         };
 
@@ -131,7 +136,7 @@ const CheckoutForm = ({ data }) => {
           <label className="text-gray-500">Biodata ID</label>
           <input
             type="text"
-            // value={data._id}
+            value={info?.bioDataId}
             readOnly
             className="w-full p-2 border rounded"
           />

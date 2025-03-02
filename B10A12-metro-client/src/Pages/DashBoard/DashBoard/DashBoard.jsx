@@ -152,6 +152,18 @@ const DashBoard = () => {
                       >
                         Approved Contact Request
                       </Sidebar.Item>
+                      <Sidebar.Item
+                        as={NavLink}
+                        to="/dashboard/successStories"
+                        icon={MdAddCall}
+                        className={({ isActive }) =>
+                          isActive
+                            ? "hover:bg-pink-100 text-pink-600"
+                            : "hover:bg-pink-100"
+                        }
+                      >
+                       All Success Stories
+                      </Sidebar.Item>
                     </Sidebar.ItemGroup>
                   </>
                 ) : (

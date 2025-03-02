@@ -144,16 +144,9 @@ console.log(users)
                         </button>
                       )}
                     </td>
+                    
                     <td className="border border-pink-300 px-4 py-2 text-center">
-                      <button
-                        className="bg-yellow-400 text-white px-3 py-1 rounded-md hover:bg-yellow-300"
-                        onClick={() => handleMakePremium(user)}
-                      >
-                        Make Premium
-                      </button>
-                    </td>
-                    {/* <td className="border border-pink-300 px-4 py-2 text-center">
-                      {user.role === "premium" ? (
+                      {user.status === "premium" ? (
                         "Premium User"
                       ) : (
                         <button
@@ -163,7 +156,7 @@ console.log(users)
                           Make Premium
                         </button>
                       )}
-                    </td> */}
+                    </td>
 
                     <td className="border border-pink-300 px-4 py-2 text-center">
                       <button

@@ -25,6 +25,7 @@ import ApproveContact from '../Pages/DashBoard/Admin Dashboard/ApproveContact/Ap
 import AdminDashboard from '../Pages/DashBoard/Admin Dashboard/AdminDashboard/AdminDashboard';
 import AdminRoutes from './AdminRoutes';
 import Payment from '../Pages/BioData/Payment/Payment';
+import SuccessStories from '../Pages/DashBoard/Admin Dashboard/SuccessStories/SuccessStories';
 
 
 
@@ -42,7 +43,7 @@ import Payment from '../Pages/BioData/Payment/Payment';
             {
                 path: '/successReview/:id',
                 element: <SuccessStoryDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/successReview/${params.id}`)
+                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/successReview/${params.id}`)
             },
             {
                 path: 'bioData',
@@ -51,7 +52,7 @@ import Payment from '../Pages/BioData/Payment/Payment';
             {
                 path: 'bioData/:id',
                 element: <PrivateRoute> <BioDataDetails /> </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bioData/${params.id}`)
+                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/bioData/${params.id}`)
 
             },
             {
@@ -122,6 +123,10 @@ import Payment from '../Pages/BioData/Payment/Payment';
                {
                 path: 'approvedContact',
                 element: <AdminRoutes><ApproveContact /></AdminRoutes>,
+               },
+               {
+                path: 'successStories',
+                element: <AdminRoutes><SuccessStories /></AdminRoutes>,
                },
             ]
         },
