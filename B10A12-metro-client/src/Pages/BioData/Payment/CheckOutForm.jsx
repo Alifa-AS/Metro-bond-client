@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
-import useBio from "../../../hooks/useBio";
 import useInfo from "../../../hooks/useInfo";
 
 const CheckoutForm = ({ data }) => {
@@ -16,7 +15,7 @@ const CheckoutForm = ({ data }) => {
   const [transitionId, setTransitionId] = useState("");
   const axiosSecure = useAxiosSecure();
   const[info] = useInfo();
-console.log(info);
+  
 
   const totalPrice = 500; // Amount in cents ($5.00)
   
@@ -101,11 +100,13 @@ console.log(info);
 
         // Save the payment information in the database using axiosSecure
         const payment = {
+          name: data?.name,
           email: user?.email,
+          mobileNumber: data?.mobileNumber, 
           transitionId: paymentIntent.id,
           amount: totalPrice,
           date: new Date(),
-          bioDataId: info?.bioDataId,
+          bioDataId: info?.biodataId,
           status: "pending",
         };
 
@@ -136,7 +137,7 @@ console.log(info);
           <label className="text-gray-500">Biodata ID</label>
           <input
             type="text"
-            value={info?.bioDataId}
+            value={info?.biodataId}
             readOnly
             className="w-full p-2 border rounded"
           />

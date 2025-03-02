@@ -113,8 +113,8 @@ const BioDataDetails = () => {
       mobileNumber,
     };
     console.log(contactData);
-    navigate('/dashboard/contact-request', {
-      state: contactData,
+    navigate('/payment', {
+      state: contactData
     });
   };
 

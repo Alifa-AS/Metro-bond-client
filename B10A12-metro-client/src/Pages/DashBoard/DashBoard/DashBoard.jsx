@@ -61,7 +61,9 @@ const DashBoard = () => {
         >
           <HiMenu className="w-6 h-6" />
         </Button>
-        <h1 className="ml-4 text-xl font-semibold text-pink-500">Dashboard</h1>
+        <h1 className="ml-4 text-xl font-semibold text-pink-500">Dashboard 
+        </h1>
+        
       </div>
 
       <Drawer
@@ -113,7 +115,7 @@ const DashBoard = () => {
                             : "hover:bg-pink-100"
                         }
                       >
-                        Admin Dashboard
+                        Admin Home
                       </Sidebar.Item>
                       <Sidebar.Item
                         as={NavLink}

@@ -17,6 +17,7 @@ import {
   TrophyIcon,
   ChatBubbleLeftRightIcon,
 } from "@heroicons/react/24/solid";
+import useAuth from "../../../hooks/useAuth";
 
 const data = [
   { name: "Jan", value: 400 },
@@ -35,6 +36,9 @@ const pieData = [
 const COLORS = ["#4F46E5", "#9333EA", "#F59E0B", "#EF4444"];
 
 const DashBoardHome = () => {
+
+  const { user } = useAuth();
+
   return (
     <div className="container mx-auto px-8 py-12 bg-gradient-to-r from-blue-50 via-pink-100 to-purple-100">
       {/* Header Section */}
@@ -46,6 +50,10 @@ const DashBoardHome = () => {
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h2 className="text-5xl font-bold">Welcome to Your Dashboard</h2>
+          <div className="text-indigo-500 px-3 font-semibold py-5 text-lg">
+            <span> Hi, Welcome </span>
+            {user?.displayName ? user.displayName : "Black"}
+          </div>
           <p className="text-lg mt-4">
             Manage your profile, preferences, and more!
           </p>
@@ -79,7 +87,9 @@ const DashBoardHome = () => {
             <div className="flex justify-center items-center mb-3">
               <TrophyIcon className="w-12 h-12 text-blue-500" />
             </div>
-            <h3 className="text-xl font-semibold text-yellow-500">245 Matches</h3>
+            <h3 className="text-xl font-semibold text-yellow-500">
+              245 Matches
+            </h3>
             <p className="text-gray-500">Recent Matches</p>
           </Card>
 
@@ -88,7 +98,9 @@ const DashBoardHome = () => {
             <div className="flex justify-center items-center mb-3">
               <ChatBubbleLeftRightIcon className="w-12 h-12 text-pink-400" />
             </div>
-            <h3 className="text-xl font-semibold text-yellow-500">53 New Messages</h3>
+            <h3 className="text-xl font-semibold text-yellow-500">
+              53 New Messages
+            </h3>
             <p className="text-gray-500">Message Center</p>
             <button className="mt-3 px-5 py-2 bg-gradient-to-r from-purple-300 to-pink-500 text-white rounded-lg hover:bg-gradient-to-l">
               Check Messages
