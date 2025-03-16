@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
-import useInfo from "../../../hooks/useInfo";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ data }) => {
   const [error, setError] = useState("");
@@ -14,11 +14,11 @@ const CheckoutForm = ({ data }) => {
   const { user } = useAuth();
   const [transitionId, setTransitionId] = useState("");
   const axiosSecure = useAxiosSecure();
-  const[info] = useInfo();
-  
+  const navigate = useNavigate();
+
+  const { biodataId, name, contactEmail, mobileNumber } = data;
 
   const totalPrice = 500; // Amount in cents ($5.00)
-  
 
   useEffect(() => {
     if (!totalPrice || isNaN(totalPrice) || totalPrice < 500) {
@@ -102,11 +102,11 @@ const CheckoutForm = ({ data }) => {
         const payment = {
           name: data?.name,
           email: user?.email,
-          mobileNumber: data?.mobileNumber, 
+          mobileNumber: data?.mobileNumber,
           transitionId: paymentIntent.id,
           amount: totalPrice,
           date: new Date(),
-          bioDataId: info?.biodataId,
+          bioDataId: data?.biodataId,
           status: "pending",
         };
 
@@ -117,9 +117,12 @@ const CheckoutForm = ({ data }) => {
           text: "Successfully Payment",
           icon: "success",
         });
+        // After successful payment, navigate to ContactRequest page and pass the data
+
+        navigate("/dashboard/contact-request");
+        
       }
     }
-    setLoading(false);
   };
 
   return (
@@ -137,7 +140,7 @@ const CheckoutForm = ({ data }) => {
           <label className="text-gray-500">Biodata ID</label>
           <input
             type="text"
-            value={info?.biodataId}
+            value={biodataId}
             readOnly
             className="w-full p-2 border rounded"
           />
@@ -169,7 +172,7 @@ const CheckoutForm = ({ data }) => {
             },
           }}
         />
-
+        {error && <p className="text-red-500">{error}</p>}
         <button
           className="w-full bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-700 transition disabled:bg-gray-400"
           type="submit"

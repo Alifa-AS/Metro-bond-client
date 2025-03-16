@@ -13,7 +13,7 @@ const BioDataDetails = () => {
   const { user } = useAuth();
   const [, refetch] = useInfo();
   const navigate = useNavigate();
-
+ 
   const {
     _id,
     biodataId,
@@ -113,7 +113,7 @@ const BioDataDetails = () => {
       mobileNumber,
     };
     console.log(contactData);
-    navigate('/payment', {
+    navigate(`/payment/${_id}`, {
       state: contactData
     });
   };
@@ -253,7 +253,7 @@ const BioDataDetails = () => {
           >
             <FaHeart className="text-lg" /> Add Favorite
           </Button>
-          <Link to="/payment">
+          <Link to={`/payment/${_id}`}>
             <Button
               onClick={handleReqContact}
               className="px-6 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"

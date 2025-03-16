@@ -6,6 +6,9 @@ import HowItWorks from "../HowItWorks/HowItWorks";
 import SuccessStory from "../SuccessStory/SuccessStory";
 import { Helmet } from "react-helmet-async";
 import SuccessCounter from "../SuccessCounter/SuccessCounter";
+import Sponsor from "./Sponsor/Sponsor";
+import Privacy from "../Privacy/Privacy";
+
 
 const Home = () => {
   return (
@@ -19,6 +22,8 @@ const Home = () => {
       <SuccessCounter />
       <SuccessStory />
       <Category />
+      <Sponsor />
+      <Privacy />
     </div>
   );
 };

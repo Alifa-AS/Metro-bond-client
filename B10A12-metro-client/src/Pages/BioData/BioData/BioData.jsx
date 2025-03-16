@@ -7,13 +7,15 @@ import { useState } from "react";
 import useFilter from "../../../hooks/useFilter";
 // import Loading from "../../Shared/Loading/Loading";
 import useAxiosSecure from "../../../hooks/UseAxiosSecure";
+import { useLoaderData } from "react-router-dom";
 
 const BioData = () => {
   const [minAge, setMinAge] = useState("");
   const [maxAge, setMaxAge] = useState("");
   const [gender, setGender] = useState("");
   const [division, setDivision] = useState("");
-  const { bioData,  setBioData } = useFilter(minAge, maxAge, gender, division);
+  const { bioData, setBioData } = useFilter(minAge, maxAge, gender, division);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const axiosSecure = useAxiosSecure();
 
   // useEffect(() => {
@@ -49,6 +51,25 @@ const BioData = () => {
   // if (loading) {
   //   return <Loading />;
   // }
+
+  const { count } = useLoaderData();
+  // const itemPerPage = 10;
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+
+  // const pages = []
+  // for(let i = 0; i< numberOfPages; i++){
+  //   pages.push(i)
+  // }
+
+  const pages = [...Array(numberOfPages).keys()];
+
+  console.log(pages);
+
+  const handleItemsPerPage = e =>{
+    const val = parseInt(e.target.value);
+    console.log(val);
+    setItemsPerPage(val);
+  }
 
   return (
     <div>
@@ -144,6 +165,17 @@ const BioData = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="text-center">
+        {pages.map((page) => (
+          <button className="mr-5">{page}</button>
+        ))}
+        <select value={itemsPerPage}
+        onChange={handleItemsPerPage}
+         name="">
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const BioDataCard = ({ data }) => {
     profileImage,
     permanentDivision,
     age,
-    occupation
+    occupation,
   } = data;
   
   return (

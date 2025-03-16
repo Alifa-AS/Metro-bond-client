@@ -47,7 +47,8 @@ import SuccessStories from '../Pages/DashBoard/Admin Dashboard/SuccessStories/Su
             },
             {
                 path: 'bioData',
-                element: <BioData />
+                element: <BioData />,
+                loader: (()=>fetch('http://localhost:5000/bioDataCount'))
             },
             {
                 path: 'bioData/:id',
@@ -56,7 +57,7 @@ import SuccessStories from '../Pages/DashBoard/Admin Dashboard/SuccessStories/Su
 
             },
             {
-                path: 'payment',
+                path: 'payment/:id',
                 element: <PrivateRoute><Payment /></PrivateRoute>
             },
             {

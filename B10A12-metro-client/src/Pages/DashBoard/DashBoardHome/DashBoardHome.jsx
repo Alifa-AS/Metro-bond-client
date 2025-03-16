@@ -11,7 +11,7 @@ import {
   Tooltip as LineTooltip,
   ResponsiveContainer,
 } from "recharts";
-import DashImg from "../../../assets/Cover/dashBoard.jpg";
+import DashImg from "../../../assets/Cover/dashboard1.jpg";
 import {
   CurrencyDollarIcon,
   TrophyIcon,
@@ -48,12 +48,9 @@ const DashBoardHome = () => {
           alt="Dashboard"
           className="w-full h-80 object-cover rounded-lg shadow-lg"
         />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-indigo-400">
           <h2 className="text-5xl font-bold">Welcome to Your Dashboard</h2>
-          <div className="text-indigo-500 px-3 font-semibold py-5 text-lg">
-            <span> Hi, Welcome </span>
-            {user?.displayName ? user.displayName : "Black"}
-          </div>
+          
           <p className="text-lg mt-4">
             Manage your profile, preferences, and more!
           </p>
@@ -70,6 +67,10 @@ const DashBoardHome = () => {
             Insights into your matches, messages, and more.
           </p>
         </div>
+        <div className="text-indigo-500 px-3 font-semibold py-5 text-lg">
+            <span> Hi, Welcome </span>
+            {user?.displayName ? user.displayName : "Black"}
+          </div>
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

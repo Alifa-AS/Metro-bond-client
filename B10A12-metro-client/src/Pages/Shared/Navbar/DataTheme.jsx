@@ -22,7 +22,7 @@ const DataTheme = () => {
   return (
     <div className="flex items-center gap-2">
       <span className="text-sm text-gray-600 dark:text-gray-300">
-        {theme === "dark" ? "Dark Mode" : "Light Mode"}
+        {/* {theme === "dark" ? "Dark" : "Light"} */}
       </span>
       <ToggleSwitch checked={theme === "dark"} onChange={handleToggle} />
     </div>

@@ -1,92 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../../../hooks/UseAxiosSecure';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { FaTrashAlt } from "react-icons/fa";
+import useAxiosSecure from "../../../../hooks/UseAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
-const ApprovedPremium = () => {
-    const axiosSecure = useAxiosSecure();
-    const [premiumRequests, setPremiumRequests] = useState([]);
-    const [loading, setLoading] = useState(true); // Loading state
-    const [error, setError] = useState(null); // Error state
+const ApprovePremium = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ['premiumRequests'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/users/premium-requests');
+      return res.data;
+    },
+  });
 
-    useEffect(() => {
-        // Fetch all premium approval requests
-        setLoading(true); // Set loading true when starting to fetch data
-        axiosSecure.get('/dashboard/approvedPremium', {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`, // Add token from localStorage
-            }
-        })
-        .then(response => {
-            setPremiumRequests(response.data);
-            setLoading(false); // Set loading to false once data is fetched
-        })
-        .catch(error => {
-            setError(error.response ? error.response.data.message : 'Error fetching premium requests'); // Handle error message
-            setLoading(false); // Set loading to false on error
-            console.error('Error fetching premium requests:', error);
+  const handleMakePremium = (user) => {
+    axiosSecure.patch(`/users/premium/${user._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is now a Premium User!`,
+          showConfirmButton: false,
+          timer: 1500,
         });
-    }, []);
+      }
+    });
+  };
 
-    const handleMakePremium = (id) => {
-        axiosSecure.patch(`/dashboard/approvedPremium/${id}`, {}, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            }
-        })
-        .then(response => {
-            console.log('Biodata updated to premium:', response);
-            // Optimistically update the status in UI
-            setPremiumRequests(prevRequests => 
-                prevRequests.map(request => 
-                    request._id === id ? { ...request, status: 'premium' } : request
-                )
-            );
-        })
-        .catch(error => {
-            setError(error.response ? error.response.data.message : 'Error making biodata premium');
-            console.error('Error making biodata premium:', error);
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "The request has been deleted.",
+              icon: "success",
+            });
+          }
         });
-    };
+      }
+    });
+  };
 
-    if (loading) {
-        return <div>Loading...</div>; // Display loading state
-    }
+  return (
+    <>
+      <Helmet>
+        <title>Metro || Approved Premium Users</title>
+      </Helmet>
+      <div className="container mx-auto p-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4 text-center">
+          Approved Premium Users
+        </h2>
 
-    if (error) {
-        return <div>{error}</div>; // Display error if there was an issue
-    }
-
-    return (
-        <div>
-            <h2>Approved Premium Requests</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Biodata Id</th>
-                        <th>Make Premium</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {premiumRequests.map(request => (
-                        <tr key={request._id}>
-                            <td>{request.name}</td>
-                            <td>{request.email}</td>
-                            <td>{request.biodataId}</td>
-                            <td>
-                                <button 
-                                    onClick={() => handleMakePremium(request._id)} 
-                                    disabled={request.status === 'premium'}
-                                >
-                                    {request.status === 'premium' ? 'Already Premium' : 'Make Premium'}
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        {/* Table for Premium Requests */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-pink-300 shadow-lg">
+            <thead className="bg-pink-200 text-pink-900">
+              <tr>
+                <th className="border border-pink-300 px-4 py-2">Name</th>
+                <th className="border border-pink-300 px-4 py-2">Email</th>
+                <th className="border border-pink-300 px-4 py-2">Biodata Id</th>
+                <th className="border border-pink-300 px-4 py-2">Make Premium</th>
+                <th className="border border-pink-300 px-4 py-2">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="text-center py-4 text-xl font-semibold text-gray-600">
+                    No data available
+                  </td>
+                </tr>
+              ) : (
+                users.map((user) => (
+                  <tr key={user._id} className="bg-pink-50 hover:bg-pink-100">
+                    <td className="border border-pink-300 px-4 py-2">{user.name}</td>
+                    <td className="border border-pink-300 px-4 py-2">{user.email}</td>
+                    <td className="border border-pink-300 px-4 py-2">{user.biodataId}</td>
+                    <td className="border border-pink-300 px-4 py-2 text-center">
+                      <button
+                        className="bg-yellow-400 text-white px-3 py-1 rounded-md hover:bg-yellow-300"
+                        onClick={() => handleMakePremium(user)}
+                      >
+                        Make Premium
+                      </button>
+                    </td>
+                    <td className="border border-pink-300 px-4 py-2 text-center">
+                      <button
+                        onClick={() => handleDeleteUser(user)}
+                        className="text-white px-3 py-1 rounded-md hover:bg-red-500"
+                      >
+                        <FaTrashAlt className="text-red-600" />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
-    );
+      </div>
+    </>
+  );
 };
 
-export default ApprovedPremium;
+export default ApprovePremium;
