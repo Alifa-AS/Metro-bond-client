@@ -12,7 +12,7 @@ const Sponsor = () => {
     
   return (
     <div className="my-10">
-      <div className="w-11/12 mx-auto bg-yellow-50">
+      <div className="w-11/12 mx-auto bg-pink-50">
         <Marquee pauseOnHover={true}>
           <img src={sponsor1} alt="Sponsor 1" className="w-40 mx-4" />
           <img src={sponsor2} alt="Sponsor 2" className="w-40 mx-4" />

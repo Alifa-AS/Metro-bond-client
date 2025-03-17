@@ -3,12 +3,15 @@ import SectionTitle from "../../../Components/SectionTitle";
 import image from "../../../assets/Home-img/pixels.jpg";
 import "./HowIt.css";
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const HowItWorks = () => {
   return (
     <section
       className="relative bg-cover bg-center bg-no-repeat bg-fixed w-full min-h-[450px] flex items-center justify-center
-        text-white text-center p-4 md:p-8 overflow-hidden howIt-item" data-aos="fade-up" data-aos-duration="2000"
+        text-white text-center p-4 md:p-8 overflow-hidden howIt-item"
+      data-aos="fade-up"
+      data-aos-duration="2000"
     >
       {/* Dark Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-800 to-black opacity-70"></div>
@@ -73,13 +76,15 @@ const HowItWorks = () => {
               </li>
             </ul>
 
-            {/* Read More Button */}
-            <button
-              className="mt-4 flex items-center bg-pink-500 text-white font-bold py-2 px-5 rounded-lg shadow-lg
+            <Link to="/bioData">
+              <button
+                className="mt-4 flex items-center bg-pink-500 text-white font-bold py-2 px-5 rounded-lg shadow-lg
                         hover:bg-pink-600 hover:scale-105 transition-all duration-300"
-            >
-              Read More <FaArrowRight className="ml-2" />
-            </button>
+              >
+                Get Started <FaArrowRight className="ml-2" />
+              </button>
+            </Link>
+
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Cover from "../../Shared/Cover/Cover";
 import coverImg from "../../../assets/Cover/cover1.jpg";
-import { Sidebar } from "flowbite-react";
+import { Button, Sidebar } from "flowbite-react";
 import BioDataCard from "../BioData/BioDataCard";
 import { useState } from "react";
 import useFilter from "../../../hooks/useFilter";
@@ -15,6 +15,7 @@ const BioData = () => {
   const [gender, setGender] = useState("");
   const [division, setDivision] = useState("");
   const { bioData, setBioData } = useFilter(minAge, maxAge, gender, division);
+  const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const axiosSecure = useAxiosSecure();
 
@@ -65,11 +66,24 @@ const BioData = () => {
 
   console.log(pages);
 
-  const handleItemsPerPage = e =>{
+  const handleItemsPerPage = (e) => {
     const val = parseInt(e.target.value);
     console.log(val);
     setItemsPerPage(val);
-  }
+    setCurrentPage(0);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div>
@@ -88,11 +102,11 @@ const BioData = () => {
           aria-label="Bio Data Sidebar"
           className="w-96 h-auto bg-gradient-to-r from-pink-200 to-orange-100 p-6 mx-auto rounded-lg shadow-lg"
         >
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Filters</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Filters</h2>
           <form onSubmit={handleFilter} className="space-y-6">
             <div className="md:flex gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                   Min Age
                 </label>
                 <input
@@ -103,7 +117,7 @@ const BioData = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                   Max Age
                 </label>
                 <input
@@ -115,7 +129,7 @@ const BioData = () => {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 Gender
               </label>
               <select
@@ -128,12 +142,12 @@ const BioData = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 Division
               </label>
               <select
                 onChange={(e) => setDivision(e.target.value)}
-                className="mt-2 p-3 w-full border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
+                className="mt-2 p-3 w-full dark:text-gray-700 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500"
               >
                 <option value="">Select Division</option>
                 <option value="Dhaka">Dhaka</option>
@@ -147,7 +161,7 @@ const BioData = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-pink-400 to-orange-200 text-white p-3 rounded-md shadow-md transition-all hover:opacity-90"
+              className="w-full bg-gradient-to-r from-pink-400 to-orange-200 text-white font-bold p-3 rounded-md shadow-md transition-all hover:opacity-90"
             >
               Find
             </button>
@@ -160,22 +174,51 @@ const BioData = () => {
             All Bio Datas
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {bioData.slice(0, 20).map((data) => (
-              <BioDataCard key={data._id} data={data} />
-            ))}
+            {bioData
+              .slice(
+                currentPage * itemsPerPage,
+                (currentPage + 1) * itemsPerPage
+              )
+              .map((data) => (
+                <BioDataCard key={data._id} data={data} />
+              ))}
           </div>
         </div>
       </div>
-      <div className="text-center">
-        {pages.map((page) => (
-          <button className="mr-5">{page}</button>
-        ))}
-        <select value={itemsPerPage}
-        onChange={handleItemsPerPage}
-         name="">
-          <option value="10">10</option>
-          <option value="20">20</option>
-        </select>
+      <div className="text-center mb-10">
+        <p className="py-3">Current Page: {currentPage}</p>
+
+        <div className="flex justify-center items-center gap-4">
+          {/* Pagination Buttons */}
+          <div className="flex gap-2">
+            <Button onClick={handlePrevPage}>prev</Button>
+            {pages.map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-3 py-1 border rounded ${
+                  currentPage === page
+                    ? "bg-pink-500 text-white "
+                    : "bg-gray-200 dark:text-gray-700"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+            <Button onClick={handleNextPage}>Next</Button>
+          </div>
+
+          {/* Items Per Page Dropdown */}
+          <select
+            value={itemsPerPage}
+            onChange={handleItemsPerPage}
+            className="border rounded px-2 py-1 dark:text-gray-700"
+          >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
+        </div>
       </div>
     </div>
   );

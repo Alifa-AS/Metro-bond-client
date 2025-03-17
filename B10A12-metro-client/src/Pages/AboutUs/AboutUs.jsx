@@ -12,7 +12,7 @@ import { faAward, faGlobe, faUser } from '@fortawesome/free-solid-svg-icons';
 const AboutUs = () => {
   
   return (
-    <div className="dark:bg-gray-800 opacity-90">
+    <div>
       <Helmet>
         <title>Metro || About Us</title>
       </Helmet>

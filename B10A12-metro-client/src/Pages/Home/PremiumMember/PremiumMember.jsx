@@ -45,7 +45,7 @@ const PremiumMember = () => {
 
   return (
     <section
-      className="my-20 px-6 md:px-8 lg:px-16 bg-gradient-to-br from-pink-50 to-yellow-50"
+      className="my-20 px-6 md:px-8 lg:px-16 bg-gradient-to-br from-pink-50 to-yellow-50 py-5"
       data-aos="fade-up"
       data-aos-duration="2000"
     >
@@ -83,20 +83,20 @@ const PremiumMember = () => {
                 alt="Premium Member"
                 className="w-full h-32 sm:h-52 md:h-52 object-cover rounded-t-xl"
               />
-              <div className="p-6 space-y-4">
+              <div className="p-6 space-y-2">
                 <h5 className="text-lg font-semibold text-yellow-400 text-center">
                   BioData Id: {member.biodataId}
                 </h5>
                 <h5 className="text-2xl font-semibold text-pink-500 text-center">
                   {member.name}
                 </h5>
-                <p className="text-gray-700 text-center text-sm mt-2">
+                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
                   Age: {member.age} || Gender: {member.biodataType}
                 </p>
-                <p className="text-gray-700 text-center text-sm mt-2">
+                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
                   Occupation: {member.occupation}
                 </p>
-                <p className="text-gray-700 text-center text-sm mt-2">
+                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
                   Division: {member.presentDivision}
                 </p>
                 <Link to={`/bioData/${member._id}`}>

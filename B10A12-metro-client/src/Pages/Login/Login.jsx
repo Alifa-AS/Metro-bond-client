@@ -15,9 +15,11 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { signIn } = useContext(AuthContext);
-  const captchaRef = useRef(null); 
+  const captchaRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,7 +49,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate('/', { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -76,6 +78,12 @@ const Login = () => {
     }
   };
 
+  // Function to fill in admin credentials
+  const adminLogin = () => {
+    setEmail("info@gmail.com");
+    setPassword("123@Info");
+  };
+
   return (
     <>
       <Helmet>
@@ -101,6 +109,8 @@ const Login = () => {
                   type="email"
                   placeholder="Enter your email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -111,6 +121,8 @@ const Login = () => {
                   type="password"
                   placeholder="Enter your password"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <div className="mt-1">
@@ -164,8 +176,15 @@ const Login = () => {
                 </p>
               </div>
             </form>
-            <div className="my-2 mx-6">
+            <div className="my-2 mx-6 flex justify-between items-center space-x-4">
               <SocialLogin />
+              {/* Admin Login Button */}
+              <button
+                onClick={adminLogin}
+                className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600"
+              >
+                Admin Login
+              </button>
             </div>
           </Card>
         </div>

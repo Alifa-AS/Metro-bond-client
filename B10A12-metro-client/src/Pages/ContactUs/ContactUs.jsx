@@ -18,7 +18,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="dark:bg-gray-800 opacity-90">
+    <div>
       <Helmet>
         <title>Metro || Contact Us</title>
       </Helmet>

@@ -18,7 +18,7 @@ const CustomFooter = () => {
               name="METRO"
               className="w-20 h-20"
             />
-            <p className="mt-3 text-sm text-gray-600">
+            <p className="mt-3 text-sm text-gray-600 dark:text-gray-200">
               Connecting hearts with trust and reliability. Your perfect match starts here!
             </p>
           </div>

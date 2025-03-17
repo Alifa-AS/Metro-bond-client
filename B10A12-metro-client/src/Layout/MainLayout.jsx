@@ -8,17 +8,16 @@ const MainLayout = () => {
     const location = useLocation();
     console.log(location);
 
-    const noHeadFoot = location.pathname.includes('login') || location.pathname.includes('register')
-
+    const noFoot = location.pathname.includes('login') || location.pathname.includes('register')
 
     return (
-        <div>
+        <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
             <ToastContainer />
-            {noHeadFoot || <CustomNavbar />}
+            <CustomNavbar />
             <div className="min-h-[calc(100vh-350px)]">
                 <Outlet />
             </div>
-            {noHeadFoot || <CustomFooter />}
+            {noFoot || <CustomFooter />}
         </div>
     );
 };
