@@ -10,8 +10,7 @@ const HowItWorks = () => {
     <section
       className="relative bg-cover bg-center bg-no-repeat bg-fixed w-full min-h-[450px] flex items-center justify-center
         text-white text-center p-4 md:p-8 overflow-hidden howIt-item"
-      data-aos="fade-up"
-      data-aos-duration="2000"
+      
     >
       {/* Dark Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-800 to-black opacity-70"></div>

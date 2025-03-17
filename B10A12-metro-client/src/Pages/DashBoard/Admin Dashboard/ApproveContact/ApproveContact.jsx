@@ -1,78 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { FaTrashAlt } from "react-icons/fa";
-import { Table } from "flowbite-react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/UseAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-const ApproveContact = ({ data }) => {
-  const [approvedContacts, setApprovedContacts] = useState([]);
+const AdminPaymentData = () => {
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
-  const { data: contactRequests = [], refetch } = useQuery({
-    queryKey: ["contactRequests"],
+  // Fetch users who have made payments
+  const { data: paymentData, isLoading, isError, error } = useQuery({
+    queryKey: ["paymentData"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/contact-requests");
+      const res = await axiosSecure.get("/admin/payments"); // Endpoint to fetch all payment data
+      console.log("Payment Data:", res.data); // For debugging
       return res.data;
+    },
+    onError: (error) => {
+      console.error("Error fetching payment data:", error);
     },
   });
 
+  // Handle mutation for deleting payment data
+  const deletePaymentMutation = useMutation({
+    mutationFn: async (id) => {
+      await axiosSecure.delete(`/payments/${id}`);
+    },
+    onSuccess: () => {
+      Swal.fire("Deleted!", "Payment record has been deleted.", "success");
+      queryClient.invalidateQueries(["paymentData"]); 
+    },
+    onError: (error) => {
+      console.error("Error deleting payment data:", error);
+    },
+  });
 
-   // Handling the approval of a contact request
-   const handleApproveRequest = (id) => {
-    setApprovedContacts([...approvedContacts, contact]);
-    axiosSecure
-      .patch(`/contact-requests/${id}/approve`)
-      .then((response) => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${contact.name} has been approved!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        refetch(); // Refetch after the status is updated
-      })
-      .catch((error) => {
-        console.error("Error approving the request:", error);
-      });
-  };
-  
-  const handleDelete = (contactId) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setApprovedContacts(approvedContacts.filter((contact) => contact._id !== contactId)); // Remove from approved list
-        Swal.fire({
-          title: "Deleted!",
-          text: "Contact has been deleted.",
-          icon: "success",
-        });
-        refetch();
-      }
-    });
-  };
-  
+  // Mutation for updating the payment status
+  const updatePaymentStatusMutation = useMutation({
+    mutationFn: async (id) => {
+      await axiosSecure.patch(`/payment-data/${id}`, { status: "Approved" }); // API call to update payment status to "Approved"
+    },
+    onSuccess: () => {
+      Swal.fire("Success!", "Payment status updated to Approved.", "success");
+      queryClient.invalidateQueries(["paymentData"]); // Refetch data to get the updated status
+    },
+    onError: (error) => {
+      console.error("Error updating payment status:", error);
+    },
+  });
 
   return (
     <>
       <Helmet>
-        <title>Metro || Approve Contacts</title>
+        <title>Admin || Payment Data</title>
       </Helmet>
+
       <div className="container mx-auto p-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-4 text-center">
-          Approved Contact Requests
+          Payment Data of Users
         </h2>
 
-        {/* Approved Contacts Table */}
+        {/* **Payment Data Table** */}
         <div className="overflow-x-auto">
           <table className="min-w-full border border-pink-300 shadow-lg">
             <thead className="bg-pink-200 text-pink-900">
@@ -80,76 +69,78 @@ const ApproveContact = ({ data }) => {
                 <th className="border border-pink-300 px-4 py-2">#</th>
                 <th className="border border-pink-300 px-4 py-2">Name</th>
                 <th className="border border-pink-300 px-4 py-2">Email</th>
-                <th className="border border-pink-300 px-4 py-2">Biodata Id</th>
+                <th className="border border-pink-300 px-4 py-2">Amount Paid</th>
                 <th className="border border-pink-300 px-4 py-2">Status</th>
                 <th className="border border-pink-300 px-4 py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
-            {contactRequests.length === 0 ? (
-              <tr>
-                <td colSpan="4" className="text-center py-4 text-xl font-semibold text-blue-600">
-                  No requests to approve
-                </td>
-              </tr>
-            ) : (
-              contactRequests.map((request) => (
-                <tr key={request._id}>
-                  <td className="border px-4 py-2">{request.name}</td>
-                  <td className="border px-4 py-2">{request.biodataId}</td>
-                  <td className="border px-4 py-2">{request.status}</td>
-                  <td className="border px-4 py-2 text-center">
-                    {request.status === "pending" && (
-                      <button
-                        onClick={() => handleApproveRequest(request._id)}
-                        className="text-green-600"
-                      >
-                        Approve
-                      </button>
-                    )}
+              {isLoading ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                    Loading...
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-          </table>
-        </div>
-
-        {/* Approved Contacts Display */}
-        {approvedContacts.length > 0 && (
-          <div className="mt-8">
-            <h3 className="text-xl font-semibold text-purple-600 mb-4">
-              Approved Contacts
-            </h3>
-            <Table className="min-w-full table-auto">
-              <thead className="bg-purple-600 text-white">
+              ) : isError ? (
                 <tr>
-                  <th className="px-4 py-2">Name</th>
-                  <th className="px-4 py-2">Email</th>
-                  <th className="px-4 py-2">Biodata Id</th>
+                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                    {error.message}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {approvedContacts.map((contact, index) => (
-                  <tr key={index} className="border-b hover:bg-gray-100">
-                    <td className="px-4 py-2">{contact.name}</td>
-                    <td className="px-4 py-2">{contact.email}</td>
-                    <td className="px-4 py-2">{contact.biodataId}</td>
-                    <td className="px-4 py-2 text-center">
+              ) : paymentData.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                    No payment data available
+                  </td>
+                </tr>
+              ) : (
+                paymentData.map((payment, index) => (
+                  <tr key={payment._id} className="border-b hover:bg-gray-100">
+                    <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border px-4 py-2">{payment.name}</td>
+                    <td className="border px-4 py-2">{payment.email}</td>
+                    <td className="border px-4 py-2">{payment.amount}</td>
+                    <td className="border px-4 py-2">
+                      {/* Status button */}
+                      <button
+                        className={`${
+                          payment.status === "Approved" ? "bg-green-500" : "bg-yellow-500"
+                        } text-white py-1 px-4 rounded`}
+                        onClick={() => updatePaymentStatusMutation.mutate(payment._id)}
+                        disabled={payment.status === "Approved"} // Disable the button if already approved
+                      >
+                        {payment.status === "Approved" ? "Approved" : "Approve"}
+                      </button>
+                    </td>
+                    <td className="border px-4 py-2 text-center">
                       <FaTrashAlt
                         className="text-red-600 cursor-pointer"
-                        onClick={() => handleDelete(contact._id)}
+                        onClick={() => {
+                          Swal.fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              deletePaymentMutation.mutate(payment._id);
+                            }
+                          });
+                        }}
                       />
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        )}
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
 };
 
-export default ApproveContact;
+export default AdminPaymentData;

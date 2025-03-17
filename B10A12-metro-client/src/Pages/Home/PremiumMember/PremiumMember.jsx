@@ -10,7 +10,7 @@ const PremiumMember = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/bioData")
+      .get("https://b10-a12-metro-server.vercel.app/bioData")
       .then((res) => {
         setPremium(res.data);
       })
@@ -46,8 +46,7 @@ const PremiumMember = () => {
   return (
     <section
       className="my-20 px-6 md:px-8 lg:px-16 bg-gradient-to-br from-pink-50 to-yellow-50 py-5"
-      data-aos="fade-up"
-      data-aos-duration="2000"
+     
     >
       <SectionTitle
         heading="Our Premium Members"

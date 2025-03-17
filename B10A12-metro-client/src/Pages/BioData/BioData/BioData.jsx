@@ -20,7 +20,7 @@ const BioData = () => {
   const axiosSecure = useAxiosSecure();
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/bioData")
+  //   fetch("https://b10-a12-metro-server.vercel.app/bioData")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setBioData(data);
@@ -94,8 +94,7 @@ const BioData = () => {
 
       <div
         className="flex flex-col lg:flex-row min-h-screen my-10 gap-10"
-        data-aos="fade-up"
-        data-aos-duration="2000"
+      
       >
         {/* Sidebar */}
         <Sidebar

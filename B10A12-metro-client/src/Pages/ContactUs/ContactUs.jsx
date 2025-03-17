@@ -25,7 +25,7 @@ const ContactUs = () => {
       <Cover img={coverImg} title="Contact Us" />
       
      {/* Contact Section */}
-     <div className="container mx-auto py-16 px-8" data-aos="fade-up" data-aos-duration="2000">
+     <div className="container mx-auto py-16 px-8">
         <h2 className="text-4xl font-extrabold text-center mb-12 text-pink-600">Get in Touch</h2>
         <div className="grid md:grid-cols-2 gap-12 bg-pink-50 shadow-xl p-10 rounded-2xl">
           

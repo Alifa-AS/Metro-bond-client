@@ -18,7 +18,7 @@ const AboutUs = () => {
       </Helmet>
       <Cover img={coverImg} title={"About Us"} />
        {/* About Section */}
-       <div className="container mx-auto py-16 px-4 md:px-6 lg:py-32 relative" data-aos="fade-up" data-aos-duration="2000">
+       <div className="container mx-auto py-16 px-4 md:px-6 lg:py-32 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="h-[400px] md:h-[600px] lg:h-[800px] relative">
             <img
@@ -56,7 +56,7 @@ const AboutUs = () => {
       </div>
 
       {/* Feature Section */}
-      <div className="container mx-auto py-12 px-4 md:px-6" data-aos="fade-up" data-aos-duration="2000">
+      <div className="container mx-auto py-12 px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-lg">
             <div className="flex items-center justify-center bg-[#fabb55] text-white 

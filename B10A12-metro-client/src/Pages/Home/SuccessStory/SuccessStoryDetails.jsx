@@ -24,8 +24,7 @@ const SuccessStoryDetails = () => {
       </Helmet>
       <div
         className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-100 to-purple-100 p-10"
-        data-aos="fade-up"
-        data-aos-duration="2000"
+        
       >
         <div className="bg-white shadow-2xl rounded-3xl p-10 max-w-2xl text-center backdrop-blur-lg bg-opacity-90 border border-pink-300 relative overflow-hidden">
           {/* Glowing effect */}

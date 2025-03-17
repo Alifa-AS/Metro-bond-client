@@ -16,7 +16,7 @@ const SuccessStory = () => {
   const [sortOrder, setSortOrder] = useState("ascending");
 
   useEffect(() => {
-    fetch("http://localhost:5000/successReview")
+    fetch("https://b10-a12-metro-server.vercel.app/successReview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -29,7 +29,7 @@ const SuccessStory = () => {
   });
 
   return (
-      <section className="my-20 text-center shadow-xl rounded-2xl p-10" data-aos="fade-up" data-aos-duration="2000">
+      <section className="my-20 text-center shadow-xl rounded-2xl p-10">
         <SectionTitle
           heading="Success Story"
           subHeading="Want to Become a part of Success Story"
