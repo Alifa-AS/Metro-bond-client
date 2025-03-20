@@ -257,6 +257,7 @@ const DashBoard = () => {
                         ? "flex justify-between hover:bg-red-100 text-red-700"
                         : "flex justify-between hover:bg-red-100 text-red-600"
                     }
+                    style={{ cursor: 'pointer' }}
                   >
                     LogOut
                   </Sidebar.Item>

@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { Button, Card, Modal } from "flowbite-react";
 import Swal from "sweetalert2";
 
-
 const ViewBio = ({ biodata: initialBiodata }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPremiumRequestSent, setIsPremiumRequestSent] = useState(false);
@@ -39,6 +38,14 @@ const ViewBio = ({ biodata: initialBiodata }) => {
         email: user.email,
       });
 
+      //new refetch for premium
+      const updatedResponse = await axiosSecure.get(
+        `/bioData?email=${user.email}`
+      );
+      if (updatedResponse.data.length > 0) {
+        setBiodata(updatedResponse.data[0]);
+      }
+
       if (response.status === 200) {
         setIsPremiumRequestSent(true);
         setIsModalOpen(false);
@@ -48,7 +55,6 @@ const ViewBio = ({ biodata: initialBiodata }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-
       }
     } catch (error) {
       console.error("Error sending premium request:", error);
@@ -198,7 +204,12 @@ const ViewBio = ({ biodata: initialBiodata }) => {
             <span className="text-green-500 font-semibold">Premium Member</span>
           ) : (
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                if (!isPremiumRequestSent) {
+                  setIsPremiumRequestSent(true); 
+                  setIsModalOpen(true); 
+                }
+              }}
               disabled={isPremiumRequestSent}
               className={`mt-3 px-4 py-2 rounded-lg text-white ${
                 isPremiumRequestSent

@@ -10,11 +10,16 @@ const AdminPaymentData = () => {
   const queryClient = useQueryClient();
 
   // Fetch users who have made payments
-  const { data: paymentData, isLoading, isError, error } = useQuery({
+  const {
+    data: paymentData,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ["paymentData"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/admin/payments"); // Endpoint to fetch all payment data
-      console.log("Payment Data:", res.data); // For debugging
+      const res = await axiosSecure.get("/admin/payments");
+      console.log("Payment Data:", res.data);
       return res.data;
     },
     onError: (error) => {
@@ -29,7 +34,7 @@ const AdminPaymentData = () => {
     },
     onSuccess: () => {
       Swal.fire("Deleted!", "Payment record has been deleted.", "success");
-      queryClient.invalidateQueries(["paymentData"]); 
+      queryClient.invalidateQueries(["paymentData"]);
     },
     onError: (error) => {
       console.error("Error deleting payment data:", error);
@@ -39,11 +44,11 @@ const AdminPaymentData = () => {
   // Mutation for updating the payment status
   const updatePaymentStatusMutation = useMutation({
     mutationFn: async (id) => {
-      await axiosSecure.patch(`/payment-data/${id}`, { status: "Approved" }); // API call to update payment status to "Approved"
+      await axiosSecure.patch(`/payment-data/${id}`, { status: "Approved" });
     },
     onSuccess: () => {
       Swal.fire("Success!", "Payment status updated to Approved.", "success");
-      queryClient.invalidateQueries(["paymentData"]); // Refetch data to get the updated status
+      queryClient.invalidateQueries(["paymentData"]);
     },
     onError: (error) => {
       console.error("Error updating payment status:", error);
@@ -69,7 +74,9 @@ const AdminPaymentData = () => {
                 <th className="border border-pink-300 px-4 py-2">#</th>
                 <th className="border border-pink-300 px-4 py-2">Name</th>
                 <th className="border border-pink-300 px-4 py-2">Email</th>
-                <th className="border border-pink-300 px-4 py-2">Amount Paid</th>
+                <th className="border border-pink-300 px-4 py-2">
+                  Amount Paid
+                </th>
                 <th className="border border-pink-300 px-4 py-2">Status</th>
                 <th className="border border-pink-300 px-4 py-2">Actions</th>
               </tr>
@@ -77,19 +84,28 @@ const AdminPaymentData = () => {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                  <td
+                    colSpan="6"
+                    className="text-center py-4 text-xl font-semibold text-pink-600"
+                  >
                     Loading...
                   </td>
                 </tr>
               ) : isError ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                  <td
+                    colSpan="6"
+                    className="text-center py-4 text-xl font-semibold text-pink-600"
+                  >
                     {error.message}
                   </td>
                 </tr>
               ) : paymentData.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="text-center py-4 text-xl font-semibold text-pink-600">
+                  <td
+                    colSpan="6"
+                    className="text-center py-4 text-xl font-semibold text-pink-600"
+                  >
                     No payment data available
                   </td>
                 </tr>
@@ -104,9 +120,13 @@ const AdminPaymentData = () => {
                       {/* Status button */}
                       <button
                         className={`${
-                          payment.status === "Approved" ? "bg-green-500" : "bg-yellow-500"
+                          payment.status === "Approved"
+                            ? "bg-green-500"
+                            : "bg-yellow-500"
                         } text-white py-1 px-4 rounded`}
-                        onClick={() => updatePaymentStatusMutation.mutate(payment._id)}
+                        onClick={() =>
+                          updatePaymentStatusMutation.mutate(payment._id)
+                        }
                         disabled={payment.status === "Approved"} // Disable the button if already approved
                       >
                         {payment.status === "Approved" ? "Approved" : "Approve"}
