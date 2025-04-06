@@ -45,7 +45,7 @@ const PremiumMember = () => {
 
   return (
     <section
-      className="my-20 px-6 md:px-8 lg:px-16 bg-gradient-to-br from-pink-50 to-yellow-50 py-5"
+      className="my-20 px-6 md:px-8 lg:px-16 py-5"
      
     >
       <SectionTitle
@@ -70,7 +70,7 @@ const PremiumMember = () => {
         </select>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedPremium.slice(0, 6).map((member) => (
           <div
             key={member._id}
@@ -99,7 +99,7 @@ const PremiumMember = () => {
                   Division: {member.presentDivision}
                 </p>
                 <Link to={`/bioData/${member._id}`}>
-                  <button className="w-full mt-6 bg-gradient-to-r from-pink-500 to-pink-600 text-white py-3 px-6 rounded-xl hover:bg-pink-700 focus:outline-none transition-all duration-200">
+                  <button className="w-full mt-6 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-3 px-6 rounded-xl hover:bg-pink-700 focus:outline-none transition-all duration-200">
                     View Details
                   </button>
                 </Link>

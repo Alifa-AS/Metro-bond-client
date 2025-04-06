@@ -1,8 +1,7 @@
 import React from "react";
 import { Footer as FlowbiteFooter } from "flowbite-react";
 import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from "react-icons/bs";
-import logo from '../../../assets/logo.png'
-
+import logo from "../../../assets/logo.png";
 
 const CustomFooter = () => {
   return (
@@ -19,7 +18,8 @@ const CustomFooter = () => {
               className="w-20 h-20"
             />
             <p className="mt-3 text-sm text-gray-600 dark:text-gray-200">
-              Connecting hearts with trust and reliability. Your perfect match starts here!
+              Connecting hearts with trust and reliability. Your perfect match
+              starts here!
             </p>
           </div>
 
@@ -27,13 +27,22 @@ const CustomFooter = () => {
           <div>
             <FlowbiteFooter.Title title="About" className="text-pink-700" />
             <FlowbiteFooter.LinkGroup col className="space-y-2">
-              <FlowbiteFooter.Link href="/bioData" className="hover:text-pink-500">
+              <FlowbiteFooter.Link
+                href="/bioData"
+                className="hover:text-pink-500"
+              >
                 BioData
               </FlowbiteFooter.Link>
-              <FlowbiteFooter.Link href="/aboutUs" className="hover:text-pink-500">
+              <FlowbiteFooter.Link
+                href="/aboutUs"
+                className="hover:text-pink-500"
+              >
                 About Us
               </FlowbiteFooter.Link>
-              <FlowbiteFooter.Link href="/contactUs" className="hover:text-pink-500">
+              <FlowbiteFooter.Link
+                href="/contactUs"
+                className="hover:text-pink-500"
+              >
                 Contact Us
               </FlowbiteFooter.Link>
             </FlowbiteFooter.LinkGroup>
@@ -43,9 +52,30 @@ const CustomFooter = () => {
           <div>
             <FlowbiteFooter.Title title="Follow Us" className="text-pink-700" />
             <FlowbiteFooter.LinkGroup col className="space-y-2">
-              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">Github</FlowbiteFooter.Link>
-              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">Discord</FlowbiteFooter.Link>
-              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">Youtube</FlowbiteFooter.Link>
+              <FlowbiteFooter.Link
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500"
+              >
+                Github
+              </FlowbiteFooter.Link>
+              <FlowbiteFooter.Link
+                href="https://discord.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500"
+              >
+                Discord
+              </FlowbiteFooter.Link>
+              <FlowbiteFooter.Link
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500"
+              >
+                Youtube
+              </FlowbiteFooter.Link>
             </FlowbiteFooter.LinkGroup>
           </div>
 
@@ -53,8 +83,12 @@ const CustomFooter = () => {
           <div>
             <FlowbiteFooter.Title title="Legal" className="text-pink-700" />
             <FlowbiteFooter.LinkGroup col className="space-y-2">
-              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">Privacy Policy</FlowbiteFooter.Link>
-              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">Terms &amp; Conditions</FlowbiteFooter.Link>
+              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">
+                Privacy Policy
+              </FlowbiteFooter.Link>
+              <FlowbiteFooter.Link href="#" className="hover:text-pink-500">
+                Terms &amp; Conditions
+              </FlowbiteFooter.Link>
             </FlowbiteFooter.LinkGroup>
           </div>
         </div>
@@ -64,14 +98,35 @@ const CustomFooter = () => {
         {/* Bottom Section */}
         <div className="flex flex-col sm:flex-row items-center justify-between">
           {/* Copyright Text */}
-          <FlowbiteFooter.Copyright href="#" by="METRO™" year={2024} className="text-gray-600" />
+          <FlowbiteFooter.Copyright
+            href="#"
+            by="METRO™"
+            year={2024}
+            className="text-gray-600"
+          />
 
           {/* Social Icons */}
           <div className="flex space-x-6">
-            <FlowbiteFooter.Icon href="#" icon={BsFacebook} className="text-pink-500 hover:text-pink-700" />
-            <FlowbiteFooter.Icon href="#" icon={BsInstagram} className="text-pink-500 hover:text-pink-700" />
-            <FlowbiteFooter.Icon href="#" icon={BsTwitter} className="text-pink-500 hover:text-pink-700" />
-            <FlowbiteFooter.Icon href="#" icon={BsGithub} className="text-pink-500 hover:text-pink-700" />
+            <FlowbiteFooter.Icon
+              href="#"
+              icon={BsFacebook}
+              className="text-pink-500 hover:text-pink-700"
+            />
+            <FlowbiteFooter.Icon
+              href="#"
+              icon={BsInstagram}
+              className="text-pink-500 hover:text-pink-700"
+            />
+            <FlowbiteFooter.Icon
+              href="#"
+              icon={BsTwitter}
+              className="text-pink-500 hover:text-pink-700"
+            />
+            <FlowbiteFooter.Icon
+              href="#"
+              icon={BsGithub}
+              className="text-pink-500 hover:text-pink-700"
+            />
           </div>
         </div>
       </div>

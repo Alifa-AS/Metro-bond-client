@@ -97,37 +97,37 @@ const ViewBio = ({ biodata: initialBiodata }) => {
               {/* Left Section with More Information */}
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Name</h4>
-                <p className="text-gray-700">{biodata?.name}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.name}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Gender</h4>
-                <p className="text-gray-700">{biodata?.gender}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.gender}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Date of Birth</h4>
-                <p className="text-gray-700">{biodata?.dob}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.dob}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Height</h4>
-                <p className="text-gray-700">{biodata?.height}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.height}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Weight</h4>
-                <p className="text-gray-700">{biodata?.weight}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.weight}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Age</h4>
-                <p className="text-gray-700">{biodata?.age}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.age}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Occupation</h4>
-                <p className="text-gray-700">{biodata?.occupation}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.occupation}</p>
               </div>
             </div>
 
@@ -135,45 +135,45 @@ const ViewBio = ({ biodata: initialBiodata }) => {
               {/* Right Section with Remaining Information */}
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Race</h4>
-                <p className="text-gray-700">{biodata?.race}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.race}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Father's Name</h4>
-                <p className="text-gray-700">{biodata?.fatherName}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.fatherName}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Mother's Name</h4>
-                <p className="text-gray-700">{biodata?.motherName}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.motherName}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">
                   Permanent Division
                 </h4>
-                <p className="text-gray-700">{biodata?.permanentDivision}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.permanentDivision}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">
                   Present Division
                 </h4>
-                <p className="text-gray-700">{biodata?.presentDivision}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.presentDivision}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">
                   Expected Partner's Age
                 </h4>
-                <p className="text-gray-700">{biodata?.expectedPartnerAge}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.expectedPartnerAge}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">
                   Expected Partner's Height
                 </h4>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-white">
                   {biodata?.expectedPartnerHeight}
                 </p>
               </div>
@@ -182,19 +182,19 @@ const ViewBio = ({ biodata: initialBiodata }) => {
                 <h4 className="font-semibold text-pink-500">
                   Expected Partner's Weight
                 </h4>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-white">
                   {biodata?.expectedPartnerWeight}
                 </p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Email</h4>
-                <p className="text-gray-700">{biodata?.email}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.email}</p>
               </div>
 
               <div>
                 <h4 className="font-semibold text-pink-500">Mobile</h4>
-                <p className="text-gray-700">{biodata?.mobile}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.mobile}</p>
               </div>
             </div>
           </div>

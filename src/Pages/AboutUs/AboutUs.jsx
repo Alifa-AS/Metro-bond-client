@@ -59,7 +59,7 @@ const AboutUs = () => {
       <div className="container mx-auto py-12 px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-lg">
-            <div className="flex items-center justify-center bg-[#fabb55] text-white 
+            <div className="flex items-center justify-center bg-purple-300 text-white 
             h-16 w-16 md:h-24 md:w-24">
                <FontAwesomeIcon icon={faUser} size="3x" className="px-2" />
             </div>
@@ -71,7 +71,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-lg">
-            <div className="flex items-center justify-center bg-[#fabb55] text-white h-16 w-16 md:h-24 md:w-24">
+            <div className="flex items-center justify-center bg-purple-300 text-white h-16 w-16 md:h-24 md:w-24">
             <FontAwesomeIcon icon={faAward}  size="4x" className="px-2" />
             </div>
             <div>
@@ -83,7 +83,7 @@ const AboutUs = () => {
           </div>
 
           <div className="flex items-center space-x-4 bg-white p-6 rounded-lg shadow-lg">
-            <div className="flex items-center justify-center bg-[#fabb55] text-white h-16 w-16 md:h-24 md:w-24">
+            <div className="flex items-center justify-center bg-purple-300 text-white h-16 w-16 md:h-24 md:w-24">
             <FontAwesomeIcon icon={faGlobe} size="3x" className="px-2" />
             </div>
             <div>

@@ -29,7 +29,7 @@ const SuccessStory = () => {
   });
 
   return (
-      <section className="my-20 text-center shadow-xl rounded-2xl p-10">
+      <section className="my-20 text-center shadow-xl p-10">
         <SectionTitle
           heading="Success Story"
           subHeading="Want to Become a part of Success Story"
@@ -49,7 +49,7 @@ const SuccessStory = () => {
           </select>
         </div>
 
-        <div className="py-10 bg-gradient-to-r from-purple-50 to-pink-50">
+        <div className="py-10 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
           <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
             {sortedReviews.map((review) => (
               <SwiperSlide key={review._id}>

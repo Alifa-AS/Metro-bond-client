@@ -99,7 +99,7 @@ const BioData = () => {
         {/* Sidebar */}
         <Sidebar
           aria-label="Bio Data Sidebar"
-          className="w-96 h-auto bg-gradient-to-r from-pink-200 to-orange-100 p-6 mx-auto rounded-lg shadow-lg"
+          className="w-96 h-auto bg-gradient-to-r from-pink-100 to-purple-50 p-6 mx-auto rounded-lg shadow-lg"
         >
           <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Filters</h2>
           <form onSubmit={handleFilter} className="space-y-6">
@@ -160,7 +160,7 @@ const BioData = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-pink-400 to-orange-200 text-white font-bold p-3 rounded-md shadow-md transition-all hover:opacity-90"
+              className="w-full bg-gradient-to-r from-pink-300 to-purple-200 text-white font-bold p-3 rounded-md shadow-md transition-all hover:opacity-90"
             >
               Find
             </button>

@@ -10,7 +10,7 @@ const CountdownEventSection = () => {
   });
 
   // Set the target date for the countdown
-  const targetDate = new Date('2025-04-10T00:00:00');
+  const targetDate = new Date('2025-05-10T00:00:00');
 
   // Update the countdown timer every second
   useEffect(() => {
@@ -35,13 +35,13 @@ const CountdownEventSection = () => {
   }, []);
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="my-10 py-10 shadow-lg bg-gray-50 dark:bg-gray-700">
       <div className="max-w-7xl mx-auto text-center">
       <SectionTitle
           heading="Upcoming Event"
           subHeading="Join Our Wedding Expo"
         />
-        <div className="bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-200 text-pink-500 rounded-lg shadow-xl p-6 md:p-12">
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 text-pink-600 rounded-lg shadow-xl p-6 md:p-12 mx-10">
           <h3 className="text-2xl font-semibold mb-4">Wedding Expo 2025</h3>
           <div className="flex justify-center items-center space-x-4">
             <div className="flex flex-col items-center">
@@ -62,7 +62,7 @@ const CountdownEventSection = () => {
             </div>
           </div>
         </div>
-        <p className="mt-6 text-lg text-gray-600">
+        <p className="mt-6 text-lg text-gray-600 dark:text-white">
           Don't miss the biggest wedding expo of the year! Mark your calendars now!
         </p>
       </div>

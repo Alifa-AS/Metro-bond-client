@@ -40,7 +40,7 @@ const DashBoardHome = () => {
   const { user } = useAuth();
 
   return (
-    <div className="container mx-auto px-8 py-12 bg-gradient-to-r from-blue-50 via-pink-100 to-purple-100">
+    <div className="container mx-auto px-8 py-12 bg-gradient-to-r from-[#f9f5f6] to-[#f6f3f8]">
       {/* Header Section */}
       <div className="relative">
         <img
@@ -75,34 +75,34 @@ const DashBoardHome = () => {
         {/* Cards Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Premium Membership Card */}
-          <Card className="shadow-xl bg-gradient-to-r from-pink-100 via-purple-200 to-pink-50 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
+          <Card className="shadow-xl bg-yellow-50 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
             <div className="flex justify-center items-center mb-3">
               <CurrencyDollarIcon className="w-12 h-12 text-yellow-400" />
             </div>
             <h3 className="text-xl font-semibold text-yellow-500">$76.00</h3>
-            <p className="text-gray-500">Premium Membership</p>
+            <p className="text-gray-500 dark:text-white">Premium Membership</p>
           </Card>
 
           {/* Recent Matches Card */}
-          <Card className="shadow-xl bg-gradient-to-r from-rose-100 via-blue-200 to-pink-100 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
+          <Card className="shadow-xl bg-indigo-50 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
             <div className="flex justify-center items-center mb-3">
               <TrophyIcon className="w-12 h-12 text-blue-500" />
             </div>
             <h3 className="text-xl font-semibold text-yellow-500">
               245 Matches
             </h3>
-            <p className="text-gray-500">Recent Matches</p>
+            <p className="text-gray-500 dark:text-white">Recent Matches</p>
           </Card>
 
           {/* Message Center Card */}
-          <Card className="shadow-xl bg-gradient-to-r from-pink-50 via-rose-200 to-yellow-50 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
+          <Card className="shadow-xl bg-rose-50 p-4 transition-transform hover:scale-105 transform border border-white/20 rounded-2xl flex flex-col items-center text-white text-center space-y-3">
             <div className="flex justify-center items-center mb-3">
               <ChatBubbleLeftRightIcon className="w-12 h-12 text-pink-400" />
             </div>
             <h3 className="text-xl font-semibold text-yellow-500">
               53 New Messages
             </h3>
-            <p className="text-gray-500">Message Center</p>
+            <p className="text-gray-500 dark:text-white">Message Center</p>
             <button className="mt-3 px-5 py-2 bg-gradient-to-r from-purple-300 to-pink-500 text-white rounded-lg hover:bg-gradient-to-l">
               Check Messages
             </button>
