@@ -6,7 +6,7 @@ import logo from "../../../assets/logo.png";
 const CustomFooter = () => {
   return (
     <FlowbiteFooter container className="bg-pink-50 text-gray-700 py-10">
-      <div className="w-full max-w-7xl mx-auto px-6">
+      <div className="w-full mx-auto px-6">
         {/* Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Logo & Short Description */}

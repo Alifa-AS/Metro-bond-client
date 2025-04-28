@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Swal from 'sweetalert2';
 import coverImg from '../../assets/Cover/cover.jpg'
-import Cover from "../Shared/Cover/Cover";
+import Cover from "../../Components/Shared/Cover/Cover.jsx";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const ContactUs = () => {
@@ -27,7 +27,7 @@ const ContactUs = () => {
      {/* Contact Section */}
      <div className="container mx-auto py-16 px-8">
         <h2 className="text-4xl font-extrabold text-center mb-12 text-pink-600">Get in Touch</h2>
-        <div className="grid md:grid-cols-2 gap-12 bg-pink-50 shadow-xl p-10 rounded-2xl">
+        <div className="grid md:grid-cols-2 gap-12 bg-pink-50 dark:bg-gray-700 shadow-xl p-10 rounded-2xl">
           
           {/* Contact Info with Icons */}
           <div className="space-y-6 flex flex-col justify-center items-start">

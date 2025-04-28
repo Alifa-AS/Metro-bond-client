@@ -8,7 +8,6 @@ import AboutUs from '../Pages/AboutUs/AboutUs';
 import ContactUs from '../Pages/ContactUs/ContactUs';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
-import Secrets from '../Pages/Shared/Secrets/Secrets';
 import PrivateRoute from './PrivateRoute';
 import BioDataDetails from '../Pages/BioData/BioDataDetails/BioDataDetails';
 import EditBioData from '../Pages/DashBoard/EditBioData/EditBioData';
@@ -75,10 +74,6 @@ import SuccessStories from '../Pages/DashBoard/Admin Dashboard/SuccessStories/Su
             {
                 path: 'register',
                 element: <Register />,
-            },
-            {
-                path: 'secrets',
-                element: <PrivateRoute><Secrets /></PrivateRoute>,
             },
           ]
         },

@@ -80,9 +80,9 @@ const PremiumMember = () => {
               <img
                 src={member.profileImage || "/images/blog/image-1.jpg"}
                 alt="Premium Member"
-                className="w-full h-32 sm:h-52 md:h-52 object-cover rounded-t-xl"
+                className="w-full h-32 sm:h-52 md:h-52 object-cover rounded-xl"
               />
-              <div className="p-6 space-y-2">
+              <div className="p-2 space-y-2">
                 <h5 className="text-lg font-semibold text-yellow-400 text-center">
                   BioData Id: {member.biodataId}
                 </h5>
@@ -99,7 +99,7 @@ const PremiumMember = () => {
                   Division: {member.presentDivision}
                 </p>
                 <Link to={`/bioData/${member._id}`}>
-                  <button className="w-full mt-6 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-3 px-6 rounded-xl hover:bg-pink-700 focus:outline-none transition-all duration-200">
+                  <button className="w-full mt-6 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-2 px-6 rounded-xl hover:bg-pink-700 focus:outline-none transition-all duration-200">
                     View Details
                   </button>
                 </Link>

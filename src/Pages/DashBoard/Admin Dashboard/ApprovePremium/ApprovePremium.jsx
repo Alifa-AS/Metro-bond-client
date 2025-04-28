@@ -27,7 +27,7 @@ const ApprovePremium = () => {
     axiosSecure
       .patch(`/premiumRequest/${user._id}`, { status: "premium" }) // Set to 'premium'
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.modifiedCount > 0) {
           refetch();
           Swal.fire({

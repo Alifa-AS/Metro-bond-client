@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import CustomNavbar from '../Pages/Shared/Navbar/CustomNavbar';
-import CustomFooter from '../Pages/Shared/Footer/CustomFooter';
+import CustomNavbar from '../Components/Shared/Navbar/CustomNavbar';
+import CustomFooter from '../Components/Shared/Footer/CustomFooter';
 import { ToastContainer } from 'react-toastify';
 
 const MainLayout = () => {
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
 
     const noFoot = location.pathname.includes('login') || location.pathname.includes('register')
 

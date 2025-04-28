@@ -40,7 +40,7 @@ const DashBoardHome = () => {
   const { user } = useAuth();
 
   return (
-    <div className="container mx-auto px-8 py-12 bg-gradient-to-r from-[#f9f5f6] to-[#f6f3f8]">
+    <div className="container mx-auto px-8 py-12 bg-gradient-to-r from-[#f9f5f6] to-[#f6f3f8] dark:bg-gray-800">
       {/* Header Section */}
       <div className="relative">
         <img

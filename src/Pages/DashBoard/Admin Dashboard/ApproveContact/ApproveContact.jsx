@@ -19,7 +19,7 @@ const AdminPaymentData = () => {
     queryKey: ["paymentData"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin/payments");
-      console.log("Payment Data:", res.data);
+      // console.log("Payment Data:", res.data);
       return res.data;
     },
     onError: (error) => {

@@ -9,6 +9,7 @@ import SuccessCounter from "../SuccessCounter/SuccessCounter";
 import Sponsor from "../Sponsor/Sponsor";
 import Privacy from "../Privacy/Privacy";
 import CountDown from "../CountDown/CountDown";
+import TeamMember from "../Team Member/TeamMember";
 
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
       <Sponsor />
       <Privacy />
       <CountDown />
+      <TeamMember />
     </div>
   );
 };

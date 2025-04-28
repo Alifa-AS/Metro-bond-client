@@ -85,10 +85,10 @@ const BioDataDetails = () => {
       permanentDivision,
       occupation,
     };
-    console.log(favoriteData, user.email);
+    // console.log(favoriteData, user.email);
 
     axiosSecure.post("/favorite", favoriteData).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
           position: "top-end",
@@ -111,7 +111,7 @@ const BioDataDetails = () => {
       contactEmail,
       mobileNumber,
     };
-    console.log(contactData);
+    // console.log(contactData);
     navigate(`/payment/${_id}`, {
       state: contactData,
     });

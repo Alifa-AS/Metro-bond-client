@@ -55,7 +55,7 @@ const EditBioData = ({ biodataId }) => {
     // console.log(...formData.entries());
 
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
+    // console.log(initialData);
 
     const weight = parseInt(initialData.weight) || 0;
     const age = parseInt(initialData.age) || 0;
@@ -82,7 +82,7 @@ const EditBioData = ({ biodataId }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Server Response:", data);
+        // console.log("Server Response:", data);
 
         if (
           data.insertedId ||

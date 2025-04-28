@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import Lottie from "lottie-react";
 import loginLottie from "../../assets/lottie/login.json";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin.jsx";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -35,12 +35,12 @@ const Login = () => {
     const formData = new FormData(e.target);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log({ email, password });
+    // console.log({ email, password });
 
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log("Log in", user);
+        // console.log("Log in", user);
 
         Swal.fire({
           position: "top-end",
@@ -52,7 +52,7 @@ const Login = () => {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
           title: "Login Failed!",
           text: error.message,

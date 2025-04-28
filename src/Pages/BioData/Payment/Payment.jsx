@@ -12,7 +12,7 @@ const Payment = () => {
   const [data, setData] = useState(null);
   // console.log(data);
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const axiosSecure = useAxiosSecure();
  
   // useEffect(() => {

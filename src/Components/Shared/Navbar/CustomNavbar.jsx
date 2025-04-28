@@ -5,9 +5,8 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import userIcon from "../../../assets/user.png"
+import userIcon from "../../../assets/user.png";
 import DataTheme from "./DataTheme";
-
 
 const CustomNavbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -28,10 +27,14 @@ const CustomNavbar = () => {
 
   return (
     <div>
+      {/* <FlowbiteNavbar
+        fluid
+        
+        className="fixed z-10 bg-opacity-30 w-full bg-black text-yellow-200"
+      > */}
       <FlowbiteNavbar
         fluid
-        rounded
-        className="fixed z-10 bg-opacity-30 max-w-screen-xl mx-auto w-full bg-black text-yellow-200"
+        className="fixed top-0 left-0 z-50 w-full bg-opacity-30 bg-black text-yellow-200"
       >
         <FlowbiteNavbar.Brand>
           <img src={logo} className="mr-3 sm:h-9 h-9" alt="Logo" />
@@ -47,7 +50,7 @@ const CustomNavbar = () => {
             label={
               <Avatar
                 alt="User settings"
-                img={ user?.photoURL || userIcon}
+                img={user?.photoURL || userIcon}
                 rounded
               />
             }

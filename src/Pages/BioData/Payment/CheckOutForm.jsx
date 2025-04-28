@@ -33,7 +33,7 @@ const CheckoutForm = ({ data }) => {
         .post("/create-payment-intent", { amount: totalPrice })
         .then((res) => {
           if (res.data.clientSecret) {
-            console.log("Client Secret:", res.data.clientSecret);
+            // console.log("Client Secret:", res.data.clientSecret);
             setClientSecret(res.data.clientSecret);
           } else {
             console.error("No clientSecret received:", res);
@@ -63,11 +63,11 @@ const CheckoutForm = ({ data }) => {
       });
 
     if (paymentMethodError) {
-      console.log("Payment method error:", paymentMethodError);
+      // console.log("Payment method error:", paymentMethodError);
       setError(paymentMethodError.message);
       return;
     } else {
-      console.log("Payment method:", paymentMethod);
+      // console.log("Payment method:", paymentMethod);
       setError("");
     }
 
@@ -84,13 +84,13 @@ const CheckoutForm = ({ data }) => {
       });
 
     if (confirmError) {
-      console.log("Confirm error", confirmError);
+      // console.log("Confirm error", confirmError);
       setError(confirmError.message);
     } else {
-      console.log(paymentIntent);
+      // console.log(paymentIntent);
       setError("");
       if (paymentIntent.status === "succeeded") {
-        console.log("Transaction id:", paymentIntent.id);
+        // console.log("Transaction id:", paymentIntent.id);
         setTransitionId(paymentIntent.id);
         {
           transitionId && (
@@ -111,7 +111,7 @@ const CheckoutForm = ({ data }) => {
         };
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log(res);
+        // console.log(res);
         Swal.fire({
           title: "Success",
           text: "Successfully Payment",

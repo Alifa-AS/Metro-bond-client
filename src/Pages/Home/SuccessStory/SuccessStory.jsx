@@ -49,7 +49,7 @@ const SuccessStory = () => {
           </select>
         </div>
 
-        <div className="py-10 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+        <div className="py-10 rounded-lg">
           <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
             {sortedReviews.map((review) => (
               <SwiperSlide key={review._id}>

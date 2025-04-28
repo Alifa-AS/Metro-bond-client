@@ -35,13 +35,13 @@ const CountdownEventSection = () => {
   }, []);
 
   return (
-    <div className="my-10 py-10 shadow-lg bg-gray-50 dark:bg-gray-700">
+    <div className="my-10 py-10 shadow-lg dark:bg-gray-800">
       <div className="max-w-7xl mx-auto text-center">
       <SectionTitle
           heading="Upcoming Event"
           subHeading="Join Our Wedding Expo"
         />
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 text-pink-600 rounded-lg shadow-xl p-6 md:p-12 mx-10">
+        <div className="text-pink-600 rounded-lg shadow-xl p-6 md:p-12 mx-10">
           <h3 className="text-2xl font-semibold mb-4">Wedding Expo 2025</h3>
           <div className="flex justify-center items-center space-x-4">
             <div className="flex flex-col items-center">

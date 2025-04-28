@@ -8,7 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/lottie/register.json";
 import Swal from "sweetalert2";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import SocialLogin from "../../Components/Shared/SocialLogin/SocialLogin.jsx";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
@@ -23,7 +23,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
     // Check for at least one special character in the password
     if (!/[!#$%&?@]/.test(data.password)) {
@@ -34,11 +34,11 @@ const Register = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
 
         updateUserProfile(data.name, data.photo)
           .then(() => {
-            console.log("user profile info updated");
+            // console.log("user profile info updated");
 
             const userInfo = {
               email: loggedUser?.email,
@@ -48,7 +48,7 @@ const Register = () => {
 
             axiosPublic.post("/users", userInfo)
               .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 reset();
                 Swal.fire({
                   position: "top-end",

@@ -21,7 +21,7 @@ const SuccessCounter = () => {
   }, []);
 
   return (
-    <section className="my-20 text-center shadow-md p-6 bg-pink-50 dark:bg-gray-700">
+    <section className="my-20 text-center p-6 dark:bg-gray-700">
       <div className="max-w-4xl mx-auto">
         <SectionTitle
           heading="Success Counter"

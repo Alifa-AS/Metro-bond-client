@@ -66,7 +66,7 @@ const CreateStory = () => {
         successStory: data.successStory,
         image: uploadRes.url,
       };
-      console.log("Submitting story:", createStory);
+      // console.log("Submitting story:", createStory);
 
       const response = await fetch("https://b10-a12-metro-server.vercel.app/successReview", {
         method: "POST",

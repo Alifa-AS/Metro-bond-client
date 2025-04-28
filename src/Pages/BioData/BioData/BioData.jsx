@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import Cover from "../../Shared/Cover/Cover";
+import Cover from "../../../Components/Shared/Cover/Cover.jsx";
 import coverImg from "../../../assets/Cover/cover1.jpg";
 import { Button, Sidebar } from "flowbite-react";
 import BioDataCard from "../BioData/BioDataCard";
@@ -29,7 +29,7 @@ const BioData = () => {
 
   const handleFilter = (e) => {
     e.preventDefault();
-    console.log(minAge, maxAge, gender, division);
+    // console.log(minAge, maxAge, gender, division);
 
     axiosSecure
       .get(
@@ -64,11 +64,11 @@ const BioData = () => {
 
   const pages = [...Array(numberOfPages).keys()];
 
-  console.log(pages);
+  // console.log(pages);
 
   const handleItemsPerPage = (e) => {
     const val = parseInt(e.target.value);
-    console.log(val);
+    // console.log(val);
     setItemsPerPage(val);
     setCurrentPage(0);
   };
@@ -99,7 +99,7 @@ const BioData = () => {
         {/* Sidebar */}
         <Sidebar
           aria-label="Bio Data Sidebar"
-          className="w-96 h-auto bg-gradient-to-r from-pink-100 to-purple-50 p-6 mx-auto rounded-lg shadow-lg"
+          className="w-96 h-auto p-6 mx-auto rounded-lg"
         >
           <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">Filters</h2>
           <form onSubmit={handleFilter} className="space-y-6">
@@ -160,7 +160,7 @@ const BioData = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-pink-300 to-purple-200 text-white font-bold p-3 rounded-md shadow-md transition-all hover:opacity-90"
+              className="w-full border-2 border-pink-500 text-pink-600 font-bold p-3 rounded-md shadow-md transition-all hover:opacity-90"
             >
               Find
             </button>
@@ -168,7 +168,7 @@ const BioData = () => {
         </Sidebar>
 
         {/* Main Content */}
-        <div className="flex-1 p-8 bg-gray-50 rounded-lg shadow-lg">
+        <div className="flex-1 p-8 rounded-lg shadow-lg">
           <h1 className="text-4xl font-semibold mb-8 text-pink-600">
             All Bio Datas
           </h1>
