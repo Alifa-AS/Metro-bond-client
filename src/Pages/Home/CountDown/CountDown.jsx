@@ -35,7 +35,7 @@ const CountdownEventSection = () => {
   }, []);
 
   return (
-    <div className="my-10 py-10 shadow-lg dark:bg-gray-800">
+    <div className="my-10 py-10">
       <div className="max-w-7xl mx-auto text-center">
       <SectionTitle
           heading="Upcoming Event"

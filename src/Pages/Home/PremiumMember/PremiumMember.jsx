@@ -74,7 +74,7 @@ const PremiumMember = () => {
         {sortedPremium.slice(0, 6).map((member) => (
           <div
             key={member._id}
-            className="relative bg-white shadow-lg rounded-xl hover:scale-105 transition-transform duration-300 transform"
+            className="relative bg-[#fdfcf9] shadow-lg rounded-xl hover:scale-102 transition-transform duration-300 transform"
           >
             <Card className="rounded-xl overflow-hidden shadow-xl border-2 border-pink-200 hover:shadow-2xl transition-shadow duration-300">
               <img
@@ -99,7 +99,7 @@ const PremiumMember = () => {
                   Division: {member.presentDivision}
                 </p>
                 <Link to={`/bioData/${member._id}`}>
-                  <button className="w-full mt-6 bg-gradient-to-r from-pink-400 to-pink-500 text-white py-2 px-6 rounded-xl hover:bg-pink-700 focus:outline-none transition-all duration-200">
+                  <button className="w-full mt-6 bg-[#da7665] text-white font-bold py-2 px-6 rounded-xl hover:bg-[#b46a48] focus:outline-none transition-all duration-200">
                     View Details
                   </button>
                 </Link>

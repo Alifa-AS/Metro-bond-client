@@ -33,7 +33,7 @@ const HowItWorks = () => {
             </div>
 
             {/* Text Content */}
-            <div className="w-full md:w-1/2 text-left text-gray-200">
+            {/* <div className="w-full md:w-1/2 text-left text-gray-200">
               <h3 className="font-bold text-lg md:text-xl py-3 text-pink-400">
                 Finding your perfect match on METRO is simple and hassle-free.
               </h3>
@@ -83,7 +83,7 @@ const HowItWorks = () => {
                   Get Started <FaArrowRight className="ml-2" />
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

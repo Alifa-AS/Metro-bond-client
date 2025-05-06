@@ -4,7 +4,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 
 const Privacy = () => {
   return (
-    <section className="bg-gray-50 dark:bg-gray-800 py-12 px-6 my-10">
+    <section className="py-12 px-6 my-10">
       <SectionTitle
         heading="Safety & Privacy"
         subHeading="We prioritize your safety with top-notch security measures."

@@ -34,7 +34,7 @@ const members = [
 
 const TeamMember = () => {
   return (
-    <section className="py-12 bg-gray-100 dark:bg-gray-800">
+    <section className="py-12">
       <SectionTitle
         heading="Meet Our Team"
         subHeading="Behind the website"
