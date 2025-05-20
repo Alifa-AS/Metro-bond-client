@@ -14,7 +14,7 @@ import TeamMember from "../Team Member/TeamMember";
 const Home = () => {
   return (
     <div className="bg-[#fdfcf9] dark:bg-gray-800 bg-[url('/src/assets/Bg/flower.png')] 
-    bg-no-repeat bg-[position:top_left] bg-[length:500px] bg-fixed">
+    bg-no-repeat bg-[position:top_left] bg-[length:450px] bg-fixed">
       <Helmet>
         <title>Metro || Home</title>
       </Helmet>

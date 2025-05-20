@@ -15,7 +15,7 @@ const Cover = ({img, title}) => {
         values, and aspirations.
       </p>
       <Link to="/">
-      <button color="pink" className="bg-[#fabb55] hover:bg-pink-300 text-white font-bold py-3 px-6 rounded">
+      <button color="pink" className="bg-[#da7665] hover:bg-pink-300 text-white font-bold py-3 px-6 rounded">
         Get Started
       </button>
       </Link>

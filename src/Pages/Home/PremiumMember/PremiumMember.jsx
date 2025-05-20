@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle";
-import { Card } from "flowbite-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -44,10 +43,7 @@ const PremiumMember = () => {
   const sortedPremium = sortData([...premium], sortOrder);
 
   return (
-    <section
-      className="my-20 px-6 md:px-8 lg:px-16 py-5"
-     
-    >
+    <section className="my-20 px-6 md:px-8 lg:px-16 py-5">
       <SectionTitle
         heading="Our Premium Members"
         subHeading="Be a Premium Member to Be Part of Our Story"
@@ -55,7 +51,10 @@ const PremiumMember = () => {
 
       {/* Sort Dropdown */}
       <div className="mb-6 text-center">
-        <label htmlFor="sortOrder" className="mr-4 text-xl font-semibold text-pink-600">
+        <label
+          htmlFor="sortOrder"
+          className="mr-4 text-xl font-semibold text-pink-600"
+        >
           Sort by Age:
         </label>
         <select
@@ -70,41 +69,39 @@ const PremiumMember = () => {
         </select>
       </div>
 
+      {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedPremium.slice(0, 6).map((member) => (
           <div
             key={member._id}
-            className="relative bg-[#fdfcf9] shadow-lg rounded-xl hover:scale-102 transition-transform duration-300 transform"
+            className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
           >
-            <Card className="rounded-xl overflow-hidden shadow-xl border-2 border-pink-200 hover:shadow-2xl transition-shadow duration-300">
-              <img
-                src={member.profileImage || "/images/blog/image-1.jpg"}
-                alt="Premium Member"
-                className="w-full h-32 sm:h-52 md:h-52 object-cover rounded-xl"
-              />
-              <div className="p-2 space-y-2">
-                <h5 className="text-lg font-semibold text-yellow-400 text-center">
-                  BioData Id: {member.biodataId}
-                </h5>
-                <h5 className="text-2xl font-semibold text-pink-500 text-center">
-                  {member.name}
-                </h5>
-                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
-                  Age: {member.age} || Gender: {member.biodataType}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
-                  Occupation: {member.occupation}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 text-center text-sm mt-2">
-                  Division: {member.presentDivision}
-                </p>
-                <Link to={`/bioData/${member._id}`}>
-                  <button className="w-full mt-6 bg-[#da7665] text-white font-bold py-2 px-6 rounded-xl hover:bg-[#b46a48] focus:outline-none transition-all duration-200">
-                    View Details
-                  </button>
-                </Link>
-              </div>
-            </Card>
+            {/* Profile Image */}
+            <img
+              src={member.profileImage || "/images/blog/image-1.jpg"}
+              alt="Premium Member"
+              className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+
+            {/* Overlay Info */}
+            <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4">
+              <h5 className="text-md font-bold text-yellow-400 mb-1">
+                BioData Id: {member.biodataId}
+              </h5>
+              <h3 className="text-2xl font-bold text-pink-400 mb-1">
+                {member.name}
+              </h3>
+              <p className="text-sm">
+                Age: {member.age} | Gender: {member.biodataType}
+              </p>
+              <p className="text-sm">Occupation: {member.occupation}</p>
+              <p className="text-sm mb-3">Division: {member.presentDivision}</p>
+              <Link to={`/bioData/${member._id}`}>
+                <button className="bg-[#da7665] hover:bg-[#b46a48] text-white font-semibold py-1 px-4 rounded-lg">
+                  View Details
+                </button>
+              </Link>
+            </div>
           </div>
         ))}
       </div>

@@ -12,17 +12,17 @@ const plugins = [
 const members = [
   {
     name: "Azlin Aman",
-    role: "Frontend Developer",
+    role: "CEO",
     image: "https://i.ibb.co.com/gbyH2wbH/BQlvy7o-WLD11t-Hj0h-IIKOGAQOY.jpg",
   },
   {
     name: "Rafi Ahmed",
-    role: "Backend Engineer",
+    role: "HR",
     image: "https://i.ibb.co.com/3SHVzc4/360-F-7C.jpg",
   },
   {
     name: "Zahin Rahman",
-    role: "UI/UX Designer",
+    role: "Manager",
     image: "https://i.ibb.co.com/YTjjwRXG/41b52a558b662a35edd420cf12f0358b.jpg",
   },
   {
