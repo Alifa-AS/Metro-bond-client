@@ -83,7 +83,7 @@ const SuccessStory = () => {
                       color="pink"
                       className="px-6 py-2 rounded-lg shadow-md transition-all duration-300"
                     >
-                      See More <HiArrowRight className="text-xl" />
+                      See More <HiArrowRight className="text-xl pl-2" />
                     </Button>
                   </Link>
                 </div>

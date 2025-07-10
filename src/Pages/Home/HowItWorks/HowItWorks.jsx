@@ -24,12 +24,26 @@ const HowItWorks = () => {
           {/* Content Section */}
           <div className="flex flex-col md:flex-row justify-center items-center py-4 px-4 md:px-8 gap-6">
             {/* Image Section */}
-            <div className="w-full md:w-1/2 flex justify-center">
-              <img
+            {/* <div className="w-full md:w-1/2 flex justify-center"> */}
+            {/* <img
                 className="w-full max-w-xs md:max-w-md rounded-2xl shadow-lg transform hover:scale-110 transition-all duration-500"
                 src={image}
                 alt="How It Works"
-              />
+              /> */}
+            {/* </div> */}
+
+            <div className="w-full md:w-3/4 flex flex-col justify-center items-center text-center space-y-4 p-6">
+              <h1 className="text-5xl font-bold text-white">
+                Find your perfect Match now
+              </h1>
+              <p className="text-gray-100">
+                Lacinia viverra lectus. Fusce imperdiet ullamcorper metus eu
+                fringilla. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.
+              </p>
+              <button className="bg-pink-700 text-white px-6 py-2 rounded hover:bg-pink-800 transition duration-300">
+                Apply Now
+              </button>
             </div>
 
             {/* Text Content */}

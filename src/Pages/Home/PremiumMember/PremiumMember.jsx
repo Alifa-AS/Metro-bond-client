@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 const PremiumMember = () => {
   const [premium, setPremium] = useState([]);
@@ -97,9 +98,12 @@ const PremiumMember = () => {
               <p className="text-sm">Occupation: {member.occupation}</p>
               <p className="text-sm mb-3">Division: {member.presentDivision}</p>
               <Link to={`/bioData/${member._id}`}>
-                <button className="bg-[#da7665] hover:bg-[#b46a48] text-white font-semibold py-1 px-4 rounded-lg">
-                  View Details
-                </button>
+                <Button
+                  color="pink"
+                  className="px-6 py-2 rounded-lg shadow-md transition-all duration-300"
+                >
+                  See More
+                </Button>
               </Link>
             </div>
           </div>

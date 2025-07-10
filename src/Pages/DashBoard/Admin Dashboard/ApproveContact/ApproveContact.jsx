@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-const AdminPaymentData = () => {
+const ApproveContact = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
@@ -163,4 +163,4 @@ const AdminPaymentData = () => {
   );
 };
 
-export default AdminPaymentData;
+export default ApproveContact;
