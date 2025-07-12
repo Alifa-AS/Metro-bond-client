@@ -142,63 +142,63 @@ const BioDataDetails = () => {
               <tbody>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Type</td>
-                  <td className="text-gray-800 py-2">{biodataType}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{biodataType}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Name</td>
-                  <td className="text-gray-800 py-2">{name}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{name}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Age</td>
-                  <td className="text-gray-800 py-2">{age} years</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{age} years</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Date Of Birth
                   </td>
-                  <td className="text-gray-800 py-2">{dateOfBirth}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{dateOfBirth}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Occupation
                   </td>
-                  <td className="text-gray-800 py-2">{occupation}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{occupation}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Height</td>
-                  <td className="text-gray-800 py-2">{height} cm</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{height} cm</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Weight</td>
-                  <td className="text-gray-800 py-2">{weight}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{weight}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Race</td>
-                  <td className="text-gray-800 py-2">{race}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{race}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Father's Name
                   </td>
-                  <td className="text-gray-800 py-2">{fathersName}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{fathersName}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Mother's Name
                   </td>
-                  <td className="text-gray-800 py-2">{mothersName}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{mothersName}</td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Permanent Division
                   </td>
-                  <td className="text-gray-800 py-2">{permanentDivision}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{permanentDivision}</td>
                 </tr>
                 <tr>
                   <td className="text-yellow-600 font-medium py-2">
                     Present Division
                   </td>
-                  <td className="text-gray-800 py-2">{presentDivision}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">{presentDivision}</td>
                 </tr>
               </tbody>
             </table>
