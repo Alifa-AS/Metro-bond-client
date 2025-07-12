@@ -10,7 +10,12 @@ const ContactRequest = () => {
   const axiosSecure = useAxiosSecure();
 
   // Fetch contact requests
-  const { data: payments = [], error, isLoading, refetch } = useQuery({
+  const {
+    data: payments = [],
+    error,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["contact-info", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/contact/${user.email}`);
@@ -33,8 +38,12 @@ const ContactRequest = () => {
         try {
           const res = await axiosSecure.delete(`/contact/${_id}`);
           if (res.data.deletedCount > 0) {
-            Swal.fire("Deleted!", "Your contact request has been deleted.", "success");
-            refetch(); 
+            Swal.fire(
+              "Deleted!",
+              "Your contact request has been deleted.",
+              "success"
+            );
+            refetch();
           }
         } catch (error) {
           Swal.fire("Error!", "Failed to delete contact request.", "error");
@@ -92,7 +101,10 @@ const ContactRequest = () => {
             <tbody>
               {payments.length > 0 ? (
                 payments.map((payment) => (
-                  <tr key={payment.bioDataId} className="bg-pink-50 hover:bg-pink-100">
+                  <tr
+                    key={payment.bioDataId}
+                    className="bg-pink-50 hover:bg-pink-100"
+                  >
                     <td className="border border-pink-300 px-4 py-2">
                       {payment.name || "N/A"}
                     </td>
@@ -102,16 +114,23 @@ const ContactRequest = () => {
                     <td className="border border-pink-300 px-4 py-2">
                       <button
                         className={`px-3 py-1 rounded-md ${
-                          payment.status === "Approved" ? "bg-green-500" : "bg-yellow-500"
+                          payment.status === "Approved"
+                            ? "bg-green-500"
+                            : "bg-yellow-500"
                         } text-white`}
-                        onClick={() => handleStatusChange(payment._id, payment.status)}
+                        onClick={() =>
+                          handleStatusChange(payment._id, payment.status)
+                        }
                       >
                         {payment.status || "Pending"}
                       </button>
                     </td>
                     <td className="border border-pink-300 px-4 py-2">
-                      {payment.mobileNumber || "N/A"}
+                      {payment.status === "Approved"
+                        ? payment.mobileNumber
+                        : "Pending Approval"}
                     </td>
+
                     <td className="border border-pink-300 px-4 py-2">
                       {payment.email || "N/A"}
                     </td>
