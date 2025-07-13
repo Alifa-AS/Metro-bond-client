@@ -17,16 +17,17 @@ const BioDataDetails = () => {
     _id,
     biodataId,
     biodataType,
+    gender,
     name,
     profileImage,
-    dateOfBirth,
+    dob,
     height,
     weight,
     age,
     occupation,
     race,
-    fathersName,
-    mothersName,
+    fatherName,
+    motherName,
     permanentDivision,
     presentDivision,
     expectedPartnerAge,
@@ -38,11 +39,6 @@ const BioDataDetails = () => {
 
   const [similarBiodata, setSimilarBiodata] = useState([]);
   // const [isApproved, setIsApproved] = useState(false);
-
-
-
-
-
 
   // Fetch similar biodata based on biodataType
   useEffect(() => {
@@ -148,63 +144,87 @@ const BioDataDetails = () => {
               <tbody>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Type</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{biodataType}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {gender}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Name</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{name}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {name}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Age</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{age} years</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {age} years
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Date Of Birth
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{dateOfBirth}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {dob}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Occupation
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{occupation}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {occupation}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Height</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{height} cm</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {height} cm
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Weight</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{weight}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {weight}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">Race</td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{race}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {race}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Father's Name
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{fathersName}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {fatherName}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Mother's Name
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{mothersName}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {motherName}
+                  </td>
                 </tr>
                 <tr className="border-b">
                   <td className="text-yellow-600 font-medium py-2">
                     Permanent Division
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{permanentDivision}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {permanentDivision}
+                  </td>
                 </tr>
                 <tr>
                   <td className="text-yellow-600 font-medium py-2">
                     Present Division
                   </td>
-                  <td className="text-gray-800 dark:text-gray-100 y-2">{presentDivision}</td>
+                  <td className="text-gray-800 dark:text-gray-100 y-2">
+                    {presentDivision}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -250,18 +270,14 @@ const BioDataDetails = () => {
           </p>
         </div> */}
 
-        
-<p className="text-gray-700 dark:text-gray-100">
-  <strong className="text-pink-600">Email:</strong>{" "}
-  {contactEmail ? contactEmail : "Request Contact Information"}
-</p>
-<p className="text-gray-700 dark:text-gray-100">
-  <strong className="text-pink-600">Mobile:</strong>{" "}
-  {mobileNumber ? mobileNumber : "Request Contact Information"}
-</p>
-
-
-
+        <p className="text-gray-700 dark:text-gray-100">
+          <strong className="text-pink-600">Email:</strong>{" "}
+          {contactEmail ? contactEmail : "Request Contact Information"}
+        </p>
+        <p className="text-gray-700 dark:text-gray-100">
+          <strong className="text-pink-600">Mobile:</strong>{" "}
+          {mobileNumber ? mobileNumber : "Request Contact Information"}
+        </p>
 
         {/* Action Buttons */}
         <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
@@ -276,11 +292,11 @@ const BioDataDetails = () => {
               onClick={handleReqContact}
               className="px-2 py-2 font-semibold shadow-md bg-yellow-400 hover:bg-yellow-700 text-white transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
             >
-              <FaPhoneAlt className="text-lg mr-2" /> Request Contact Information
+              <FaPhoneAlt className="text-lg mr-2" /> Request Contact
+              Information
             </Button>
           </Link>
         </div>
-        
       </Card>
       {/* Similar Biodata Section */}
       <div className="mt-8 w-full max-w-3xl">
