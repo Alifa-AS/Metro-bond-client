@@ -72,7 +72,7 @@ const EditBioData = ({ biodataId }) => {
       expectedPartnerWeight,
     };
 
-    fetch("http://localhost:5000/bioData", {
+    fetch("https://b10-a12-metro-server.vercel.app/bioData", {
       method: "POST",
       headers: {
         "content-type": "application/json",

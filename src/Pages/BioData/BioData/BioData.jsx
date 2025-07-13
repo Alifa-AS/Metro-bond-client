@@ -20,7 +20,7 @@ const BioData = () => {
   const axiosSecure = useAxiosSecure();
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/bioData")
+  //   fetch("https://b10-a12-metro-server.vercel.app/bioData")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setBioData(data);

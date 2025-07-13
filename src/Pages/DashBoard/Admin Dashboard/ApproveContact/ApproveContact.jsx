@@ -111,12 +111,12 @@ const ApproveContact = () => {
                 </tr>
               ) : (
                 paymentData.map((payment, index) => (
-                  <tr key={payment._id} className="border-b hover:bg-gray-100">
-                    <td className="border px-4 py-2">{index + 1}</td>
-                    <td className="border px-4 py-2">{payment.name}</td>
-                    <td className="border px-4 py-2">{payment.email}</td>
-                    <td className="border px-4 py-2">{payment.amount}</td>
-                    <td className="border px-4 py-2">
+                  <tr key={payment._id} className="border-b hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <td className="border px-4 py-2 dark:text-gray-100">{index + 1}</td>
+                    <td className="border px-4 py-2 dark:text-gray-100">{payment.name}</td>
+                    <td className="border px-4 py-2 dark:text-gray-100">{payment.email}</td>
+                    <td className="border px-4 py-2 dark:text-gray-100">{payment.amount}</td>
+                    <td className="border px-4 py-2 dark:text-gray-100">
                       {/* Status button */}
                       <button
                         className={`${
