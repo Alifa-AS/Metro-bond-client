@@ -15,7 +15,7 @@ const EditBioData = ({ biodataId }) => {
     gender: "",
     name: "",
     profileImage: "",
-    dob: "",
+    dateOfBirth: "",
     height: "",
     weight: "",
     age: "",
@@ -163,12 +163,12 @@ const EditBioData = ({ biodataId }) => {
 
           {/* Date of Birth */}
           <div>
-            <Label htmlFor="dob" value="Date of Birth" />
+            <Label htmlFor="dateOfBirth" value="Date of Birth" />
             <TextInput
-              id="dob"
-              name="dob"
+              id="dateOfBirth"
+              name="dateOfBirth"
               type="date"
-              value={biodata.dob}
+              value={biodata.dateOfBirth}
               onChange={handleChange}
               required
               className="border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 p-2"

@@ -16,11 +16,10 @@ const BioDataDetails = () => {
   const {
     _id,
     biodataId,
-    biodataType,
     gender,
     name,
     profileImage,
-    dob,
+    dateOfBirth,
     height,
     weight,
     age,
@@ -40,24 +39,24 @@ const BioDataDetails = () => {
   const [similarBiodata, setSimilarBiodata] = useState([]);
   // const [isApproved, setIsApproved] = useState(false);
 
-  // Fetch similar biodata based on biodataType
+  // Fetch similar biodata based on gender
   useEffect(() => {
     const fetchSimilarBiodata = async () => {
       try {
         const response = await axiosSecure.get(
-          `/biodata?biodataType=${biodataType}`
+          `/biodata?gender=${gender}`
         );
         // console.log("Fetched biodata:", response.data);
         const filteredBiodata = response.data.filter(
-          (b) => b.biodataId !== biodataId && b.biodataType === biodataType
+          (b) => b.gender !== biodataId && b.gender === gender
         );
         // console.log("Filtered biodata:", filteredBiodata);
 
         const maleBiodata = filteredBiodata
-          .filter((b) => b.biodataType.toLowerCase() === "male")
+          .filter((b) => b.gender.toLowerCase() === "male")
           .slice(0, 3);
         const femaleBiodata = filteredBiodata
-          .filter((b) => b.biodataType.toLowerCase() === "female")
+          .filter((b) => b.gender.toLowerCase() === "female")
           .slice(0, 3);
 
         // console.log("Male biodata:", maleBiodata);
@@ -76,7 +75,7 @@ const BioDataDetails = () => {
     };
 
     fetchSimilarBiodata();
-  }, [biodataType, biodataId, axiosSecure]);
+  }, [gender, biodataId, axiosSecure]);
 
   const handleAddFavorite = () => {
     const favoriteData = {
@@ -165,7 +164,7 @@ const BioDataDetails = () => {
                     Date Of Birth
                   </td>
                   <td className="text-gray-800 dark:text-gray-100 y-2">
-                    {dob}
+                    {dateOfBirth}
                   </td>
                 </tr>
                 <tr className="border-b">
@@ -238,8 +237,8 @@ const BioDataDetails = () => {
           </h3>
           <div className="grid grid-cols-2 gap-4 text-gray-700">
             <p>
-              <strong className="text-pink-600">Age Range:</strong>{" "}
-              {expectedPartnerAge.min} - {expectedPartnerAge.max}
+              <strong className="text-pink-600">Age: </strong>{" "}
+              {expectedPartnerAge}
             </p>
             <p>
               <strong className="text-pink-600">Height:</strong>{" "}

@@ -93,7 +93,7 @@ const PremiumMember = () => {
                 {member.name}
               </h3>
               <p className="text-sm">
-                Age: {member.age} | Gender: {member.biodataType}
+                Age: {member.age} | Gender: {member.gender}
               </p>
               <p className="text-sm">Occupation: {member.occupation}</p>
               <p className="text-sm mb-3">Division: {member.presentDivision}</p>
