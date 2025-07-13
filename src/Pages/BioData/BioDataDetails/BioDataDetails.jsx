@@ -124,7 +124,7 @@ const BioDataDetails = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-orange-50 to-pink-100 p-6">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-orange-50 to-pink-100 dark:bg-[#1d232a] p-6">
       <Card className="w-full max-w-3xl p-8 shadow-2xl rounded-2xl bg-white border border-pink-400">
         <div className="flex flex-col md:flex-row gap-8 items-center">
           {/* Profile Section */}
@@ -236,7 +236,7 @@ const BioDataDetails = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="mt-6 bg-pink-50 p-6 rounded-lg shadow-md">
+        {/* <div className="mt-6 bg-pink-50 p-6 rounded-lg shadow-md">
           <h3 className="text-lg font-semibold text-yellow-600 mb-3">
             Contact Information
           </h3>
@@ -248,19 +248,17 @@ const BioDataDetails = () => {
             <strong className="text-pink-600">Mobile:</strong> "Request Contact
             Information"
           </p>
-        </div>
+        </div> */}
 
-        {/* <div className="mt-6 bg-pink-50 p-6 rounded-lg shadow-md">
-  <h3 className="text-lg font-semibold text-yellow-600 mb-3">
-    Contact Information
-  </h3>
-  <p className="text-gray-700">
-    <strong className="text-pink-600">Email:</strong> {isApproved ? contactEmail : "Request Contact Information"}
-  </p>
-  <p className="text-gray-700">
-    <strong className="text-pink-600">Mobile:</strong> {isApproved ? mobileNumber : "Request Contact Information"}
-  </p>
-</div> */}
+        
+<p className="text-gray-700 dark:text-gray-100">
+  <strong className="text-pink-600">Email:</strong>{" "}
+  {contactEmail ? contactEmail : "Request Contact Information"}
+</p>
+<p className="text-gray-700 dark:text-gray-100">
+  <strong className="text-pink-600">Mobile:</strong>{" "}
+  {mobileNumber ? mobileNumber : "Request Contact Information"}
+</p>
 
 
 
