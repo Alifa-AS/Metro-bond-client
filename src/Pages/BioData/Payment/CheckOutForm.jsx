@@ -129,30 +129,30 @@ const CheckoutForm = ({ data }) => {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="max-w-md mx-auto bg-white p-6 shadow-md rounded-lg"
+        className="max-w-md mx-auto bg-white dark:bg-gray-700 p-6 shadow-md rounded-lg"
       >
         <div className="form-control my-5">
           <div>
-            <h1 className="text-gray-500 text-center">Pay $5 for premium</h1>
+            <h1 className="text-gray-500 text-center dark:text-gray-200">Pay $5 for premium</h1>
           </div>
         </div>
         <div className="form-control my-5">
-          <label className="text-gray-500">Biodata ID</label>
+          <label className="text-gray-500 dark:text-gray-100">Biodata ID</label>
           <input
             type="text"
             value={biodataId}
             readOnly
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:text-gray-800"
           />
         </div>
 
         <div className="form-control my-5">
-          <label className="text-gray-500">Your Email</label>
+          <label className="text-gray-500 dark:text-gray-100">Your Email</label>
           <input
             type="email"
             value={user?.email}
             readOnly
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded dark:text-gray-800"
           />
         </div>
         <CardElement

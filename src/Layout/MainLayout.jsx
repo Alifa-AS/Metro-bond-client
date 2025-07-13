@@ -11,7 +11,7 @@ const MainLayout = () => {
     const noFoot = location.pathname.includes('login') || location.pathname.includes('register')
 
     return (
-        <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+        <div className="bg-white dark:bg-[#1d232a] text-gray-900 dark:text-white">
             <ToastContainer />
             <CustomNavbar />
             <div className="min-h-[calc(100vh-350px)]">

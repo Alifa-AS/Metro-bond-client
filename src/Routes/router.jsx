@@ -42,17 +42,17 @@ import SuccessStories from '../Pages/DashBoard/Admin Dashboard/SuccessStories/Su
             {
                 path: '/successReview/:id',
                 element: <SuccessStoryDetails />,
-                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/successReview/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/successReview/${params.id}`)
             },
             {
                 path: 'bioData',
                 element: <BioData />,
-                loader: (()=>fetch('https://b10-a12-metro-server.vercel.app/bioDataCount'))
+                loader: (()=>fetch('http://localhost:5000/bioDataCount'))
             },
             {
                 path: 'bioData/:id',
                 element: <PrivateRoute> <BioDataDetails /> </PrivateRoute>,
-                loader: ({ params }) => fetch(`https://b10-a12-metro-server.vercel.app/bioData/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/bioData/${params.id}`)
 
             },
             {

@@ -89,7 +89,7 @@ const Login = () => {
       <Helmet>
         <title>Metro || Login</title>
       </Helmet>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-[#1d232a]">
         <div className="flex flex-col lg:flex-row-reverse items-center gap-10">
           {/* Lottie Animation */}
           <div className="text-center lg:text-left w-96">

@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 const DashBoardLayout = () => {
     return (
         // <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-        <div>
+        <div className='dark:bg-[#1d232a]'>
             <ToastContainer />
             <DashBoard />
             <Outlet />

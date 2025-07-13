@@ -37,6 +37,12 @@ const BioDataDetails = () => {
   } = useLoaderData();
 
   const [similarBiodata, setSimilarBiodata] = useState([]);
+  // const [isApproved, setIsApproved] = useState(false);
+
+
+
+
+
 
   // Fetch similar biodata based on biodataType
   useEffect(() => {
@@ -243,6 +249,21 @@ const BioDataDetails = () => {
             Information"
           </p>
         </div>
+
+        {/* <div className="mt-6 bg-pink-50 p-6 rounded-lg shadow-md">
+  <h3 className="text-lg font-semibold text-yellow-600 mb-3">
+    Contact Information
+  </h3>
+  <p className="text-gray-700">
+    <strong className="text-pink-600">Email:</strong> {isApproved ? contactEmail : "Request Contact Information"}
+  </p>
+  <p className="text-gray-700">
+    <strong className="text-pink-600">Mobile:</strong> {isApproved ? mobileNumber : "Request Contact Information"}
+  </p>
+</div> */}
+
+
+
 
         {/* Action Buttons */}
         <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
