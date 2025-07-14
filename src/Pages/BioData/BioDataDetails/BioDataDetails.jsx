@@ -34,6 +34,7 @@ const BioDataDetails = () => {
     expectedPartnerWeight,
     contactEmail,
     mobileNumber,
+    paymentInfo,
   } = useLoaderData();
 
   const [similarBiodata, setSimilarBiodata] = useState([]);
@@ -269,14 +270,33 @@ const BioDataDetails = () => {
           </p>
         </div> */}
 
-        <p className="text-gray-700 dark:text-gray-100">
+        {/* <p className="text-gray-700 dark:text-gray-100">
           <strong className="text-pink-600">Email:</strong>{" "}
           {contactEmail ? contactEmail : "Request Contact Information"}
         </p>
         <p className="text-gray-700 dark:text-gray-100">
           <strong className="text-pink-600">Mobile:</strong>{" "}
           {mobileNumber ? mobileNumber : "Request Contact Information"}
-        </p>
+        </p> */}
+
+        <p className="text-gray-700 dark:text-gray-100">
+  <strong className="text-pink-600">Email:</strong>{" "}
+  {contactEmail ? contactEmail : "Request Contact Information"}
+</p>
+<p className="text-gray-700 dark:text-gray-100">
+  <strong className="text-pink-600">Mobile:</strong>{" "}
+  {mobileNumber ? mobileNumber : "Request Contact Information"}
+</p>
+
+{/* Optional: show payment info */}
+{paymentInfo && (
+  <div className="mt-4 bg-green-50 p-3 rounded">
+    <p className="text-green-700">Payment ID: {paymentInfo.transitionId}</p>
+    <p className="text-green-700">Amount: {paymentInfo.amount}</p>
+    <p className="text-green-700">Date: {new Date(paymentInfo.date).toLocaleDateString()}</p>
+  </div>
+)}
+
 
         {/* Action Buttons */}
         <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-4">
