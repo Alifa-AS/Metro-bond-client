@@ -107,7 +107,7 @@ const ViewBio = ({ biodata: initialBiodata }) => {
 
               <div className="border-b border-gray-300 pb-4 mb-4">
                 <h4 className="font-semibold text-pink-500">Date of Birth</h4>
-                <p className="text-gray-700 dark:text-white">{biodata?.dob}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.dateOfBirth}</p>
               </div>
 
               <div className="border-b border-gray-300 pb-4 mb-4">
@@ -194,7 +194,7 @@ const ViewBio = ({ biodata: initialBiodata }) => {
 
               <div>
                 <h4 className="font-semibold text-pink-500">Mobile</h4>
-                <p className="text-gray-700 dark:text-white">{biodata?.mobile}</p>
+                <p className="text-gray-700 dark:text-white">{biodata?.mobileNumber}</p>
               </div>
             </div>
           </div>

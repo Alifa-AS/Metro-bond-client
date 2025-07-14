@@ -16,7 +16,7 @@ const CheckoutForm = ({ data }) => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { biodataId, name, contactEmail, mobileNumber } = data;
+  const { biodataId, name, email, mobileNumber } = data;
 
   const totalPrice = 500; // Amount in cents ($5.00)
 

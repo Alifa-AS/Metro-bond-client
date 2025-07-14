@@ -29,7 +29,8 @@ const EditBioData = ({ biodataId }) => {
     expectedPartnerHeight: "",
     expectedPartnerWeight: "",
     email: "",
-    mobile: "",
+    contactEmail: "",
+    mobileNumber: "",
   });
 
   useEffect(() => {
@@ -163,6 +164,7 @@ const EditBioData = ({ biodataId }) => {
 
           {/* Date of Birth */}
           <div>
+            {console.log("DOB value:", biodata.dateOfBirth)}
             <Label htmlFor="dateOfBirth" value="Date of Birth" />
             <TextInput
               id="dateOfBirth"
@@ -412,18 +414,33 @@ const EditBioData = ({ biodataId }) => {
             />
           </div>
 
-          {/* Mobile */}
+          {/* contact email */}
           <div>
-            <Label htmlFor="mobile" value="Mobile" />
+            <Label htmlFor="contactEmail" value="Contact Email" />
             <TextInput
-              id="mobile"
-              name="mobile"
-              value={biodata.mobile}
+              id="contactEmail"
+              name="contactEmail"
+              value={biodata.contactEmail}
+              onChange={handleChange}
+              required
+              type="email"
+              placeholder="Enter your email address"
+              className="border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 p-2"
+            />
+          </div>
+
+          {/* Mobile */}
+          <div className="col-span-2">
+            <Label htmlFor="mobileNumber" value="Mobile Number" />
+            <TextInput
+              id="mobileNumber"
+              name="mobileNumber"
+              value={biodata.mobileNumber}
               onChange={handleChange}
               required
               type="text"
               placeholder="Enter your mobile number"
-              className="border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 p-2"
+              className="border-2 border-pink-300 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 p-2"
             />
           </div>
 
