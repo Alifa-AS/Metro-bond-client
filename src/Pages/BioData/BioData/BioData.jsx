@@ -19,13 +19,13 @@ const BioData = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const axiosSecure = useAxiosSecure();
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/bioData")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setBioData(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("https://b10-a12-metro-server.vercel.app/bioData")
+      .then((res) => res.json())
+      .then((data) => {
+        setBioData(data);
+      });
+  }, []);
 
   const handleFilter = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const BioData = () => {
 
     axiosSecure
       .get(
-        `/bioData?minAge=${minAge}&maxAge=${maxAge}&biodataType=${gender}&permanentDivision=${division}`,
+        `/bioData?minAge=${minAge}&maxAge=${maxAge}&gender=${gender}&permanentDivision=${division}`,
         {
           withCredentials: true,
         }
@@ -80,7 +80,7 @@ const BioData = () => {
   };
 
   const handleNextPage = () => {
-    if (currentPage < pages.length) {
+    if (currentPage < pages.length - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -150,7 +150,7 @@ const BioData = () => {
               >
                 <option value="">Select Division</option>
                 <option value="Dhaka">Dhaka</option>
-                <option value="Chattagra">Chattagra</option>
+                <option value="Chattagram">Chattagram</option>
                 <option value="Rangpur">Rangpur</option>
                 <option value="Barisal">Barisal</option>
                 <option value="Khulna">Khulna</option>

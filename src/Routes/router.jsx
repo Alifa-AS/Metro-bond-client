@@ -40,18 +40,18 @@ const router = createBrowserRouter([
         path: "/successReview/:id",
         element: <SuccessStoryDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/successReview/${params.id}`),
+          fetch(`https://b10-a12-metro-server.vercel.app/successReview/${params.id}`),
       },
       {
         path: "bioData",
         element: <BioData />,
-        loader: () => fetch("http://localhost:5000/bioDataCount"),
+        loader: () => fetch("https://b10-a12-metro-server.vercel.app/bioDataCount"),
       },
       {
         path: "bioData/:id",
         element: <PrivateRoute><BioDataDetails /></PrivateRoute>,
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/bioData/${params.id}`, {
+        fetch(`https://b10-a12-metro-server.vercel.app/bioData/${params.id}`, {
            headers: {
             "Content-Type": "application/json",
              Authorization: `Bearer ${localStorage.getItem("access-token")}`,

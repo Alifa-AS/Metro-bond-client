@@ -10,7 +10,7 @@ const PremiumMember = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/bioData")
+      .get("https://b10-a12-metro-server.vercel.app/bioData")
       .then((res) => {
         setPremium(res.data);
       })
